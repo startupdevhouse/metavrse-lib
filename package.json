@@ -12,8 +12,7 @@
     "lint": "eslint --fix 'src/**/*.ts'",
     "test": "jest",
     "prepare": "husky install",
-    "build:dev": "tsc && webpack --mode development --config webpack.config.js",
-    "build:prod": "tsc && webpack --mode production --config webpack.config.js",
+    "build": "tsc && webpack --mode development --config webpack.config.js",
     "release": "standard-version"
   },
   "repository": {

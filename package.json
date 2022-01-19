@@ -10,7 +10,6 @@
   "scripts": {
     "commit": "git-cz",
     "lint": "eslint --fix 'src/**/*.ts'",
-    "test": "jest",
     "prepare": "husky install",
     "build": "tsc && webpack --mode development --config webpack.config.js",
     "release": "standard-version"

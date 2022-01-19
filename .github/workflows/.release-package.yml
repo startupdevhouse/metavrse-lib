@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
 
-      # - name: Install dependencies
-      #   run: npm ci
-
       - name: Release new version
         run: yarn release
 

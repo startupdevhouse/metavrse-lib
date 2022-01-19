@@ -1,4 +1,6 @@
 const path = require('path');
+const fs = require('fs');
+const prettier = require('prettier');
 const { merge } = require('webpack-merge');
 const config = require('./webpack.config');
 const webpack = require('webpack');
@@ -55,6 +57,29 @@ module.exports = [
             to: path.resolve(__dirname, './dist/types'),
           },
           { from: 'src/index.d.ts', to: path.resolve(__dirname, './dist') },
+          {
+            from: 'package.json',
+            to: path.resolve(__dirname, './dist'),
+            transform(content, absoluteFrom) {
+              const config = JSON.parse(fs.readFileSync(absoluteFrom));
+
+              const newConfig = {
+                name: config.name,
+                version: config.version,
+                repository: config.repository,
+                license: config.license,
+                bugs: config.bugs,
+                homepage: config.homepage,
+                peerDependencies: config.peerDependencies,
+                engineStrict: config.engineStrict,
+                engine: config.engine,
+              };
+
+              return prettier.format(JSON.stringify(newConfig), {
+                parser: 'json',
+              });
+            },
+          },
         ],
       }),
       // TODO: Need web based configuration for cherryGL

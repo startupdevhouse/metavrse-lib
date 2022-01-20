@@ -66,6 +66,8 @@ module.exports = [
               const newConfig = {
                 name: config.name,
                 version: config.version,
+                main: 'index.js',
+                types: 'index.d.ts',
                 repository: config.repository,
                 license: config.license,
                 bugs: config.bugs,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.7...v0.0.8) (2022-01-20)
+
+
+### Bug Fixes
+
+* MET-1651 add override for method getParameterVec3 ([fe9c848](https://github.com/startupdevhouse/metavrse-lib/commit/fe9c8480a74d3bf4f88fb6643f00f4a957a6753f))
+
 ### [0.0.7](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.6...v0.0.7) (2022-01-19)
 
 ### [0.0.6](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.5...v0.0.6) (2022-01-19)

@@ -8,6 +8,11 @@ type SetParameter = {
   (arg0: number, arg1: string, arg2: number, arg3: number, arg4: number): void;
 };
 
+type GetParameterVec3 = {
+  (vector: Vector3): any;
+  (vector: string): any;
+};
+
 export type CherrySurfaceSceneObject = {
   $$: {
     count: { value: number };
@@ -28,7 +33,7 @@ export type CherrySurfaceSceneObject = {
   getParameterFloat: () => void;
   getParameterInt: () => void;
   getParameterString: () => void;
-  getParameterVec3: (vector: Vector3) => any;
+  getParameterVec3: GetParameterVec3;
   pauseAnimation: () => void;
   playAnimation: () => void;
   resumeAnimation: () => void;

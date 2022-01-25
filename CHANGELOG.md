@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.10...v0.0.11) (2022-01-25)
+
+
+### Features
+
+* MET-1782 add version from package.json ([8fb471b](https://github.com/startupdevhouse/metavrse-lib/commit/8fb471bf1d37fa9376cc74643e7a9d6afd11a69c))
+
 ### [0.0.10](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.9...v0.0.10) (2022-01-20)
 
 

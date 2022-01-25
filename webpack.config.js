@@ -5,6 +5,8 @@ const { merge } = require('webpack-merge');
 const config = require('./webpack.config');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
+const package = require('./package.json');
 
 module.exports = [
   {
@@ -84,6 +86,18 @@ module.exports = [
           },
         ],
       }),
+      new ReplaceInFileWebpackPlugin([
+        {
+          dir: 'dist',
+          files: ['index.js'],
+          rules: [
+            {
+              search: '0.0.0',
+              replace: package.version,
+            },
+          ],
+        },
+      ]),
       // TODO: Need web based configuration for cherryGL
     ],
   },

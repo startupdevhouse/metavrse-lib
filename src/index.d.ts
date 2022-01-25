@@ -36,4 +36,6 @@ export * from './types/entities/ObjectHudEntity';
 export * from './types/entities/VideoEntity';
 
 import CherryGL from './cherry/CherryGL';
+
 export default CherryGL;
+export declare const CherryGLVersion: string;

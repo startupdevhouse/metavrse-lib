@@ -6,7 +6,6 @@ export type Asset = {
   key: CherryKey;
   title: string; // name will not work! See TreeNodeType
   type: AssetType;
-  // TODO: [MET-588] Conditional parameter type
   children: Asset[];
   hidden?: boolean;
   uiVisible?: boolean;

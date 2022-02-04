@@ -5,7 +5,8 @@ import { RGB } from '../../common/RGB';
 import { Vector3 } from '../../common/Vector3';
 
 export type OldData = {
-  position?: Vector3;
+  color?: RGB;
+  position?: number[];
   rotate?: Vector3;
   scale?: Vector3;
   anchor?: Vector3;

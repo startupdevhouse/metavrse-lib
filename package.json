@@ -5,13 +5,15 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "./dist"
+    "dist/"
   ],
   "scripts": {
     "commit": "git-cz",
     "lint": "eslint --fix 'src/**/*.ts'",
     "prepare": "husky install",
     "build": "tsc && webpack --mode development --config webpack.config.js",
+    "start:tsc": "tsc --watch",
+    "start:webpack": "webpack --watch --progress --mode development --config webpack.config.js",
     "release": "standard-version"
   },
   "repository": {

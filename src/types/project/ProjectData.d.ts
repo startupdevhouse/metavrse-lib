@@ -3,7 +3,7 @@ import { Scene } from '../scene/Scene';
 export type ProjectData = {
   id: string;
   incrementalId: number;
-  version: number | string;
+  version: string;
   title: string;
   createDate: string;
   updateDate: string;

@@ -16,5 +16,5 @@ export enum NODE_TYPES {
   camera = 'camera',
   configuration = 'configuration',
   folder = 'folder',
-  javascript = 'script',
+  javascript = 'javascript',
 }

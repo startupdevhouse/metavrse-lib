@@ -3,11 +3,10 @@ import { GroupMat } from '../common/GroupMat';
 import { Vector3 } from '../common/Vector3';
 import { EntityMeshes } from './EntityMeshes';
 import { EntityConfiguration } from './EntityConfiguration';
-import { NODE_TYPES } from '../common/NODE_TYPES';
 
 export type ObjectEntity = {
   key: CherryKey;
-  type: NODE_TYPES.object;
+  type: 'object';
 
   position: Vector3;
   rotate: Vector3;

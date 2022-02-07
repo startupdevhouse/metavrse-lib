@@ -1,7 +1,7 @@
 import { CherryKey } from './CherryKey';
 import { CherryProjectManagerObject } from './CherryProjectManagerObject';
 import { Entities } from '../entities/Entities';
-import { TreeNode } from '../common/TreeNode';
+import { TreeNode } from '../tree/TreeNode';
 import { Asset } from '../assets/Asset';
 
 export type CherryProjectManager = {

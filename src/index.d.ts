@@ -27,12 +27,16 @@ export * from './types/cherry/CherryViewerFileSystem';
  */
 export * from './types/common/Extensions';
 export * from './types/common/GroupMat';
-export * from './types/common/NODE_TYPES';
 export * from './types/common/RGB';
-export * from './types/common/TreeNode';
-export * from './types/common/TreeNodeType';
+
 export * from './types/common/Vector3';
 export * from './types/common/VectorKeys';
+
+/**
+ * Tree types
+ */
+export * from './types/tree/TreeNode';
+export * from './types/tree/TreeNodeType';
 
 /**
  * Entities types
@@ -41,7 +45,6 @@ export * from './types/entities/CameraEntity';
 export * from './types/entities/Entities';
 export * from './types/entities/Entity';
 export * from './types/entities/EntityConfiguration';
-export * from './types/entities/EntityConfigurationType';
 export * from './types/entities/EntityMeshes';
 export * from './types/entities/HudEntity';
 export * from './types/entities/LightEntity';

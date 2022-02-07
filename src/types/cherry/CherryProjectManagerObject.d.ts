@@ -1,6 +1,6 @@
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
-import { TreeNodeType } from '../common/TreeNodeType';
+import { TreeNodeType } from '../tree/TreeNodeType';
 import { CherryKey } from './CherryKey';
 import { CherryMesh } from './CherryMesh';
 

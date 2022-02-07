@@ -1,6 +1,4 @@
-import { TreeNodeType } from './../../common/TreeNodeType';
 import { CherryKey } from './../../cherry/CherryKey';
-import { NODE_TYPES } from '../../common/NODE_TYPES';
 
 export type OldTreeNode = {
   key: CherryKey;

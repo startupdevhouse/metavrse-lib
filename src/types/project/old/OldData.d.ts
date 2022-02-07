@@ -1,6 +1,5 @@
 import { CherryKey } from '../../cherry/CherryKey';
 import { GroupMat } from '../../common/GroupMat';
-import { NODE_TYPES } from '../../common/NODE_TYPES';
 import { RGB } from '../../common/RGB';
 import { Vector3 } from '../../common/Vector3';
 

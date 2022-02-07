@@ -1,8 +1,10 @@
 import { CherryKey } from '../cherry/CherryKey';
-import { NODE_TYPES } from '../common/NODE_TYPES';
+import { ObjectEntity } from './ObjectEntity';
 
-export type ObjectHudEntity = Omit<Object, 'type'> & {
+type ObjectTypes = Omit<ObjectEntity, 'type'>;
+
+export type ObjectHudEntity = {
   key: CherryKey;
-  type: NODE_TYPES.objectHud;
+  type: 'object-hud';
   visible: boolean;
-};
+} & ObjectTypes;

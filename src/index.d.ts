@@ -79,7 +79,7 @@ export * from './types/world/World';
 /**
  * Configurations types
  */
-export * from './types/configurations/Configuration';
+export * from './types/configurations/ConfigurationTypes';
 
 import CherryGL from './cherry/CherryGL';
 

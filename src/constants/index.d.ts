@@ -1,0 +1,20 @@
+export declare const NODE_TYPES: {
+    readonly hud: "hud";
+    readonly hudLink: "hud-link";
+    readonly image: "image";
+    readonly imageLink: "image-link";
+    readonly light: "light";
+    readonly lightLink: "light-link";
+    readonly object: "object";
+    readonly objectLink: "object-link";
+    readonly objectHud: "object-hud";
+    readonly objectHudLink: "object-hud-link";
+    readonly objectGroup: "object-group";
+    readonly objectGroupLink: "object-group-link";
+    readonly video: "video";
+    readonly videoLink: "video-link";
+    readonly camera: "camera";
+    readonly configuration: "configuration";
+    readonly folder: "folder";
+    readonly javascript: "javascript";
+};

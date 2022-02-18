@@ -2,19 +2,23 @@
   "name": "@startupdevhouse/metavrse-lib",
   "version": "0.0.15",
   "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/metavrse-lib.esm.js",
+  "typings": "dist/index.d.ts",
   "files": [
-    "dist/**"
+    "dist",
+    "src"
   ],
   "scripts": {
     "commit": "git-cz",
-    "lint": "eslint --fix 'src/**/*.ts'",
     "prepare": "husky install",
-    "build": "tsc && webpack --mode development --config webpack.config.js",
-    "start:tsc": "tsc --watch",
-    "start:webpack": "webpack --watch --progress --mode development --config webpack.config.js",
-    "release": "standard-version"
+    "release": "standard-version",
+    "analyze": "size-limit --why",
+    "build": "dts build",
+    "lint": "dts lint",
+    "size": "size-limit",
+    "start": "dts watch",
+    "test": "dts test"
   },
   "repository": {
     "type": "git",
@@ -29,28 +33,21 @@
     "@babel/runtime": "7.16.7"
   },
   "devDependencies": {
-    "@babel/runtime": "7.16.7",
     "@digitalroute/cz-conventional-changelog-for-jira": "^7.0.0",
-    "@types/webpack": "^5.28.0",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@tsconfig/recommended": "^1.0.1",
     "commitizen": "^4.2.4",
-    "copy-webpack-plugin": "^10.2.0",
-    "expose-loader": "^3.0.0",
+    "dts-cli": "^1.2.0",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
-    "replace-in-file-webpack-plugin": "^1.0.6",
+    "size-limit": "^7.0.8",
     "standard-version": "^9.3.2",
-    "ts-loader": "9.2.6",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.4",
-    "webpack": "^5.38.1",
-    "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.2.1",
-    "webpack-merge": "^5.8.0"
+    "typescript": "^4.5.5"
   },
   "engineStrict": true,
   "engines": {
-    "yarn": ">=3",
+    "yarn": "^1.22",
     "node": ">=16.0"
   },
   "config": {
@@ -61,5 +58,12 @@
   "lint-staged": {
     "*.{js,ts,tsx,css}": "eslint --fix"
   },
-  "packageManager": "yarn@3.1.1"
+  "husky": {
+    "hooks": {
+      "pre-commit": "dts lint"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
 }

@@ -1,5 +1,9 @@
 import CherryGLInstance from './cherry/CherryGL';
+import CherryConnect from './facade';
+
+export * from './types';
 export * from './constants';
+export * from './facade';
 
 // IMPORTANT: Don't change this line it will automaticlly change the version after build!
 export const CherryGLVersion = '0.0.0';

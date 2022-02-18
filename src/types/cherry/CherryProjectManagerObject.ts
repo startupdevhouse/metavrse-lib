@@ -13,7 +13,7 @@ export type CherryProjectManagerObject = {
   insertIntoBucket: () => void;
   regenerateLink: () => void;
   toggleLink: () => void;
-  setProperty: (prop: string, value: any, key: CherryKey) => void;
+  setProperty: (prop: string, value: any, key?: CherryKey) => void;
   getProperty: (prop: string, key: CherryKey) => [string, Vector3];
   removeLink: { (): void; (prop: string, key: CherryKey): boolean };
   clearRender: () => void;
@@ -29,7 +29,7 @@ export type CherryProjectManagerObject = {
   /** @description Use to retrive mesh specify by index or update mesh by it index */
   mesh: {
     get: (index: number, property: string) => CherryMesh;
-    set: (index: number, mesh: CherryMesh) => boolean;
+    set: (index: number, property: string, value: unknown) => void;
   };
 
   color: RGB;

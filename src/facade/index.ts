@@ -4,55 +4,60 @@ import {
   CherryMeshMaterial,
 } from '../types/cherry/CherryMesh';
 import { CherryKey } from '../types/cherry/CherryKey';
-import { CherryProjectManagerObject } from '../types/cherry/CherryProjectManagerObject';
 import { CherryViewer } from '../types/cherry/CherryViewer';
 import { Vector3 } from '../types/common/Vector3';
-
-type CherryObjectMeshes = {
-  materials: any;
-  objectMeshes: CherryMesh[];
-  objectMeshMaterials: CherryMeshMaterial[];
-  objectMeshGroups: CherryMeshGroup[];
-  shaderTypes: any;
-};
-type CherryObjectAnimations = {};
-type CherryObjectInfo = {};
-type CherryObjectComponents = {};
-
-export type CherryObject = {
-  object: CherryProjectManagerObject;
-  meshes: CherryObjectMeshes;
-  animations: CherryObjectAnimations;
-  info: CherryObjectInfo;
-  components: CherryObjectComponents;
-};
-
-export type CherryFacade = {
-  getObject: (key: CherryKey) => CherryObject;
-  setObjectProperty: (key: CherryKey, property: string, value: any) => void;
-  setObjectMaterial: (
-    key: CherryKey,
-    index: number,
-    property: string,
-    value: number | Vector3 | string
-  ) => void;
-  setObjectShaderType: (
-    index: number,
-    meshType: 'MESH' | 'MATERIAL' | 'GROUP',
-    shaderType: any
-  ) => void;
-  highlightMesh: (
-    key: CherryKey,
-    index: number,
-    value: boolean,
-    meshType: 'MESH' | 'MATERIAL' | 'GROUP'
-  ) => void;
-};
+import { CherryFacade, CherryObject } from '../types/facade';
+import {
+  RGB_PARAMETERS,
+  ShaderParameterType,
+  SHADER_PROPERTY_TYPES,
+  SHADER_TYPES,
+} from './shaders';
+import { CherrySurfaceSceneObject } from '..';
 
 export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
   const pm = cherryViewer.ProjectManager;
   const surface = cherryViewer.getSurface();
   const scene = surface.getScene();
+
+  const getMaterialValues = (
+    object: CherrySurfaceSceneObject,
+    index: number
+  ) => {
+    const mesh_id = 0;
+    const data = {} as Record<ShaderParameterType, any>;
+    const pbr = object.getParameterBool(index, 'use_pbr');
+
+    Object.keys(SHADER_PROPERTY_TYPES).forEach((key) => {
+      const paramter = key as ShaderParameterType;
+      const valueType = SHADER_PROPERTY_TYPES[paramter];
+
+      if (pbr && SHADER_TYPES.PBR.includes(paramter)) {
+      }
+      if (valueType === 'vec3') {
+        const vec = object.getParameterVec3(index, paramter);
+        if (RGB_PARAMETERS.includes(key)) {
+          data[key as ShaderParameterType] = [
+            +(vec.f1 * 255).toFixed(0),
+            +(vec.f2 * 255).toFixed(0),
+            +(vec.f3 * 255).toFixed(0),
+          ];
+        } else {
+          data[paramter] = [
+            +vec.f1.toFixed(0),
+            +vec.f2.toFixed(0),
+            +vec.f3.toFixed(0),
+          ];
+        }
+      } else if (valueType === 'boolean') {
+        data[paramter] = object.getParameterBool(mesh_id, paramter);
+      } else if (valueType === 'float') {
+        data[paramter] = object.getParameterFloat(mesh_id, paramter);
+      } else if (valueType === 'string') {
+        data[paramter] = object.getParameterString(mesh_id, paramter);
+      }
+    });
+  };
 
   return {
     /**
@@ -86,10 +91,6 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
           shaderTypes: {
             0: 'PBR',
             1: 'STANDARD',
-          },
-          materials: {
-            0: {},
-            1: {},
           },
         },
         animations: [],

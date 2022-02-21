@@ -1,5 +1,6 @@
 import { CherryMeshes } from './CherryMeshes';
 import { Vector3 } from '../common/Vector3';
+import { ShaderParameterType } from '../../facade/shaders';
 
 type SetParameter = {
   (arg0: string, arg1: any): void;
@@ -8,9 +9,14 @@ type SetParameter = {
   (arg0: number, arg1: string, arg2: number, arg3: number, arg4: number): void;
 };
 
+type GetParameterVec3Return = {
+  f1: number;
+  f2: number;
+  f3: number;
+};
+
 type GetParameterVec3 = {
-  (vector: Vector3): any;
-  (vector: string): any;
+  (index: number, parameter: ShaderParameterType): GetParameterVec3Return;
 };
 
 export type CherrySurfaceSceneObject = {
@@ -29,10 +35,10 @@ export type CherrySurfaceSceneObject = {
    */
   getMeshes: () => CherryMeshes;
   getNodeNames: () => void;
-  getParameterBool: () => void;
-  getParameterFloat: () => void;
-  getParameterInt: () => void;
-  getParameterString: () => void;
+  getParameterBool: (index: number, parameter: ShaderParameterType) => boolean;
+  getParameterFloat: (index: number, parameter: ShaderParameterType) => number;
+  getParameterInt: (index: number, parameter: ShaderParameterType) => number;
+  getParameterString: (index: number, parameter: ShaderParameterType) => string;
   getParameterVec3: GetParameterVec3;
   pauseAnimation: () => void;
   playAnimation: () => void;

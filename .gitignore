@@ -14,3 +14,4 @@ dist
 !.yarn/versions
 
 .DS_Store
+/.idea/

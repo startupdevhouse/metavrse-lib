@@ -34,16 +34,22 @@
   },
   "devDependencies": {
     "@digitalroute/cz-conventional-changelog-for-jira": "^7.0.0",
+    "@rollup/plugin-replace": "^3.1.0",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@tsconfig/recommended": "^1.0.1",
+    "@wemap/rollup-plugin-arraybuffer": "^0.1.2",
     "commitizen": "^4.2.4",
-    "dts-cli": "^1.2.0",
+    "dts-cli": "^1.4.0",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-smart-asset": "^2.1.2",
+    "rollup-plugin-string": "^3.0.0",
     "size-limit": "^7.0.8",
     "standard-version": "^9.3.2",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "uglify-js": "^3.15.1"
   },
   "engineStrict": true,
   "engines": {

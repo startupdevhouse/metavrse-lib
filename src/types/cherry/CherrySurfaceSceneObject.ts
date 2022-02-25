@@ -1,6 +1,5 @@
 import { CherryMeshes } from './CherryMeshes';
-import { Vector3 } from '../common/Vector3';
-import { ShaderParameterType } from '../../facade/shaders';
+import { ShaderParameterType } from '..';
 
 type SetParameter = {
   (arg0: string, arg1: any): void;
@@ -16,6 +15,7 @@ type GetParameterVec3Return = {
 };
 
 type GetParameterVec3 = {
+  (parameter: ShaderParameterType): GetParameterVec3Return;
   (index: number, parameter: ShaderParameterType): GetParameterVec3Return;
 };
 

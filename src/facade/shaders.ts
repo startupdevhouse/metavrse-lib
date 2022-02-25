@@ -1,108 +1,41 @@
-export type ShaderType = 'PBR' | 'STANDARD';
-export type ShaderParameterType =
-  | 'use_pbr'
-  | 'ao_ratio'
-  | 'ao_texture'
-  | 'ao_texture_channel'
-  | 'metalness_ratio'
-  | 'metalness_texture'
-  | 'metalness_texture_channel'
-  | 'roughness_ratio'
-  | 'roughness_texture'
-  | 'roughness_texture_channel'
-  | 'albedo_ratio'
-  | 'albedo_texture'
-  | 'albedo_video'
-  | 'use_alpha_channel'
-  | 'emissive_ratio'
-  | 'emissive_texture'
-  | 'diffuse_ibl_ratio'
-  | 'specular_pbr_ratio'
-  | 'specular_ibl_ratio'
-  | 'normal_texture'
-  | 'normal_ratio'
-  | 'uv_animation'
-  | 'opacity_ratio'
-  | 'opacity_texture'
-  | 'opacity_texture_channel'
-  | 'ambient_ratio'
-  | 'ambient_texture'
-  | 'ambient_video'
-  | 'diffuse_ratio'
-  | 'diffuse_texture'
-  | 'specular_ratio'
-  | 'specular_texture'
-  | 'specular_power'
-  | 'normal_texture'
-  | 'normal_ratio'
-  | 'uv_animation'
-  | 'opacity_ratio'
-  | 'opacity_texture'
-  | 'opacity_texture_channel';
-
-export type ShaderValueType = 'float' | 'file' | 'string' | 'vec3' | 'boolean';
+import { ShaderType } from '../types/facade/ShaderType';
+import { ShaderValueType } from '../types/facade/ShaderValueType';
+import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 
 export const SHADER: ShaderType[] = ['PBR', 'STANDARD'];
 
-export const SHADER_TYPES: Record<ShaderType, ShaderParameterType[]> = {
-  PBR: [
-    'ao_ratio',
-    'ao_texture',
-    'ao_texture_channel',
-
-    'metalness_ratio',
-    'metalness_texture',
-    'metalness_texture_channel',
-
-    'roughness_ratio',
-    'roughness_texture',
-    'roughness_texture_channel',
-
-    'albedo_ratio',
-    'albedo_texture',
-    'albedo_video',
-
-    'use_alpha_channel',
-
-    'emissive_ratio',
-    'emissive_texture',
-
-    // diffuse_pbr_ratio: [255,255,255],
-    'diffuse_ibl_ratio',
-
-    'specular_pbr_ratio',
-    'specular_ibl_ratio',
-
-    'normal_texture',
-    'normal_ratio',
-
-    'uv_animation',
-
-    'opacity_ratio',
-    'opacity_texture',
-    'opacity_texture_channel',
-  ],
-  STANDARD: [
-    'ambient_ratio',
-    'ambient_texture',
-    'ambient_video',
-
-    'diffuse_ratio',
-    'diffuse_texture',
-
-    'specular_ratio',
-    'specular_texture',
-    'specular_power',
-
-    'normal_texture',
-    'normal_ratio',
-
-    'uv_animation',
-
-    'opacity_ratio',
-    'opacity_texture',
-    'opacity_texture_channel',
-  ],
+export const SHADER_TYPES: Record<
+  ShaderType,
+  Record<string, ShaderParameterType[]>
+> = {
+  PBR: {
+    albedo: ['albedo_ratio', 'albedo_texture', 'albedo_video'],
+    ao: ['ao_ratio', 'ao_texture', 'ao_texture_channel'],
+    emissive: ['emissive_ratio', 'emissive_texture'],
+    metalness: [
+      'metalness_ratio',
+      'metalness_texture',
+      'metalness_texture_channel',
+    ],
+    normal: ['normal_texture', 'normal_ratio'],
+    opacity: ['opacity_ratio', 'opacity_texture', 'opacity_texture_channel'],
+    roughness: [
+      'roughness_ratio',
+      'roughness_texture',
+      'roughness_texture_channel',
+    ],
+    // NOTE: Not used in PBR shader
+    // specular: ['specular_pbr_ratio', 'specular_ibl_ratio'],
+    uv: ['uv_animation'],
+  },
+  STANDARD: {
+    ambient: ['ambient_ratio', 'ambient_texture', 'ambient_video'],
+    diffuse: ['diffuse_ratio', 'diffuse_texture'],
+    normal: ['normal_texture', 'normal_ratio'],
+    opacity: ['opacity_ratio', 'opacity_texture', 'opacity_texture_channel'],
+    specular: ['specular_ratio', 'specular_texture', 'specular_power'],
+    uv: ['uv_animation'],
+  },
 };
 
 export const SHADER_PROPERTY_TYPES: Record<

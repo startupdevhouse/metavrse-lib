@@ -6,60 +6,87 @@ import {
 import { CherryKey } from '../types/cherry/CherryKey';
 import { CherryViewer } from '../types/cherry/CherryViewer';
 import { Vector3 } from '../types/common/Vector3';
-import { CherryFacade, CherryObject } from '../types/facade';
-import {
-  RGB_PARAMETERS,
-  ShaderParameterType,
-  SHADER_PROPERTY_TYPES,
-  SHADER_TYPES,
-} from './shaders';
+import { CherryFacade } from '../types/facade/CherryFacade';
+import { CherryObject } from '../types/facade/CherryObject';
+import { ShaderType } from '../types/facade/ShaderType';
+import { ShaderParameterType } from '../types/facade/ShaderParameterType';
+import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
 import { CherrySurfaceSceneObject } from '..';
+
+export * from './shaders';
 
 export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
   const pm = cherryViewer.ProjectManager;
   const surface = cherryViewer.getSurface();
   const scene = surface.getScene();
 
-  const getMaterialValues = (
-    object: CherrySurfaceSceneObject,
-    index: number
-  ) => {
-    const mesh_id = 0;
-    const data = {} as Record<ShaderParameterType, any>;
-    const pbr = object.getParameterBool(index, 'use_pbr');
-
-    Object.keys(SHADER_PROPERTY_TYPES).forEach((key) => {
-      const paramter = key as ShaderParameterType;
-      const valueType = SHADER_PROPERTY_TYPES[paramter];
-
-      if (pbr && SHADER_TYPES.PBR.includes(paramter)) {
-      }
-      if (valueType === 'vec3') {
-        const vec = object.getParameterVec3(index, paramter);
-        if (RGB_PARAMETERS.includes(key)) {
-          data[key as ShaderParameterType] = [
-            +(vec.f1 * 255).toFixed(0),
-            +(vec.f2 * 255).toFixed(0),
-            +(vec.f3 * 255).toFixed(0),
-          ];
-        } else {
-          data[paramter] = [
-            +vec.f1.toFixed(0),
-            +vec.f2.toFixed(0),
-            +vec.f3.toFixed(0),
-          ];
-        }
-      } else if (valueType === 'boolean') {
-        data[paramter] = object.getParameterBool(mesh_id, paramter);
-      } else if (valueType === 'float') {
-        data[paramter] = object.getParameterFloat(mesh_id, paramter);
-      } else if (valueType === 'string') {
-        data[paramter] = object.getParameterString(mesh_id, paramter);
-      }
-    });
-  };
-
   return {
+    /**
+     *
+     * @param assets
+     * Script object that holds all javascript files as strings. Necessary to run the cherryGL object
+     */
+    loadAssetsAndRun: async (assets: {
+      [key: string]: string;
+    }): Promise<void> => {
+      const keys = Object.keys(assets);
+      for (const path of keys) {
+        const content = assets[path];
+        if (content) {
+          const lastSlash = path.lastIndexOf('/') + 1;
+          const fullpath = path.substring(0, lastSlash);
+          const filename = path.substring(lastSlash);
+          console.log(lastSlash, fullpath, filename);
+
+          cherryViewer.FS.createPath('/', fullpath);
+          cherryViewer.FS.writeFile(path, new TextEncoder().encode(content));
+        }
+      }
+
+      cherryViewer._main();
+    },
+    /**
+     *
+     * @param object
+     * @param index
+     */
+    getMaterialValues: (object: CherrySurfaceSceneObject, index: number) => {
+      const mesh_id = 0;
+      const data = {} as Record<ShaderParameterType, any>;
+      const pbr = object.getParameterBool(index, 'use_pbr');
+
+      Object.keys(SHADER_PROPERTY_TYPES).forEach((key) => {
+        const paramter = key as ShaderParameterType;
+        const valueType = SHADER_PROPERTY_TYPES[paramter];
+
+        if (pbr && SHADER_TYPES.PBR[paramter]) {
+        }
+        if (valueType === 'vec3') {
+          const vec = object.getParameterVec3(index, paramter);
+          if (RGB_PARAMETERS.includes(key)) {
+            data[key as ShaderParameterType] = [
+              +(vec.f1 * 255).toFixed(0),
+              +(vec.f2 * 255).toFixed(0),
+              +(vec.f3 * 255).toFixed(0),
+            ];
+          } else {
+            data[paramter] = [
+              +vec.f1.toFixed(0),
+              +vec.f2.toFixed(0),
+              +vec.f3.toFixed(0),
+            ];
+          }
+        } else if (valueType === 'boolean') {
+          data[paramter] = object.getParameterBool(mesh_id, paramter);
+        } else if (valueType === 'float') {
+          data[paramter] = object.getParameterFloat(mesh_id, paramter);
+        } else if (valueType === 'string') {
+          data[paramter] = object.getParameterString(mesh_id, paramter);
+        }
+      });
+
+      return data;
+    },
     /**
      *
      * @param key

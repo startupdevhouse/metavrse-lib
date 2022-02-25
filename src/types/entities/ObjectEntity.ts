@@ -1,7 +1,7 @@
 import { CherryKey } from '../cherry/CherryKey';
 import { GroupMat } from '../common/GroupMat';
 import { Vector3 } from '../common/Vector3';
-import { EntityMeshes } from './EntityMeshes';
+import { ShaderParameterType } from '../facade/ShaderParameterType';
 import { EntityConfiguration } from './EntityConfiguration';
 
 export type ObjectEntity = {
@@ -16,9 +16,7 @@ export type ObjectEntity = {
   groupMat: GroupMat;
   autoscale: number;
 
-  data: {
-    [key: string]: EntityMeshes;
-  };
+  data: Record<number, Record<ShaderParameterType, any>>;
 
   hud: boolean;
   show_shadow: boolean;

@@ -80,3 +80,17 @@ export * from './world/World';
  * Configurations types
  */
 export * from './configurations/ConfigurationTypes';
+
+/**
+ * Facade types
+ */
+export * from './facade/CherryFacade';
+export * from './facade/CherryObject';
+export * from './facade/CherryObjectAnimations';
+export * from './facade/CherryObjectComponents';
+export * from './facade/CherryObjectInfo';
+export * from './facade/CherryObjectMeshes';
+export * from './facade/ScriptAssets';
+export * from './facade/ShaderParameterType';
+export * from './facade/ShaderType';
+export * from './facade/ShaderValueType';

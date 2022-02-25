@@ -4,6 +4,7 @@ import { CherrySurface } from './CherrySurface';
 import { CherryViewerFileSystem } from './CherryViewerFileSystem';
 
 export type CherryViewer = {
+  _main: () => void;
   // Asset files objects
   ProjectManager: CherryProjectManager;
   FS: CherryViewerFileSystem;

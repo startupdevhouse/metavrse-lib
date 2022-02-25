@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { createFilter } = require('rollup-pluginutils');
+const versionInjector = require('rollup-plugin-version-injector');
 const analyze = require('rollup-plugin-analyzer');
 const uglify = require('uglify-js');
 
@@ -28,6 +29,7 @@ function string(opts = {}) {
 
 module.exports = {
   rollup(config, options) {
+    config.plugins.push(versionInjector());
     config.plugins.push(analyze({ summaryOnly: true }));
     config.plugins.push(string({ include: './src/assets/scripts/**/*.js' }));
     return config;

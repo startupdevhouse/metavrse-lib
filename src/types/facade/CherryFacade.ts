@@ -3,7 +3,7 @@ import { Vector3 } from '../common/Vector3';
 import { CherryObject } from './CherryObject';
 import { ShaderParameterType } from './ShaderParameterType';
 import { ScriptAssets } from './ScriptAssets';
-import { CherrySurfaceSceneObject } from '..';
+import { CherrySurfaceSceneObject } from './../cherry/CherrySurfaceSceneObject';
 
 export type CherryFacade = {
   loadAssetsAndRun: (assets: ScriptAssets) => Promise<void>;

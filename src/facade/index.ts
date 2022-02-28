@@ -23,20 +23,18 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
   return {
     /**
      *
-     * @param assets
+     * @param assetsFiles
      * Script object that holds all javascript files as strings. Necessary to run the cherryGL object
      */
-    loadAssetsAndRun: async (assets: {
+    loadAssetsAndRun: async (assetsFiles: {
       [key: string]: string;
     }): Promise<void> => {
-      const keys = Object.keys(assets);
-      for (const path of keys) {
-        const content = assets[path];
+      const files = Object.keys(assetsFiles);
+      for (const path of files) {
+        const content = assetsFiles[path];
         if (content) {
           const lastSlash = path.lastIndexOf('/') + 1;
           const fullpath = path.substring(0, lastSlash);
-          const filename = path.substring(lastSlash);
-          console.log(lastSlash, fullpath, filename);
 
           cherryViewer.FS.createPath('/', fullpath);
           cherryViewer.FS.writeFile(path, new TextEncoder().encode(content));
@@ -101,10 +99,8 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
 
       const generate = <T>(data: any): T[] => {
         const values = [];
-        for (var x = 0; x < data.size(); x++) {
-          var m = data.get(x);
-
-          values.push(m);
+        for (let x = 0; x < data.size(); x++) {
+          values.push(data.get(x));
         }
         return values;
       };

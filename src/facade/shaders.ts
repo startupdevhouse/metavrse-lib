@@ -42,51 +42,52 @@ export const SHADER_PROPERTY_TYPES: Record<
   ShaderParameterType,
   ShaderValueType
 > = {
-  use_pbr: 'boolean',
-
-  ao_ratio: 'float',
-  ao_texture: 'file',
-  ao_texture_channel: 'string',
-
-  metalness_ratio: 'float',
-  metalness_texture: 'file',
-  metalness_texture_channel: 'string',
-
-  roughness_ratio: 'float',
-  roughness_texture: 'file',
-  roughness_texture_channel: 'string',
-
   albedo_ratio: 'vec3',
   albedo_texture: 'file',
   albedo_video: 'file',
-
-  emissive_ratio: 'vec3',
-  emissive_texture: 'file',
-
-  diffuse_ibl_ratio: 'vec3',
-  specular_pbr_ratio: 'vec3',
-  specular_ibl_ratio: 'vec3',
-
-  normal_texture: 'file',
-  normal_ratio: 'float',
-  uv_animation: 'float',
-
-  opacity_ratio: 'float',
-  opacity_texture: 'file',
-  opacity_texture_channel: 'string',
 
   ambient_ratio: 'vec3',
   ambient_texture: 'file',
   ambient_video: 'file',
 
+  ao_ratio: 'float',
+  ao_texture: 'file',
+  ao_texture_channel: 'string',
+
+  diffuse_ibl_ratio: 'vec3',
   diffuse_ratio: 'vec3',
   diffuse_texture: 'file',
 
+  emissive_ratio: 'vec3',
+  emissive_texture: 'file',
+
+  extent: 'vec3',
+
+  metalness_ratio: 'float',
+  metalness_texture: 'file',
+  metalness_texture_channel: 'string',
+
+  normal_ratio: 'float',
+  normal_texture: 'file',
+
+  opacity_ratio: 'float',
+  opacity_texture: 'file',
+  opacity_texture_channel: 'string',
+
+  roughness_ratio: 'float',
+  roughness_texture: 'file',
+  roughness_texture_channel: 'string',
+
+  specular_ibl_ratio: 'vec3',
+  specular_pbr_ratio: 'vec3',
+  specular_power: 'float',
   specular_ratio: 'vec3',
   specular_texture: 'file',
-  specular_power: 'float',
 
   use_alpha_channel: 'boolean', // maybe does not needed ?
+  use_pbr: 'boolean',
+
+  uv_animation: 'float',
 };
 
 export const RGB_PARAMETERS = [

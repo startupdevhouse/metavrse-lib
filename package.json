@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "release": "standard-version",
     "analyze": "size-limit --why",
-    "build": "dts build",
+    "build": "dts build --format esm",
     "lint": "dts lint",
     "size": "size-limit",
     "start": "dts watch --format esm",

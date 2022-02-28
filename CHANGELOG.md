@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.15...v0.0.16) (2022-02-28)
+
+
+### Features
+
+* MET-1888 add faced and types ([3b15216](https://github.com/startupdevhouse/metavrse-lib/commit/3b15216fa56efb18b81dc49bcc30eb4f68bda563))
+* MET-1888 add new cherryGL.js and cherry assets ([f2e1fbe](https://github.com/startupdevhouse/metavrse-lib/commit/f2e1fbe4504e4ca06a751c1764ff08d27230411c))
+* MET-1888 add rollup plugins and change compile format to esm ([819e31e](https://github.com/startupdevhouse/metavrse-lib/commit/819e31ef8e0f1121f05f36c1d63ceab8b719fe5a))
+* MET-1888 generate assets as strings to load via cherryGL ([da0d760](https://github.com/startupdevhouse/metavrse-lib/commit/da0d760f9c9ac98e7156accac9a29a31acacd915))
+* MET-1888 initial facade object and types fixes ([3a473d1](https://github.com/startupdevhouse/metavrse-lib/commit/3a473d118d1555af202dc930d9bd4a6b9c71dc36))
+
+
+### Bug Fixes
+
+* MET-1888 fix action build error ([12f3044](https://github.com/startupdevhouse/metavrse-lib/commit/12f30448f5f288f54b64a770486f8f67a5bfe1f2))
+
 ### [0.0.15](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.14...v0.0.15) (2022-02-23)
 
 

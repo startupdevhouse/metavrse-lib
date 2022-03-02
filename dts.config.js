@@ -3,6 +3,7 @@ const { createFilter } = require('rollup-pluginutils');
 const versionInjector = require('rollup-plugin-version-injector');
 const analyze = require('rollup-plugin-analyzer');
 const uglify = require('uglify-js');
+const generatePackageJson = require('rollup-plugin-generate-package-json');
 
 function string(opts = {}) {
   if (!opts.include) {
@@ -32,6 +33,25 @@ module.exports = {
     config.plugins.push(versionInjector());
     config.plugins.push(analyze({ summaryOnly: true }));
     config.plugins.push(string({ include: './src/assets/scripts/**/*.js' }));
+    config.plugins.push(
+      generatePackageJson({
+        outputFolder: 'dist',
+        baseContents: (pkg) => ({
+          name: pkg.name,
+          version: pkg.version,
+          description: pkg.description,
+          main: 'metavrse-lib.esm.js',
+          module: 'metavrse-lib.esm.js',
+          typings: 'index.d.ts',
+          repository: pkg.repository,
+          license: pkg.license,
+          bugs: pkg.bugs,
+          homepage: pkg.homepage,
+          engineStrict: pkg.engineStrict,
+          engine: pkg.engine,
+        }),
+      })
+    );
     return config;
   },
 };

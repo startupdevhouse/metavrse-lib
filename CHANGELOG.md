@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.16...v0.0.17) (2022-03-02)
+
+
+### Bug Fixes
+
+* MET-1888 fix missing package.json when publishing ([a32298c](https://github.com/startupdevhouse/metavrse-lib/commit/a32298cab99ddd5bb3defa6ee908df733e5041c7))
+
 ### [0.0.16](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.15...v0.0.16) (2022-02-28)
 
 

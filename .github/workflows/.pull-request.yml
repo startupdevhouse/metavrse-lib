@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
 
+      - name: Release dry-run
+        run: yarn release --dry-run --follow-tags
+
       - name: Build package
         run: yarn build

@@ -1,3 +1,5 @@
+import { CherryKey } from '../..';
+import { OldAsset } from './OldAsset';
 import { OldData } from './OldData';
 import { OldTreeNode } from './OldTreeNode';
 import { OldWorld } from './OldWorld';
@@ -10,14 +12,12 @@ export type OldProjectData = {
   scene: {
     [key: string]: {
       tree: OldTreeNode[];
-      data: {
-        [key: string]: Data;
-      };
+      data: Record<CherryKey, OldData | OldWorld>;
     };
   };
   assets: {
-    tree: any;
-    data: any; // Not used ?
+    tree: OldAsset[];
+    data: null; // Not used ?
   };
   starting_scene: string;
   selected_scene: string;

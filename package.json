@@ -14,10 +14,11 @@
     "prepare": "husky install",
     "release": "standard-version",
     "analyze": "size-limit --why",
+    "build:dev": "NODE_ENV=development dts build --format esm",
     "build": "dts build --format esm",
     "lint": "dts lint",
     "size": "size-limit",
-    "start": "dts watch --format esm",
+    "start": "NODE_ENV=development dts watch --format esm",
     "test": "dts test"
   },
   "repository": {

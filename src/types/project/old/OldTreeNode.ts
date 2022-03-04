@@ -1,23 +1,10 @@
+import { ConfigurationType, TreeNode, TreeNodeType } from '../..';
 import { CherryKey } from '../../cherry/CherryKey';
 
 export type OldTreeNode = {
   key: CherryKey;
   title: string;
-  type:
-    | 'camera'
-    | 'configuration'
-    | 'hud'
-    | 'light'
-    | 'object'
-    | 'object-group'
-    | 'object-hud'
-    | 'video'
-    | 'world'
-    | 'hud-link'
-    | 'light-link'
-    | 'object-link'
-    | 'object-group-link'
-    | 'video-link';
+  type: keyof ConfigurationType & TreeNodeType & 'configuration';
   disableCheckbox?: boolean;
   children?: OldTreeNode[];
   id?: CherryKey;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.17...v0.0.18) (2022-03-07)
+
+
+### Features
+
+* MET-1716 change types and assets fixes ([9096647](https://github.com/startupdevhouse/metavrse-lib/commit/909664700ada47c955ec8003beea71ceaeed8945))
+
 ### [0.0.17](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.16...v0.0.17) (2022-03-02)
 
 

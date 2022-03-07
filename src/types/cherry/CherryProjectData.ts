@@ -12,15 +12,6 @@ type Scenes = Record<
   }
 >;
 
-// {
-//     [key: string]: {
-//       tree: TreeNode[];
-//       data: {
-//         [key: string]: Entity | World;
-//       };
-//     };
-//   };
-
 export type CherryProjectData = {
   id: string;
   userid: number;

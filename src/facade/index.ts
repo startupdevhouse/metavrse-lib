@@ -8,7 +8,6 @@ import { CherryViewer } from '../types/cherry/CherryViewer';
 import { Vector3 } from '../types/common/Vector3';
 import { CherryFacade } from '../types/facade/CherryFacade';
 import { CherryObject } from '../types/facade/CherryObject';
-import { ShaderType } from '../types/facade/ShaderType';
 import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
 import { CherrySurfaceSceneObject } from '..';

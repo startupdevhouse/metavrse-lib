@@ -17,8 +17,14 @@ function string(opts = {}) {
     transform(_, id) {
       if (filter(id)) {
         const content = fs.readFileSync(id, { encoding: 'utf-8' });
-        const mini = uglify.minify(content, { warnings: true }).code;
 
+        if (process.env.NODE_ENV === 'development') {
+          return {
+            code: `export default ${JSON.stringify(content)};`,
+            map: { mappings: '' },
+          };
+        }
+        const mini = uglify.minify(content, { warnings: true }).code;
         return {
           code: `export default ${JSON.stringify(mini)};`,
           map: { mappings: '' },

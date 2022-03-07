@@ -13,6 +13,7 @@ export * from './cherry/CherryKey';
 export * from './cherry/CherryMesh';
 export * from './cherry/CherryMeshes';
 export * from './cherry/CherryObjectByPixel';
+export * from './cherry/CherryProjectData';
 export * from './cherry/CherryProjectManager';
 export * from './cherry/CherryProjectManagerObject';
 export * from './cherry/CherrySurface';
@@ -61,6 +62,8 @@ export * from './project/ProjectData';
 /**
  * Old Project types
  */
+export * from './project/old/OldAsset';
+export * from './project/old/OldConfiguration';
 export * from './project/old/OldData';
 export * from './project/old/OldWorld';
 export * from './project/old/OldProjectData';
@@ -79,7 +82,8 @@ export * from './world/World';
 /**
  * Configurations types
  */
-export * from './configurations/ConfigurationTypes';
+export * from './configurations/Configuration';
+export * from './configurations/ConfigurationType';
 
 /**
  * Facade types

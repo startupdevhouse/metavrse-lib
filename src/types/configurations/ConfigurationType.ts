@@ -1,4 +1,4 @@
-export type Configuration =
+export type ConfigurationType =
   | 'hud-link'
   | 'image-link'
   | 'light-link'

@@ -4,6 +4,7 @@ import { CherryObject } from './CherryObject';
 import { ShaderParameterType } from './ShaderParameterType';
 import { ScriptAssets } from './ScriptAssets';
 import { CherrySurfaceSceneObject } from './../cherry/CherrySurfaceSceneObject';
+import { Asset } from '../assets/Asset';
 
 export type CherryFacade = {
   loadAssetsAndRun: (assets: ScriptAssets) => Promise<void>;
@@ -30,4 +31,5 @@ export type CherryFacade = {
     value: boolean,
     meshType: 'MESH' | 'MATERIAL' | 'GROUP'
   ) => void;
+  setAssets: (assets: Asset[]) => void;
 };

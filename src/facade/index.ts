@@ -10,7 +10,8 @@ import { CherryFacade } from '../types/facade/CherryFacade';
 import { CherryObject } from '../types/facade/CherryObject';
 import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
-import { CherrySurfaceSceneObject } from '..';
+import { CherrySurfaceSceneObject } from '../types/cherry/CherrySurfaceSceneObject';
+import { Asset } from '../types/assets/Asset';
 
 export * from './shaders';
 
@@ -182,6 +183,14 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
       const object = scene.getObject(key);
       object.setParameter(index, parameter, value);
       pm.isDirty = true;
+    },
+    /**
+     *
+     * @param assets Asset[]
+     * @description Set the assets paths so the 3d viewer can reload the objects
+     */
+    setAssets: (assets: Asset[]): void => {
+      pm.loadPaths(assets);
     },
   };
 };

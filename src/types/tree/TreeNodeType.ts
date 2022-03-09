@@ -1,5 +1,3 @@
-import { NODE_TYPES } from '../../constants';
-
 export type TreeNodeType =
   | 'hud'
   | 'light'

@@ -2,7 +2,7 @@ import { CherryKey } from '../cherry/CherryKey';
 import { GroupMat } from '../common/GroupMat';
 import { Vector3 } from '../common/Vector3';
 import { ShaderParameterType } from '../facade/ShaderParameterType';
-import { CodeComponentValue } from './CodeComponents/CodeComponentValue';
+import { CodeComponentValue } from './CodeComponentValue';
 
 export type ObjectEntity = {
   key: CherryKey;

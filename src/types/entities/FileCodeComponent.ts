@@ -1,4 +1,4 @@
-import { CherryKey } from '../../cherry/CherryKey';
+import { CherryKey } from '../cherry/CherryKey';
 
 export type FileCodeComponent = {
   file: CherryKey;

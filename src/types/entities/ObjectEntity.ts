@@ -25,5 +25,5 @@ export type ObjectEntity = {
 
   // INFO: Will be moved into components
   controller?: CherryKey;
-  code?: Record<CherryKey, CodeComponentValue>
+  code?: Record<CherryKey, Record<string, CodeComponentValue>>;
 };

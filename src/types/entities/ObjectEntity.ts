@@ -2,7 +2,7 @@ import { CherryKey } from '../cherry/CherryKey';
 import { GroupMat } from '../common/GroupMat';
 import { Vector3 } from '../common/Vector3';
 import { ShaderParameterType } from '../facade/ShaderParameterType';
-import { EntityConfiguration } from './EntityConfiguration';
+import { CodeComponentValue } from './CodeComponentValue';
 
 export type ObjectEntity = {
   key: CherryKey;
@@ -25,9 +25,5 @@ export type ObjectEntity = {
 
   // INFO: Will be moved into components
   controller?: CherryKey;
-  code?: {
-    [key: string]: {
-      configuration: EntityConfiguration[];
-    };
-  };
+  code?: Record<CherryKey, Record<string, CodeComponentValue>>;
 };

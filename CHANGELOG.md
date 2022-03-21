@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.19...v0.0.20) (2022-03-21)
+
+
+### Features
+
+* MET-226 add model for code components ([65d9000](https://github.com/startupdevhouse/metavrse-lib/commit/65d90008082dd6e185b972e691d98bb99dbeb4ff))
+* MET-226 fix code type ([3c953be](https://github.com/startupdevhouse/metavrse-lib/commit/3c953bebb30490f2261a9baa5ba828f7ad9df7b4))
+* MET-226 move types into a types forlder ([0fa2bb3](https://github.com/startupdevhouse/metavrse-lib/commit/0fa2bb35e6cf34ccaed00fb8882086d182789d45))
+
 ### [0.0.19](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.18...v0.0.19) (2022-03-08)
 
 ### [0.0.18](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.17...v0.0.18) (2022-03-07)

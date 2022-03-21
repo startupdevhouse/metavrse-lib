@@ -1,7 +1,6 @@
-import { NODE_TYPES } from '../../constants';
-
 export type TreeNodeType =
   | 'hud'
+  | 'hud-html'
   | 'light'
   | 'object'
   | 'object-hud'

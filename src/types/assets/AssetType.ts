@@ -1,1 +1,7 @@
-export type AssetType = 'folder' | 'javascript' | 'image' | 'object' | 'video';
+export type AssetType =
+  | 'folder'
+  | 'javascript'
+  | 'stylesheet'
+  | 'image'
+  | 'object'
+  | 'video';

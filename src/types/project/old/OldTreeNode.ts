@@ -4,7 +4,9 @@ import { CherryKey } from '../../cherry/CherryKey';
 export type OldTreeNode = {
   key: CherryKey;
   title: string;
-  type: keyof ConfigurationType & TreeNodeType & 'configuration';
+  type:
+    | (keyof ConfigurationType & TreeNodeType & 'configuration')
+    | 'HTMLElement';
   disableCheckbox?: boolean;
   children?: OldTreeNode[];
   id?: CherryKey;

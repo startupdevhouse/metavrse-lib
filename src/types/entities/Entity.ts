@@ -7,10 +7,12 @@ import { ObjectGroupEntity } from './ObjectGroupEntity';
 import { ObjectHudEntity } from './ObjectHudEntity';
 import { VideoEntity } from './VideoEntity';
 import { CameraEntity } from './CameraEntity';
+import { HudHtmlEntity } from './HudHtmlEntity';
 
 export type Entity = Partial<Record<VectorKeys, Vector3>> &
   (
     | HudEntity
+    | HudHtmlEntity
     | LightEntity
     | ObjectEntity
     | ObjectGroupEntity

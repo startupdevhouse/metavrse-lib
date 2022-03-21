@@ -49,6 +49,7 @@ export * from './entities/Entity';
 export * from './entities/EntityConfiguration';
 export * from './entities/EntityMeshes';
 export * from './entities/HudEntity';
+export * from './entities/HudHtmlEntity';
 export * from './entities/LightEntity';
 export * from './entities/ObjectEntity';
 export * from './entities/ObjectGroupEntity';

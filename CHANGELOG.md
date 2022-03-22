@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.21](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.20...v0.0.21) (2022-03-22)
+
+
+### Bug Fixes
+
+* MET-262 add missing exports ([d3d07c9](https://github.com/startupdevhouse/metavrse-lib/commit/d3d07c91d2a915eed607da51dade8c0e2f56fae0))
+
 ### [0.0.20](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.19...v0.0.20) (2022-03-21)
 
 

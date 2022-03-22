@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.21...v0.0.22) (2022-03-22)
+
+
+### Features
+
+* MET-1956 support for HTMLElement from old editor ([6b8fa16](https://github.com/startupdevhouse/metavrse-lib/commit/6b8fa16c0b4acd128f0f45783d4f60aa488876d2))
+
 ### [0.0.21](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.20...v0.0.21) (2022-03-22)
 
 

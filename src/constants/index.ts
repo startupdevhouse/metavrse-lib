@@ -1,6 +1,8 @@
 export const NODE_TYPES = {
   hud: 'hud',
   hudLink: 'hud-link',
+  hudHtml: 'hud-html',
+  hudHtmlLink: 'hud-html-link',
   image: 'image',
   imageLink: 'image-link',
   light: 'light',
@@ -17,4 +19,5 @@ export const NODE_TYPES = {
   configuration: 'configuration',
   folder: 'folder',
   javascript: 'javascript',
+  stylesheet: 'stylesheet',
 } as const;

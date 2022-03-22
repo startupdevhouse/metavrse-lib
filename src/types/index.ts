@@ -54,6 +54,9 @@ export * from './entities/ObjectEntity';
 export * from './entities/ObjectGroupEntity';
 export * from './entities/ObjectHudEntity';
 export * from './entities/VideoEntity';
+export * from './entities/CodeComponentValue';
+export * from './entities/CameraCodeComponent';
+export * from './entities/FileCodeComponent';
 
 /**
  * Project types

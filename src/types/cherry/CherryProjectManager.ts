@@ -18,9 +18,9 @@ export type CherryProjectManager = {
   addObject: (
     child: TreeNode,
     data: Entities,
-    parent?: TreeNode,
+    parent?: CherryProjectManagerObject | null,
     key?: CherryKey
-  ) => any;
+  ) => CherryProjectManagerObject;
   removeObject: (key: CherryKey) => any;
   moveObject: (key: CherryKey, parent: CherryKey) => any;
   loadPaths: (tree: Asset[]) => void;

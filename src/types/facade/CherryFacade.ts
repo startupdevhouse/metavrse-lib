@@ -5,6 +5,9 @@ import { ShaderParameterType } from './ShaderParameterType';
 import { ScriptAssets } from './ScriptAssets';
 import { CherrySurfaceSceneObject } from './../cherry/CherrySurfaceSceneObject';
 import { Asset } from '../assets/Asset';
+import { TreeNode } from '../tree/TreeNode';
+import { Entities } from '../entities/Entities';
+import { Entity } from '../entities/Entity';
 
 export type CherryFacade = {
   loadAssetsAndRun: (assets: ScriptAssets) => Promise<void>;
@@ -17,7 +20,7 @@ export type CherryFacade = {
   setObjectMaterial: (
     key: CherryKey,
     index: number,
-    property: string,
+    property: ShaderParameterType,
     value: number | Vector3 | string
   ) => void;
   setObjectShaderType: (
@@ -32,4 +35,10 @@ export type CherryFacade = {
     meshType: 'MESH' | 'MATERIAL' | 'GROUP'
   ) => void;
   setAssets: (assets: Asset[]) => void;
+  addObjectToScene: (
+    node: TreeNode,
+    entities: Entities,
+    parent?: TreeNode,
+    rescale?: boolean
+  ) => Entity;
 };

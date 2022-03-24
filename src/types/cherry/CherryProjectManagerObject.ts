@@ -1,3 +1,4 @@
+import { ShaderParameterType } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -10,6 +11,7 @@ import { CherryMesh } from './CherryMesh';
 export type CherryProjectManagerObject = {
   addToBucket: () => void;
   addToRedraw: () => void;
+
   insertIntoBucket: () => void;
   regenerateLink: () => void;
   toggleLink: () => void;
@@ -18,6 +20,9 @@ export type CherryProjectManagerObject = {
   removeLink: { (): void; (prop: string, key: CherryKey): boolean };
   clearRender: () => void;
   remove: () => void;
+
+  applyAutoScale: () => void;
+  applyAutoPivot: () => void;
 
   addChangeListener: (callback: any) => void;
   removeChangeListener: (callback: any) => void;
@@ -28,8 +33,8 @@ export type CherryProjectManagerObject = {
   meshdata: Map<unknown, unknown>;
   /** @description Use to retrive mesh specify by index or update mesh by it index */
   mesh: {
-    get: (index: number, property: string) => CherryMesh;
-    set: (index: number, property: string, value: unknown) => void;
+    get: (index: number, property: ShaderParameterType) => CherryMesh;
+    set: (index: number, property: ShaderParameterType, value: unknown) => void;
   };
 
   color: RGB;
@@ -49,6 +54,7 @@ export type CherryProjectManagerObject = {
   };
   scale: Vector3;
   rotate: Vector3;
+  autoscale: number;
   finalTransformation: Float32Array;
   parent?: any;
 };

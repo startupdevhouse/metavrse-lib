@@ -606,7 +606,9 @@ module.exports = (payload) => {
           : extents.f2 > extents.f3
           ? extents.f2
           : extents.f3;
-      autoscale = largestScale > 3 || largestScale < 1 ? 1 / largestScale : 1;
+      const autoscale =
+        largestScale > 3 || largestScale < 1 ? 1 / largestScale : 1;
+
       setProperty('autoscale', autoscale, 'transform');
     }
   };

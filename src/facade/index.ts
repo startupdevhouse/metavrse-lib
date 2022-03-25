@@ -12,6 +12,9 @@ import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
 import { CherrySurfaceSceneObject } from '../types/cherry/CherrySurfaceSceneObject';
 import { Asset } from '../types/assets/Asset';
+import { Entity } from '../types/entities/Entity';
+import { NODE_TYPES } from './../constants';
+import { vec3, mat4 } from 'gl-matrix';
 
 export * from './shaders';
 
@@ -149,7 +152,7 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
     setObjectMaterial: (
       key: CherryKey,
       index: number,
-      property: string, // albedo_texture | albedo_ratio
+      property: ShaderParameterType, // albedo_texture | albedo_ratio
       value: number | Vector3 | string
     ) => {
       const object = pm.getObject(key);
@@ -191,6 +194,73 @@ export const cherryFacade = (cherryViewer: CherryViewer): CherryFacade => {
      */
     setAssets: (assets: Asset[]): void => {
       pm.loadPaths(assets);
+    },
+    /**
+     *
+     * @param node
+     * @param entities
+     * @param parent
+     * @param rescale
+     * @returns
+     */
+    addObjectToScene: (node, entities, parent, rescale = true) => {
+      const parentObject = parent ? pm.getObject(parent.key) : null;
+      const currentObject = pm.addObject(node, entities, parentObject);
+      const currentEntity = entities[node.key];
+
+      if (rescale && node.type === NODE_TYPES.object) {
+        currentObject.applyAutoScale();
+        currentObject.applyAutoPivot();
+      }
+
+      if (node.type === NODE_TYPES.light) {
+        const { key } = node;
+        const light = pm.getObject(key);
+        let lightobj = scene.getObject(key);
+
+        if (!lightobj) {
+          lightobj = scene.addObject(key, '/assets/sun.c3b');
+          pm.objects[lightobj.$$.ptr] = { key };
+          lightobj.setParameter('front_facing', true);
+          lightobj.setParameter('visible', light.parentOpts.visible);
+        }
+
+        const updatePosition = () => {
+          const vec = vec3.fromValues(
+            light.finalPosition[0],
+            light.finalPosition[1],
+            light.finalPosition[2]
+          );
+          const scale = vec3.fromValues(1 / 100, 1 / 100, 1 / 100);
+          const m = mat4.create();
+          mat4.translate(m, m, vec);
+          mat4.scale(m, m, scale);
+          lightobj.setTransformMatrix(m);
+        };
+
+        // light.clearChangeHandlers();
+        light.addChangeListener((type: string) => {
+          switch (type) {
+            case 'removed':
+              scene.removeObject(key);
+              break;
+            case 'transform':
+              updatePosition();
+              break;
+            case 'visible':
+              lightobj.setParameter('visible', light.parentOpts.visible);
+              break;
+          }
+        });
+
+        updatePosition();
+      }
+
+      return {
+        ...currentEntity,
+        autoscale: currentObject.autoscale,
+        pivot: currentObject.pivot,
+      } as Entity;
     },
   };
 };

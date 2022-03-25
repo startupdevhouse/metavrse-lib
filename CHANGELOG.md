@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.23](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.22...v0.0.23) (2022-03-25)
+
+
+### Features
+
+* MET-1416 add method addObjectToScene ([dd16ca9](https://github.com/startupdevhouse/metavrse-lib/commit/dd16ca9cf67bfadcda531dd399ff924bf0f42fae))
+
 ### [0.0.22](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.21...v0.0.22) (2022-03-22)
 
 

@@ -102,3 +102,11 @@ export * from './facade/ScriptAssets';
 export * from './facade/ShaderParameterType';
 export * from './facade/ShaderType';
 export * from './facade/ShaderValueType';
+
+/**
+ * Animation
+ */
+export * from './animation/AnimationState';
+export * from './animation/AnimationDescription';
+export * from './animation/CherryAnimation';
+export * from './animation/AnimationEventType';

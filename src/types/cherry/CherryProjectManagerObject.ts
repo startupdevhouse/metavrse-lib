@@ -1,4 +1,4 @@
-import { ShaderParameterType } from '..';
+import { CherryAnimation, ShaderParameterType } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -37,6 +37,7 @@ export type CherryProjectManagerObject = {
     set: (index: number, property: ShaderParameterType, value: unknown) => void;
   };
 
+  animation: CherryAnimation;
   color: RGB;
   groupMat: number[];
   intensity: number;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.24](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.23...v0.0.24) (2022-04-01)
+
+
+### Features
+
+* MET-209 add types for animations ([a4b06d1](https://github.com/startupdevhouse/metavrse-lib/commit/a4b06d128df4df27c3ad643c9035663ef6e1284f))
+
 ### [0.0.23](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.22...v0.0.23) (2022-03-25)
 
 

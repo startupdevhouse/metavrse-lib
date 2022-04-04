@@ -1,3 +1,1 @@
-import { Vector3 } from './Vector3';
-
-export type RGB = Vector3;
+export type RGB = [number, number, number];

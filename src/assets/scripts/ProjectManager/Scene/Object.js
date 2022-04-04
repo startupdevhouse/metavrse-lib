@@ -1377,8 +1377,6 @@ module.exports = (payload) => {
       set: (v) => {},
     },
 
-    // controller: { get: () => { return transformation.controller; }, set: (v) => { } },
-
     animation: {
       get: () => {
         return o_animation;

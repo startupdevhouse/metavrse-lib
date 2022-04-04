@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.25...v0.0.26) (2022-04-04)
+
+
+### Features
+
+* MET-2025 color picker types ([f9418d9](https://github.com/startupdevhouse/metavrse-lib/commit/f9418d9722c3da0b6277020f75f519eedbf51bd1))
+
 ### [0.0.25](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.24...v0.0.25) (2022-04-01)
 
 ### [0.0.24](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.23...v0.0.24) (2022-04-01)

@@ -1,8 +1,8 @@
-import { CherryKey } from '../cherry/CherryKey';
+import { Entity } from './Entity';
 
-export type HudHtmlEntity = {
-  key: CherryKey;
-  type: 'hud-html';
+type RequiredProperties = 'key' | 'type' | 'visible';
 
-  visible: boolean;
-};
+export type HudHtmlEntity = Pick<
+  Required<Entity & { type: 'hud-html' }>,
+  RequiredProperties
+>;

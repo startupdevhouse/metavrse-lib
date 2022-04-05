@@ -1,3 +1,4 @@
+import { ShaderType } from '..';
 import {
   CherryMesh,
   CherryMeshGroup,
@@ -8,5 +9,5 @@ export type CherryObjectMeshes = {
   objectMeshes: CherryMesh[];
   objectMeshMaterials: CherryMeshMaterial[];
   objectMeshGroups: CherryMeshGroup[];
-  shaderTypes: any;
+  shaderTypes: Record<number, ShaderType>;
 };

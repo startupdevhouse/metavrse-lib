@@ -1,13 +1,14 @@
-import { CherryKey } from '../cherry/CherryKey';
-import { Vector3 } from '../common/Vector3';
+import { Entity } from './Entity';
 
-export type ObjectGroupEntity = {
-  key: CherryKey;
-  type: 'object-group';
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'position'
+  | 'rotate'
+  | 'scale'
+  | 'visible';
 
-  position: Vector3;
-  rotate: Vector3;
-  scale: Vector3;
-
-  visible: boolean;
-};
+export type ObjectGroupEntity = Pick<
+  Required<Entity & { type: 'object-group' }>,
+  RequiredProperties
+>;

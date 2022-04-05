@@ -1,10 +1,25 @@
-import { CherryKey } from '../cherry/CherryKey';
-import { ObjectEntity } from './ObjectEntity';
+import { Entity } from './Entity';
 
-type ObjectTypes = Omit<ObjectEntity, 'type'>;
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'position'
+  | 'rotate'
+  | 'scale'
+  | 'anchor'
+  | 'pivot'
+  | 'groupMat'
+  | 'autoscale'
+  | 'data'
+  | 'hud'
+  | 'show_shadow'
+  | 'cast_shadow'
+  | 'visible';
 
-export type ObjectHudEntity = {
-  key: CherryKey;
-  type: 'object-hud';
-  visible: boolean;
-} & ObjectTypes;
+type OptionalProperties = 'controller' | 'code';
+
+export type ObjectHudEntity = Pick<
+  Required<Entity & { type: 'object-hud' }>,
+  RequiredProperties
+> &
+  Pick<Entity, OptionalProperties>;

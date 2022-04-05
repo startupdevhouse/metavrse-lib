@@ -5,7 +5,6 @@ import {
 } from '../types/cherry/CherryMesh';
 import { CherryKey } from '../types/cherry/CherryKey';
 import { CherryViewer } from '../types/cherry/CherryViewer';
-import { CherryObject } from '../types/facade/CherryObject';
 import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
 import { CherrySurfaceSceneObject } from '../types/cherry/CherrySurfaceSceneObject';
@@ -20,6 +19,9 @@ import {
 import { ShaderValue } from '../types/facade/ShaderValueType';
 import { TreeNode } from '../types/tree/TreeNode';
 import { Entities } from '../types/entities/Entities';
+import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
+import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
+import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 
 export * from './shaders';
 
@@ -100,10 +102,9 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   /**
    *
    * @param key
-   * @returns
+   * @returns Object meshes
    */
-  const getObject = (key: CherryKey): CherryObject => {
-    const object = pm.getObject(key);
+  const getObjectMeshes = (key: CherryKey): CherryObjectMeshes => {
     const sceneObject = scene.getObject(key);
     const meshes = sceneObject.getMeshes();
     const meshMaterials = sceneObject.getMeshMaterials();
@@ -118,27 +119,47 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     };
 
     return {
-      object,
-      meshes: {
-        objectMeshes: generate<CherryMesh>(meshes),
-        objectMeshMaterials: generate<CherryMeshMaterial>(meshMaterials),
-        objectMeshGroups: generate<CherryMeshGroup>(meshGroups),
-        shaderTypes: {
-          0: 'PBR',
-          1: 'STANDARD',
-        },
+      objectMeshes: generate<CherryMesh>(meshes),
+      objectMeshMaterials: generate<CherryMeshMaterial>(meshMaterials),
+      objectMeshGroups: generate<CherryMeshGroup>(meshGroups),
+      shaderTypes: {
+        0: 'PBR',
+        1: 'STANDARD',
       },
-      animations: [],
-      info: {
-        file_size: 25_1024_000,
-        number_of_meshes: 21,
-        number_of_triangles: 321_412,
-        number_of_vertices: 231,
-        number_of_positions: 0,
-        number_of_normals: 0,
-        number_of_uvs: 1,
-      },
-      components: {},
+    };
+  };
+
+  /**
+   *
+   * @param key
+   * @returns Object info
+   */
+  const getObjectInfo = (key: CherryKey): CherryObjectInfo => {
+    // Read object info
+    return {
+      file_size: 25_1024_000,
+      number_of_meshes: 21,
+      number_of_triangles: 321_412,
+      number_of_vertices: 231,
+      number_of_positions: 0,
+      number_of_normals: 0,
+      number_of_uvs: 1,
+    };
+  };
+
+  /**
+   *
+   * @param key
+   * @returns Object animations
+   */
+  const getObjectAnimation = (key: CherryKey): CherryObjectAnimations => {
+    const object = pm.getObject(key);
+    const { animations } = object.animation;
+    const { animation } = object;
+
+    return {
+      animation,
+      animations,
     };
   };
 
@@ -172,6 +193,22 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   ) => {
     const object = pm.getObject(key);
     object.mesh.set(index, property, value);
+  };
+
+  /**
+   *
+   * @param key
+   * @param index
+   * @param property
+   * @param value
+   */
+  const removeObjectMaterial = (
+    key: CherryKey,
+    index: number,
+    property: ShaderParameterType
+  ) => {
+    const object = pm.getObject(key);
+    object.mesh.set(index, property, null);
   };
 
   /**
@@ -290,9 +327,12 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   return {
     loadAssetsAndRun,
     getMaterialValues,
-    getObject,
+    getObjectMeshes,
+    getObjectInfo,
+    getObjectAnimation,
     setObjectProperty,
     setObjectMaterial,
+    removeObjectMaterial,
     setObjectShaderType,
     highlightMesh,
     setAssets,

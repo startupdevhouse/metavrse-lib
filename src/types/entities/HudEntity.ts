@@ -1,8 +1,8 @@
-import { CherryKey } from '../cherry/CherryKey';
+import { Entity } from './Entity';
 
-export type HudEntity = {
-  key: CherryKey;
-  type: 'hud';
+type RequiredProperties = 'key' | 'type' | 'visible';
 
-  visible: boolean;
-};
+export type HudEntity = Pick<
+  Required<Entity & { type: 'hud' }>,
+  RequiredProperties
+>;

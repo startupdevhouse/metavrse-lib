@@ -1,11 +1,14 @@
-import { CherryKey } from '../cherry/CherryKey';
-import { Vector3 } from '../common/Vector3';
+import { Entity } from './Entity';
 
-export type CameraEntity = {
-  key: CherryKey;
-  type: 'camera';
-  position: Vector3;
-  target: Vector3;
-  distance: number;
-  visible: boolean;
-};
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'visible'
+  | 'position'
+  | 'target'
+  | 'distance';
+
+export type CameraEntity = Pick<
+  Required<Entity & { type: 'camera' }>,
+  RequiredProperties
+>;

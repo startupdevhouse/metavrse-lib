@@ -1,27 +1,24 @@
-import { CherryKey } from '../cherry/CherryKey';
-import { Vector3 } from '../common/Vector3';
-import { GroupMat } from '../common/GroupMat';
+import { Entity } from './Entity';
 
-export type VideoEntity = {
-  key: CherryKey;
-  type: 'video';
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'position'
+  | 'rotate'
+  | 'scale'
+  | 'groupMat'
+  | 'visible'
+  | 'src'
+  | 'pixel'
+  | 'isurl'
+  | 'autoplay'
+  | 'loop'
+  | 'muted'
+  | 'startTime'
+  | 'endTime'
+  | 'volume';
 
-  position: Vector3;
-  rotate: Vector3;
-  scale: Vector3;
-  groupMat: GroupMat;
-
-  src: string;
-  pixel: Vector3;
-
-  isurl: boolean;
-  autoplay: boolean;
-  loop: boolean;
-  muted: boolean;
-
-  startTime: string;
-  endTime: string;
-  volume: string;
-
-  visible: boolean;
-};
+export type VideoEntity = Pick<
+  Required<Entity & { type: 'video' }>,
+  RequiredProperties
+>;

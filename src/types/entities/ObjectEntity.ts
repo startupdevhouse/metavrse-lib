@@ -1,32 +1,29 @@
-import { ShaderValue, ShaderValueType } from '..';
-import { CherryKey } from '../cherry/CherryKey';
-import { GroupMat } from '../common/GroupMat';
-import { Vector3 } from '../common/Vector3';
 import { ShaderParameterType } from '../facade/ShaderParameterType';
-import { CodeComponentValue } from './CodeComponentValue';
+import { ShaderValue } from '../facade/ShaderValueType';
+import { Entity } from './Entity';
 
 export type EntityMaterial = Record<ShaderParameterType, ShaderValue>;
 
-export type ObjectEntity = {
-  key: CherryKey;
-  type: 'object';
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'position'
+  | 'rotate'
+  | 'scale'
+  | 'anchor'
+  | 'pivot'
+  | 'groupMat'
+  | 'autoscale'
+  | 'data'
+  | 'hud'
+  | 'show_shadow'
+  | 'cast_shadow'
+  | 'visible';
 
-  position: Vector3;
-  rotate: Vector3;
-  scale: Vector3;
-  anchor: Vector3;
-  pivot: Vector3;
-  groupMat: GroupMat;
-  autoscale: number;
+type OptionalProperties = 'controller' | 'code';
 
-  data: Record<number, EntityMaterial>;
-
-  hud: boolean;
-  show_shadow: boolean;
-  cast_shadow: boolean;
-  visible: boolean;
-
-  // INFO: Will be moved into components
-  controller?: CherryKey;
-  code?: Record<CherryKey, Record<string, CodeComponentValue>>;
-};
+export type ObjectEntity = Pick<
+  Required<Entity & { type: 'object' }>,
+  RequiredProperties
+> &
+  Pick<Entity, OptionalProperties>;

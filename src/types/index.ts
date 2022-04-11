@@ -46,7 +46,6 @@ export * from './tree/TreeNodeType';
 export * from './entities/CameraEntity';
 export * from './entities/Entities';
 export * from './entities/Entity';
-export * from './entities/EntityConfiguration';
 export * from './entities/HudEntity';
 export * from './entities/HudHtmlEntity';
 export * from './entities/LightEntity';

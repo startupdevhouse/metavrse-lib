@@ -1,16 +1,15 @@
-import { CherryKey } from '../cherry/CherryKey';
-import { GroupMat } from '../common/GroupMat';
-import { RGB } from '../common/RGB';
-import { Vector3 } from '../common/Vector3';
+import { Entity } from './Entity';
 
-export type LightEntity = {
-  key: CherryKey;
-  type: 'light';
+type RequiredProperties =
+  | 'key'
+  | 'type'
+  | 'visible'
+  | 'position'
+  | 'groupMat'
+  | 'color'
+  | 'intensity';
 
-  position: Vector3;
-  groupMat: GroupMat;
-  color: RGB;
-  intensity: number;
-
-  visible: boolean;
-};
+export type LightEntity = Pick<
+  Required<Entity & { type: 'light' }>,
+  RequiredProperties
+>;

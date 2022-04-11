@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.27](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.26...v0.0.27) (2022-04-11)
+
+
+### Features
+
+* MET-1958 types and facade methods ([2e19bea](https://github.com/startupdevhouse/metavrse-lib/commit/2e19beaf41a0bba02ec2251df8b6d46a36d72a67))
+
 ### [0.0.26](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.25...v0.0.26) (2022-04-04)
 
 

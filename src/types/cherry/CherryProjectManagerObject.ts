@@ -7,26 +7,36 @@ import { CherryMesh } from './CherryMesh';
 
 export type GetterSetterPropertyType =
   | 'position'
-  | 'scale'
   | 'rotate'
-  | 'groupMat'
+  | 'scale'
   | 'anchor'
-  | 'hud'
   | 'pivot'
-  | 'visible'
+  | 'groupMat'
+  | 'autoscale'
+  | 'hud'
   | 'show_shadow'
   | 'cast_shadow'
-  | 'front_facing'
-  | 'autoscale'
+  | 'visible'
   | 'controller'
-  | 'frame'
-  | 'mesh'
-  | 'finalTransformation'
-  | 'finalVisibility'
-  | 'parentOpts'
-  | 'animation'
-  | 'animations'
-  | 'hudscale';
+
+  // Video
+  | 'src'
+  | 'pixel'
+  | 'isurl'
+  | 'autoplay'
+  | 'loop'
+  | 'muted'
+  | 'startTime'
+  | 'endTime'
+  | 'volume'
+
+  // Light
+  | 'color'
+  | 'intensity'
+
+  // Camera
+  | 'target'
+  | 'distance';
 
 export type ProjectManagerObjectPropertyType =
   | string
@@ -99,4 +109,15 @@ export type CherryProjectManagerObject = {
     key: CherryKey;
   };
   parent: CherryProjectManagerObject;
+  src: string;
+  pixel: string;
+  isurl: boolean;
+  autoplay: boolean;
+  loop: boolean;
+  muted: boolean;
+  startTime: number;
+  endTime: number;
+  volume: number;
+  target: Vector3;
+  distance: number;
 };

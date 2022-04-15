@@ -2,6 +2,12 @@ import { CherryMeshes } from './CherryMeshes';
 import { ShaderParameterType } from '..';
 
 type Vec3Parameters = 'extent' | 'center';
+type InfoParameters =
+  | 'number_of_triangles'
+  | 'number_of_vertices'
+  | 'number_of_positions'
+  | 'number_of_normals'
+  | 'number_of_uvs';
 
 type SetParameter = {
   (arg0: string, arg1: any): void;
@@ -17,8 +23,11 @@ type Vec3 = {
 };
 
 type GetParameter<T> = {
-  (parameter: ShaderParameterType | Vec3Parameters): T;
-  (index: number, parameter: ShaderParameterType | Vec3Parameters): T;
+  (parameter: ShaderParameterType | Vec3Parameters | InfoParameters): T;
+  (
+    index: number,
+    parameter: ShaderParameterType | Vec3Parameters | InfoParameters
+  ): T;
 };
 
 export type CherrySurfaceSceneObject = {
@@ -30,8 +39,8 @@ export type CherrySurfaceSceneObject = {
   getAnimationIndex: () => void;
   getAnimationTime: () => void;
   getAnimations: () => void;
-  getMeshGroups: () => void;
-  getMeshMaterials: () => void;
+  getMeshGroups: () => CherryMeshes;
+  getMeshMaterials: () => CherryMeshes;
   /**
    * @description Use to get meshes information for current object
    */

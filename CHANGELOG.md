@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.28](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.27...v0.0.28) (2022-04-15)
+
+
+### Bug Fixes
+
+* MET-2093 missing type for animation event ([efd7c64](https://github.com/startupdevhouse/metavrse-lib/commit/efd7c641c7c928002db2b442de60f4002d93cb40))
+
 ### [0.0.27](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.26...v0.0.27) (2022-04-11)
 
 

@@ -6,8 +6,7 @@ import {
 import { CherryKey } from '../types/cherry/CherryKey';
 import { CherryViewer } from '../types/cherry/CherryViewer';
 import { ShaderParameterType } from '../types/facade/ShaderParameterType';
-import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES, SHADER_TYPES } from './shaders';
-import { CherrySurfaceSceneObject } from '../types/cherry/CherrySurfaceSceneObject';
+import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES } from './shaders';
 import { Asset } from '../types/assets/Asset';
 import { Entity } from '../types/entities/Entity';
 import { NODE_TYPES } from './../constants';
@@ -16,12 +15,13 @@ import {
   GetterSetterPropertyType,
   ProjectManagerObjectPropertyType,
 } from '../types/cherry/CherryProjectManagerObject';
-import { ShaderValue } from '../types/facade/ShaderValueType';
+import { ShaderValue, ShaderValueType } from '../types/facade/ShaderValueType';
 import { TreeNode } from '../types/tree/TreeNode';
 import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
+import { CherrySurfaceSceneObject } from '..';
 
 export * from './shaders';
 
@@ -29,6 +29,42 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
   const surface = cherryViewer.getSurface();
   const scene = surface.getScene();
+
+  const getParameterType = (
+    object: CherrySurfaceSceneObject,
+    meshId: number,
+    propertyName: ShaderParameterType,
+    valueType: ShaderValueType,
+    data?: Record<ShaderParameterType, ShaderValue>
+  ) => {
+    const newData = !data
+      ? ({} as Record<ShaderParameterType, ShaderValue>)
+      : data;
+    if (valueType === 'vec3') {
+      const vec = object.getParameterVec3(meshId, propertyName);
+      if (RGB_PARAMETERS.includes(propertyName)) {
+        newData[propertyName as ShaderParameterType] = [
+          +(vec.f1 * 255).toFixed(0),
+          +(vec.f2 * 255).toFixed(0),
+          +(vec.f3 * 255).toFixed(0),
+        ];
+      } else {
+        newData[propertyName] = [
+          +vec.f1.toFixed(0),
+          +vec.f2.toFixed(0),
+          +vec.f3.toFixed(0),
+        ];
+      }
+    } else if (valueType === 'boolean') {
+      newData[propertyName] = object.getParameterBool(meshId, propertyName);
+    } else if (valueType === 'float') {
+      newData[propertyName] = object.getParameterFloat(meshId, propertyName);
+    } else if (valueType === 'string') {
+      newData[propertyName] = object.getParameterString(meshId, propertyName);
+    }
+
+    return newData;
+  };
 
   /**
    *
@@ -55,45 +91,38 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
   /**
    *
-   * @param object
-   * @param index
+   * @param key
+   * @param meshId
+   * @param propertyName
+   */
+  const getMaterialValue = (
+    key: CherryKey,
+    meshId: number,
+    propertyName: ShaderParameterType
+  ): Record<ShaderParameterType, ShaderValue> => {
+    const object = scene.getObject(key);
+    const paramter = propertyName;
+    const valueType = SHADER_PROPERTY_TYPES[paramter];
+
+    return getParameterType(object, meshId, propertyName, valueType);
+  };
+
+  /**
+   *
+   * @param key
+   * @param meshId
    */
   const getMaterialValues = (
-    object: CherrySurfaceSceneObject,
-    index: number
-  ) => {
-    const mesh_id = 0;
+    key: CherryKey,
+    meshId: number
+  ): Record<ShaderParameterType, ShaderValue> => {
+    const object = scene.getObject(key);
     const data = {} as Record<ShaderParameterType, any>;
-    const pbr = object.getParameterBool(index, 'use_pbr');
 
     Object.keys(SHADER_PROPERTY_TYPES).forEach((key) => {
       const paramter = key as ShaderParameterType;
       const valueType = SHADER_PROPERTY_TYPES[paramter];
-
-      if (pbr && SHADER_TYPES.PBR[paramter]) {
-      }
-      if (valueType === 'vec3') {
-        const vec = object.getParameterVec3(index, paramter);
-        if (RGB_PARAMETERS.includes(key)) {
-          data[key as ShaderParameterType] = [
-            +(vec.f1 * 255).toFixed(0),
-            +(vec.f2 * 255).toFixed(0),
-            +(vec.f3 * 255).toFixed(0),
-          ];
-        } else {
-          data[paramter] = [
-            +vec.f1.toFixed(0),
-            +vec.f2.toFixed(0),
-            +vec.f3.toFixed(0),
-          ];
-        }
-      } else if (valueType === 'boolean') {
-        data[paramter] = object.getParameterBool(mesh_id, paramter);
-      } else if (valueType === 'float') {
-        data[paramter] = object.getParameterFloat(mesh_id, paramter);
-      } else if (valueType === 'string') {
-        data[paramter] = object.getParameterString(mesh_id, paramter);
-      }
+      getParameterType(object, meshId, paramter, valueType, data);
     });
 
     return data;
@@ -132,6 +161,9 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   /**
    *
    * @param key
+   * The CherryKey value
+   * @param id
+   * The Asset id that represents the file in scenegraph = "/project/assets/"
    * @returns Object info
    */
   const getObjectInfo = (key: CherryKey): CherryObjectInfo => {
@@ -326,6 +358,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
   return {
     loadAssetsAndRun,
+    getMaterialValue,
     getMaterialValues,
     getObjectMeshes,
     getObjectInfo,

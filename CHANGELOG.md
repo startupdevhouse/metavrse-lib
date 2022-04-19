@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.29](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.28...v0.0.29) (2022-04-19)
+
+
+### Bug Fixes
+
+* MET-2102 add method to facade to read the object informations ([60d1629](https://github.com/startupdevhouse/metavrse-lib/commit/60d162906ec5013ddd3d6b1cd53808bc3b29b87f))
+
 ### [0.0.28](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.27...v0.0.28) (2022-04-15)
 
 

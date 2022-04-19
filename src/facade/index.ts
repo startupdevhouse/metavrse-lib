@@ -134,16 +134,42 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
    * @param key
    * @returns Object info
    */
-  const getObjectInfo = (key: CherryKey): CherryObjectInfo => {
-    // Read object info
+  const getObjectInfo = (key: CherryKey, id: CherryKey): CherryObjectInfo => {
+    const object = scene.getObject(key);
+    const sceneObject = scene.getObject(key);
+    const meshes = sceneObject.getMeshes();
+    const meshMaterials = sceneObject.getMeshMaterials();
+    const meshGroups = sceneObject.getMeshGroups();
+
+    try {
+      const stats = cherryViewer.FS.stat(`/project/assets/${id}`);
+      const fileSize = stats.size;
+
+      return {
+        fileSize,
+        meshes: meshes.size(),
+        materials: meshMaterials.size(),
+        groups: meshGroups.size(),
+        triangles: object.getParameterInt('number_of_triangles'),
+        vertices: object.getParameterInt('number_of_vertices'),
+        positions: object.getParameterInt('number_of_positions'),
+        normals: object.getParameterInt('number_of_normals'),
+        uvs: object.getParameterInt('number_of_uvs'),
+      };
+    } catch (e) {
+      console.log(e);
+    }
+
     return {
-      file_size: 25_1024_000,
-      number_of_meshes: 21,
-      number_of_triangles: 321_412,
-      number_of_vertices: 231,
-      number_of_positions: 0,
-      number_of_normals: 0,
-      number_of_uvs: 1,
+      fileSize: 0,
+      meshes: 0,
+      materials: 0,
+      groups: 0,
+      triangles: 0,
+      vertices: 0,
+      positions: 0,
+      normals: 0,
+      uvs: 0,
     };
   };
 

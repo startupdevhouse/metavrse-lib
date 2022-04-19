@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.30](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.29...v0.0.30) (2022-04-19)
+
+
+### Features
+
+* MET-236 add methods to get material property in scenegraph object ([33826f9](https://github.com/startupdevhouse/metavrse-lib/commit/33826f9062e68677ceb1ea35797a806676c2030f))
+
 ### [0.0.29](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.28...v0.0.29) (2022-04-19)
 
 

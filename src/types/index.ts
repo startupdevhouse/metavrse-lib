@@ -91,7 +91,6 @@ export * from './configurations/ConfigurationType';
 /**
  * Facade types
  */
-export * from './facade/CherryObject';
 export * from './facade/CherryObjectAnimations';
 export * from './facade/CherryObjectComponents';
 export * from './facade/CherryObjectMeshes';

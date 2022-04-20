@@ -245,12 +245,29 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
    */
   const setObjectMaterial = (
     key: CherryKey,
-    index: number,
+    index: number, // mesh_id or material_id or group_id based on the type
     property: ShaderParameterType, // albedo_texture | albedo_ratio
-    value: ShaderValue
+    value: ShaderValue,
+    type: 'meshes' | 'materials' | 'groups' = 'meshes'
   ) => {
     const object = pm.getObject(key);
-    object.mesh.set(index, property, value);
+
+    switch (type) {
+      case 'meshes':
+        object.mesh.set(index, property, value);
+        break;
+      case 'materials':
+        const { objectMeshes } = getObjectMeshes(key);
+        for (const [entryKey, entryValue] of Object.entries(objectMeshes)) {
+          if (entryValue.material_id === index) {
+            object.mesh.set(+entryKey, property, value);
+          }
+        }
+        break;
+      case 'groups':
+        // Not used right now
+        break;
+    }
   };
 
   /**

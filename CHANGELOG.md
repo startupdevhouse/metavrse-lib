@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.31](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.30...v0.0.31) (2022-04-20)
+
+
+### Features
+
+* MET-236 add mesh type to setObjectMaterial method ([d045513](https://github.com/startupdevhouse/metavrse-lib/commit/d0455138ddacf9ca94a570869a69bc9cba16b32d))
+
 ### [0.0.30](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.29...v0.0.30) (2022-04-19)
 
 

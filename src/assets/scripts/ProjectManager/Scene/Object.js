@@ -1401,6 +1401,14 @@ module.exports = (payload) => {
         setProperty('hudscale', v);
       },
     },
+    code: {
+      get: () => {
+        return getProperty('code')[1];
+      },
+      set: (v) => {
+        setProperty('code', v);
+      },
+    },
   });
 
   Object.assign(object, {

@@ -18,6 +18,7 @@ export type GetterSetterPropertyType =
   | 'cast_shadow'
   | 'visible'
   | 'controller'
+  | 'code'
 
   // Video
   | 'src'

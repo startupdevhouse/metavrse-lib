@@ -44,7 +44,8 @@ export type ProjectManagerObjectPropertyType =
   | boolean
   | number
   | Vector3
-  | RGB;
+  | RGB
+  | Record<CherryKey, Record<string, CodeComponentValue>>;
 
 /**
  * @description ProjectManager.getObject(key) result

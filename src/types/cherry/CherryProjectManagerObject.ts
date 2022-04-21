@@ -1,4 +1,5 @@
-import { CherryAnimation, CodeComponentValue, ShaderParameterType } from '..';
+import { Code } from '../common/Code';
+import { CherryAnimation, ShaderParameterType } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -39,12 +40,14 @@ export type GetterSetterPropertyType =
   | 'target'
   | 'distance';
 
+
 export type ProjectManagerObjectPropertyType =
   | string
   | boolean
   | number
   | Vector3
-  | RGB;
+  | RGB
+  | Code;
 
 /**
  * @description ProjectManager.getObject(key) result
@@ -84,7 +87,7 @@ export type CherryProjectManagerObject = {
   autoscale: number;
   controller: string;
   frame: number;
-  code: Record<CherryKey, Record<string, CodeComponentValue>>;
+  code: Code;
   /** @description Use to retrive mesh specify by index or update mesh by it index */
   mesh: {
     get: (index: number, property: ShaderParameterType) => CherryMesh;

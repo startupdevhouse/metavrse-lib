@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.32](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.31...v0.0.32) (2022-04-21)
+
+
+### Features
+
+* MET-226 add code param to object getter/setters ([fc6ddfe](https://github.com/startupdevhouse/metavrse-lib/commit/fc6ddfe49704c5efde88115225acdd0bd88021c4))
+
+
+### Bug Fixes
+
+* MET-226 types for code ([8a267f5](https://github.com/startupdevhouse/metavrse-lib/commit/8a267f5e3e732f58090957016f2c4ef9f406de25))
+
 ### [0.0.31](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.30...v0.0.31) (2022-04-20)
 
 

@@ -30,6 +30,7 @@ export * from './cherry/CherryViewerFileSystem';
 export * from './common/Extensions';
 export * from './common/GroupMat';
 export * from './common/RGB';
+export * from './common/Code';
 
 export * from './common/Vector3';
 export * from './common/VectorKeys';

@@ -1,4 +1,4 @@
-import { CherryAnimation, ShaderParameterType } from '..';
+import { CherryAnimation, CodeComponentValue, ShaderParameterType } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -18,6 +18,7 @@ export type GetterSetterPropertyType =
   | 'cast_shadow'
   | 'visible'
   | 'controller'
+  | 'code'
 
   // Video
   | 'src'
@@ -83,6 +84,7 @@ export type CherryProjectManagerObject = {
   autoscale: number;
   controller: string;
   frame: number;
+  code: Record<CherryKey, Record<string, CodeComponentValue>>;
   /** @description Use to retrive mesh specify by index or update mesh by it index */
   mesh: {
     get: (index: number, property: ShaderParameterType) => CherryMesh;

@@ -60,7 +60,12 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } else if (valueType === 'float') {
       newData[propertyName] = object.getParameterFloat(meshId, propertyName);
     } else if (valueType === 'string') {
-      newData[propertyName] = object.getParameterString(meshId, propertyName);
+      const value = object.getParameterString(meshId, propertyName);
+      if (propertyName.includes('channel')) {
+        newData[propertyName] = value === '' ? 'r' : value;
+      } else {
+        newData[propertyName] = value;
+      }
     }
 
     return newData;

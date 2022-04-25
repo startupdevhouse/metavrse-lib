@@ -60,7 +60,12 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } else if (valueType === 'float') {
       newData[propertyName] = object.getParameterFloat(meshId, propertyName);
     } else if (valueType === 'string') {
-      newData[propertyName] = object.getParameterString(meshId, propertyName);
+      const value = object.getParameterString(meshId, propertyName);
+      if (propertyName.includes('channel')) {
+        newData[propertyName] = value === '' ? 'r' : value;
+      } else {
+        newData[propertyName] = value;
+      }
     }
 
     return newData;
@@ -245,28 +250,18 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
    */
   const setObjectMaterial = (
     key: CherryKey,
-    index: number, // mesh_id or material_id or group_id based on the type
+    ids: number[],
     property: ShaderParameterType, // albedo_texture | albedo_ratio
-    value: ShaderValue,
-    type: 'meshes' | 'materials' | 'groups' = 'meshes'
+    value: ShaderValue
   ) => {
     const object = pm.getObject(key);
 
-    switch (type) {
-      case 'meshes':
-        object.mesh.set(index, property, value);
-        break;
-      case 'materials':
-        const { objectMeshes } = getObjectMeshes(key);
-        for (const [entryKey, entryValue] of Object.entries(objectMeshes)) {
-          if (entryValue.material_id === index) {
-            object.mesh.set(+entryKey, property, value);
-          }
-        }
-        break;
-      case 'groups':
-        // Not used right now
-        break;
+    if (!ids.length) {
+      return;
+    }
+
+    for (const id of ids) {
+      object.mesh.set(id, property, value);
     }
   };
 
@@ -279,11 +274,18 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
    */
   const removeObjectMaterial = (
     key: CherryKey,
-    index: number,
+    ids: number[],
     property: ShaderParameterType
   ) => {
     const object = pm.getObject(key);
-    object.mesh.set(index, property, null);
+
+    if (!ids.length) {
+      return;
+    }
+
+    for (const id of ids) {
+      object.mesh.set(id, property, null);
+    }
   };
 
   /**

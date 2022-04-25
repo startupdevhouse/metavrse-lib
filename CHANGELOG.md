@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.34](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.33...v0.0.34) (2022-04-25)
+
+
+### Bug Fixes
+
+* MET-2149 remove meshes type form setMaterial ([bf17043](https://github.com/startupdevhouse/metavrse-lib/commit/bf170431a264b41c45a1dfda7dc5b8d7c7cdd972))
+* MET-226 add default value for texture channel ([a414e06](https://github.com/startupdevhouse/metavrse-lib/commit/a414e066d7683f2ba33bf396a190b2f781dec65b))
+
 ### [0.0.33](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.32...v0.0.33) (2022-04-21)
 
 

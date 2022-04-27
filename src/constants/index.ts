@@ -20,5 +20,4 @@ export const NODE_TYPES = {
   folder: 'folder',
   javascript: 'javascript',
   stylesheet: 'stylesheet',
-  hdr: 'hdr',
 } as const;

@@ -21,7 +21,7 @@ import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
-import { CherrySurfaceSceneObject } from '..';
+import { CherrySurfaceSceneObject, Vector3, World } from '..';
 
 export * from './shaders';
 
@@ -401,6 +401,21 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } as Entity;
   };
 
+  const setSkyboxVisibility = (isVisible: boolean) => {
+    scene.showSkybox(isVisible);
+    pm.isDirty = true;
+  }
+
+  const setSkyboxTransformMatrix = (vector: Vector3) => {
+    scene.setSkyboxTransformMatrix(vector);
+    pm.isDirty = true;
+  }
+
+  const setSkyboxKey = (currentScene: CherryKey, key: CherryKey) => {
+    pm.project.data[currentScene].data.world.skybox.key = key;
+    pm.isDirty = true;
+  }
+
   return {
     loadAssetsAndRun,
     getMaterialValue,
@@ -415,6 +430,9 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     highlightMesh,
     setAssets,
     addObjectToScene,
+    setSkyboxVisibility,
+    setSkyboxTransformMatrix,
+    setSkyboxKey
   };
 };
 

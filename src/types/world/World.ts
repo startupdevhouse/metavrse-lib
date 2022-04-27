@@ -4,7 +4,7 @@ import { Vector3 } from '../common/Vector3';
 
 export type World = {
   skybox: {
-    key: CherryKey;
+    key: CherryKey | null;
     show: boolean;
   };
   color: RGB;

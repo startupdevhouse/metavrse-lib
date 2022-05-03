@@ -9,7 +9,7 @@ import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES } from './shaders';
 import { Asset } from '../types/assets/Asset';
 import { Entity } from '../types/entities/Entity';
-import { NODE_TYPES } from './../constants';
+import { GIZMO_KEY, GIZMO_ROTATE_KEY, NODE_TYPES } from './../constants';
 import { vec3, mat4 } from 'gl-matrix';
 import {
   GetterSetterPropertyType,
@@ -21,7 +21,7 @@ import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
-import { CherrySurfaceSceneObject } from '..';
+import { CherryObjectByPixel, CherrySurfaceSceneObject } from '..';
 
 export * from './shaders';
 
@@ -229,7 +229,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   /**
    *
    * @param key
-   * @param property
+   * @param propertyName
    * @param value
    */
   const setObjectProperty = (
@@ -268,9 +268,8 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   /**
    *
    * @param key
-   * @param index
+   * @param ids
    * @param property
-   * @param value
    */
   const removeObjectMaterial = (
     key: CherryKey,
@@ -290,33 +289,79 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
   /**
    *
-   * @param index
-   * @param meshType
-   * @param shaderType
+   * @param x
+   * @param y
+   * @param pixelDensity
+   * @returns A Set of objects
    */
-  const setObjectShaderType = (
-    index: number,
-    meshType: 'MESH' | 'MATERIAL' | 'GROUP',
-    shaderType: any
-  ) => {};
+  const getObjectByPixel = (
+    x: number,
+    y: number,
+    pixelDensity: boolean = false
+  ): {
+    key: CherryKey;
+    objectFromPixel: CherryObjectByPixel;
+    sceneObject: CherrySurfaceSceneObject;
+  } | null => {
+    // Set pixelDensity if the event is on canvas
+    const positionX = pixelDensity ? x * cherryViewer.pixelDensity : x;
+    const positionY = pixelDensity ? y * cherryViewer.pixelDensity : y;
+
+    const objectFromPixel = scene.getObjectByPixel(positionX, positionY);
+    const objectPtr = objectFromPixel.object.object_ptr();
+
+    if (objectPtr) {
+      const key = pm.objects[objectPtr.$$.ptr].key;
+
+      if (!key) return null;
+
+      return {
+        key,
+        objectFromPixel,
+        sceneObject: scene.getObject(key),
+      };
+    }
+
+    return null;
+  };
 
   /**
    *
-   * @param key
-   * @param index
+   * @param x
+   * @param y
    * @param value
-   * @param meshType 'MESH' | 'MATERIAL' | 'GROUP'
+   * @param hasTimeout
    */
-  const highlightMesh = (
+  const highlightMeshes = (
     key: CherryKey,
-    index: number,
+    ids: number[],
     value: boolean,
-    meshType: 'MESH' | 'MATERIAL' | 'GROUP'
-  ) => {
+    hasTimeout: boolean = false
+  ): CherryKey | null => {
     const parameter = 'highlighted';
-    const object = scene.getObject(key);
-    object.setParameter(index, parameter, value);
-    pm.isDirty = true;
+    // If timeout is not set the value is taken form prop `value` else it is by default set to true
+    const val = hasTimeout ? true : value;
+
+    if (!!ids.length) {
+      const hoverObject = scene.getObject(key);
+
+      ids.forEach((id) => {
+        hoverObject.setParameter(id, parameter, val);
+        pm.isDirty = true;
+
+        // Used to remove highlight after 2 sec.
+        if (hasTimeout) {
+          setTimeout(() => {
+            hoverObject.setParameter(id, parameter, false);
+            pm.isDirty = true;
+          }, 2000);
+        }
+      });
+
+      return key;
+    }
+
+    return null;
   };
 
   /**
@@ -339,17 +384,11 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   const addObjectToScene = (
     node: TreeNode,
     entities: Entities,
-    parent?: TreeNode,
-    rescale: boolean = true
+    parent?: TreeNode
   ) => {
     const parentObject = parent ? pm.getObject(parent.key) : null;
     const currentObject = pm.addObject(node, entities, parentObject);
     const currentEntity = entities[node.key];
-
-    if (rescale && node.type === NODE_TYPES.object) {
-      currentObject.applyAutoScale();
-      currentObject.applyAutoPivot();
-    }
 
     if (node.type === NODE_TYPES.light) {
       const { key } = node;
@@ -401,20 +440,83 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } as Entity;
   };
 
+  const addGizmo = () => {
+    const gizmo = scene.addObject(GIZMO_KEY, 'assets/gizmo.c3b');
+    gizmo.setParameter('visible', false);
+    gizmo.setParameter('gizmo', true);
+
+    const meshes: Record<string, number> = {};
+    const objectMeshes = gizmo.getMeshes();
+    for (let index = 0; index < objectMeshes.size(); index++) {
+      const { mesh_id, mesh_name } = objectMeshes.get(index);
+      meshes[mesh_name] = mesh_id;
+    }
+
+    const gizmoImage = 'assets/gizmo.png';
+
+    gizmo.setParameter(meshes['Cylinder_4'], 'opacity_texture_a', gizmoImage);
+    gizmo.setParameter(meshes['Cylinder_5'], 'opacity_texture_a', gizmoImage);
+    gizmo.setParameter(meshes['Cylinder_6'], 'opacity_texture_a', gizmoImage);
+
+    gizmo.setParameter(meshes['Cube_1'], 'visible', false);
+    gizmo.setParameter(meshes['Cube_1_2'], 'visible', false);
+    gizmo.setParameter(meshes['Cube_1_3'], 'visible', false);
+
+    gizmo.setParameter(meshes['x'], 'ambient_ratio', 1, 0, 0);
+    gizmo.setParameter(meshes['Cylinder_2'], 'ambient_ratio', 1, 0, 0);
+    gizmo.setParameter(meshes['y'], 'ambient_ratio', 0, 1, 0);
+    gizmo.setParameter(meshes['Cylinder'], 'ambient_ratio', 0, 1, 0);
+    gizmo.setParameter(meshes['z'], 'ambient_ratio', 0, 0, 1);
+    gizmo.setParameter(meshes['Cylinder_3'], 'ambient_ratio', 0, 0, 1);
+
+    gizmo.setParameter(meshes['Cube_1'], 'ambient_ratio', 1, 0, 0);
+    gizmo.setParameter(meshes['Cube_1_2'], 'ambient_ratio', 0, 0, 1);
+    gizmo.setParameter(meshes['Cube_1_3'], 'ambient_ratio', 0, 1, 0);
+
+    return gizmo;
+  };
+
+  const addGizmoRotate = () => {
+    const gizmo = scene.addObject(GIZMO_ROTATE_KEY, 'assets/rotate.c3b');
+    gizmo.setParameter('visible', false);
+    gizmo.setParameter('gizmo', true);
+
+    const meshes: Record<string, number> = {};
+    const objectMeshes = gizmo.getMeshes();
+    for (let index = 0; index < objectMeshes.size(); index++) {
+      const { mesh_id, mesh_name } = objectMeshes.get(index);
+      meshes[mesh_name] = mesh_id;
+    }
+
+    const gizmoImage = 'assets/gizmo.png';
+
+    gizmo.setParameter(meshes['X__grab'], 'opacity_texture_a', gizmoImage);
+    gizmo.setParameter(meshes['Y__grab'], 'opacity_texture_a', gizmoImage);
+    gizmo.setParameter(meshes['Z__grab'], 'opacity_texture_a', gizmoImage);
+
+    gizmo.setParameter(0, 'ambient_ratio', 0, 0, 1);
+    gizmo.setParameter(1, 'ambient_ratio', 0, 1, 0);
+    gizmo.setParameter(2, 'ambient_ratio', 1, 0, 0);
+
+    return gizmo;
+  };
+
   return {
-    loadAssetsAndRun,
+    addGizmo,
+    addGizmoRotate,
+    addObjectToScene,
     getMaterialValue,
     getMaterialValues,
-    getObjectMeshes,
-    getObjectInfo,
     getObjectAnimation,
-    setObjectProperty,
-    setObjectMaterial,
+    getObjectByPixel,
+    getObjectInfo,
+    getObjectMeshes,
+    highlightMeshes,
+    loadAssetsAndRun,
     removeObjectMaterial,
-    setObjectShaderType,
-    highlightMesh,
     setAssets,
-    addObjectToScene,
+    setObjectMaterial,
+    setObjectProperty,
   };
 };
 

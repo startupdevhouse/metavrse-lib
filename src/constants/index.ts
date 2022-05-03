@@ -21,3 +21,6 @@ export const NODE_TYPES = {
   javascript: 'javascript',
   stylesheet: 'stylesheet',
 } as const;
+
+export const GIZMO_KEY = '__gizmo__' as const;
+export const GIZMO_ROTATE_KEY = '__gizmoRotate__' as const;

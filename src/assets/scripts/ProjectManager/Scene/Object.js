@@ -906,6 +906,16 @@ module.exports = (payload) => {
       getAnimationList();
     }
 
+    if (d['autoscaled']) {
+      autoScale();
+      delete d['autoscaled'];
+    }
+
+    if (d['autopivot']) {
+      autoPivot();
+      delete d['autopivot'];
+    }
+
     if (autoscaleObject) {
       autoscaleObject = false;
       autoScale();

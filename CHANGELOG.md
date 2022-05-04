@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.35](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.34...v0.0.35) (2022-05-04)
+
+
+### Features
+
+* MET-2168 add methods to handle highlighting ([9eedfa9](https://github.com/startupdevhouse/metavrse-lib/commit/9eedfa912448924938095371b1401c46b52325d9))
+
 ### [0.0.34](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.33...v0.0.34) (2022-04-25)
 
 

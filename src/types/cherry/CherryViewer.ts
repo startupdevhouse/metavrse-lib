@@ -2,10 +2,11 @@ import { CherryControls } from './CherryControls';
 import { CherryProjectManager } from './CherryProjectManager';
 import { CherrySurface } from './CherrySurface';
 import { CherryViewerFileSystem } from './CherryViewerFileSystem';
+import { Handlers } from './CherryViewerHandlers';
 
 export type CherryViewer = {
   _main: () => void;
-  // Asset files objects
+  Handlers: Handlers;
   ProjectManager: CherryProjectManager;
   FS: CherryViewerFileSystem;
   // emscripten methods

@@ -23,6 +23,7 @@ export * from './cherry/CherrySurfaceSceneObject';
 export * from './cherry/CherryViewer';
 export * from './cherry/CherryViewer3D';
 export * from './cherry/CherryViewerFileSystem';
+export * from './cherry/CherryViewerHandlers';
 
 /**
  * Common types

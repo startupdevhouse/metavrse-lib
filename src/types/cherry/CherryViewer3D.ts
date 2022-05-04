@@ -1,6 +1,8 @@
+import { Handlers } from './CherryViewerHandlers';
+
 export type CherryViewer3D = {
   noInitialRun?: boolean;
-  Handlers: any;
+  Handlers: Handlers;
   logReadFiles: boolean;
   canvas?: HTMLCanvasElement;
   print: (text: string) => void;

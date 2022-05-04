@@ -71,6 +71,18 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     return newData;
   };
 
+  const extractObjectMeshes = (
+    gizmo: CherrySurfaceSceneObject
+  ): Record<string, number> => {
+    const meshes: Record<string, number> = {};
+    const objectMeshes = gizmo.getMeshes();
+    for (let index = 0; index < objectMeshes.size(); index++) {
+      const { mesh_id, mesh_name } = objectMeshes.get(index);
+      meshes[mesh_name] = mesh_id;
+    }
+    return meshes;
+  };
+
   /**
    *
    * @param assetsFiles
@@ -338,15 +350,16 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     value: boolean,
     hasTimeout: boolean = false
   ): CherryKey | null => {
+    const highlightTime = 2000;
     const parameter = 'highlighted';
     // If timeout is not set the value is taken form prop `value` else it is by default set to true
-    const val = hasTimeout ? true : value;
+    const parameterValue = hasTimeout ? true : value;
 
     if (!!ids.length) {
       const hoverObject = scene.getObject(key);
 
       ids.forEach((id) => {
-        hoverObject.setParameter(id, parameter, val);
+        hoverObject.setParameter(id, parameter, parameterValue);
         pm.isDirty = true;
 
         // Used to remove highlight after 2 sec.
@@ -354,7 +367,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
           setTimeout(() => {
             hoverObject.setParameter(id, parameter, false);
             pm.isDirty = true;
-          }, 2000);
+          }, highlightTime);
         }
       });
 
@@ -445,13 +458,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     gizmo.setParameter('visible', false);
     gizmo.setParameter('gizmo', true);
 
-    const meshes: Record<string, number> = {};
-    const objectMeshes = gizmo.getMeshes();
-    for (let index = 0; index < objectMeshes.size(); index++) {
-      const { mesh_id, mesh_name } = objectMeshes.get(index);
-      meshes[mesh_name] = mesh_id;
-    }
-
+    const meshes = extractObjectMeshes(gizmo);
     const gizmoImage = 'assets/gizmo.png';
 
     gizmo.setParameter(meshes['Cylinder_4'], 'opacity_texture_a', gizmoImage);
@@ -481,13 +488,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     gizmo.setParameter('visible', false);
     gizmo.setParameter('gizmo', true);
 
-    const meshes: Record<string, number> = {};
-    const objectMeshes = gizmo.getMeshes();
-    for (let index = 0; index < objectMeshes.size(); index++) {
-      const { mesh_id, mesh_name } = objectMeshes.get(index);
-      meshes[mesh_name] = mesh_id;
-    }
-
+    const meshes = extractObjectMeshes(gizmo);
     const gizmoImage = 'assets/gizmo.png';
 
     gizmo.setParameter(meshes['X__grab'], 'opacity_texture_a', gizmoImage);

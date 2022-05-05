@@ -58,6 +58,8 @@ export * from './entities/VideoEntity';
 export * from './entities/CodeComponentValue';
 export * from './entities/CameraCodeComponent';
 export * from './entities/FileCodeComponent';
+export * from './entities/VideoCodeComponent';
+export * from './entities/ObjectAnimationSequence';
 
 /**
  * Project types

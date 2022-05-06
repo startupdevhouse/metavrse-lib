@@ -21,7 +21,7 @@ import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
-import { CherryObjectByPixel, CherrySurfaceSceneObject } from '..';
+import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 
 export * from './shaders';
 
@@ -388,10 +388,40 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
   /**
    *
+   * @param key
+   * @param callback
+   */
+  const changeInitialValuesWhenAddingObject = (
+    key: CherryKey,
+    callback: (properties: { autoscale: number; pivot: Vector3 }) => void
+  ) => {
+    const object = pm.getObject(key);
+    if (object) {
+      object.applyAutoScale();
+      object.applyAutoPivot();
+
+      const changeListenerFN = () => {
+        object.removeChangeListener(changeListenerFN);
+
+        // Change material shader to PBR
+        const meshesIds = getObjectMeshes(key).objectMeshes.map(
+          (mesh) => mesh.mesh_id
+        );
+        setObjectMaterial(key, meshesIds, 'use_pbr', true);
+        const { autoscale, pivot } = object;
+        callback({ autoscale, pivot });
+      };
+
+      object.addChangeListener(changeListenerFN);
+    }
+  };
+
+  /**
+   *
    * @param node
    * @param entities
    * @param parent
-   * @param rescale
+   * @param callback
    * @returns
    */
   const addObjectToScene = (
@@ -518,6 +548,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setAssets,
     setObjectMaterial,
     setObjectProperty,
+    changeInitialValuesWhenAddingObject,
   };
 };
 

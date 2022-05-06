@@ -59,7 +59,7 @@ module.exports = (payload) => {
     }
 
     x--;
-    for (canimation of customAnimations) {
+    for (const canimation of customAnimations) {
       let details = v_animations.get(canimation.track);
       if (details == undefined || details.duration_ms == 0) continue;
       x++;
@@ -608,8 +608,7 @@ module.exports = (payload) => {
           : extents.f3;
       const autoscale =
         largestScale > 3 || largestScale < 1 ? 1 / largestScale : 1;
-
-      setProperty('autoscale', autoscale, 'transform');
+      setProperty('autoscale', autoscale);
     }
   };
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.36](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.35...v0.0.36) (2022-05-06)
+
+
+### Bug Fixes
+
+* MET-2195 incorect object scale in preview ([5542cca](https://github.com/startupdevhouse/metavrse-lib/commit/5542cca21a4d3fcf0a24ce93c508a1934c597e4c))
+
 ### [0.0.35](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.34...v0.0.35) (2022-05-04)
 
 

@@ -596,7 +596,7 @@ module.exports = () => {
 
     loadPaths(sceneprops.project.data['assets'].tree);
 
-    if (p.data.version.includes('0.0.')) {
+    if (`${p.data.version}`.includes('0.0.')) {
       p.data.selected_scene = p.data.starting_scene;
       const worldData = p.data.scene[p.data.selected_scene].data.world;
 
@@ -633,7 +633,7 @@ module.exports = () => {
           sceneprops.worldController = undefined;
         }
       }
-    } else if (!p.data.version.includes('0.0.') && p.data.version >= 1) {
+    } else if (p.data.version >= 1) {
       p.data.selected_scene = p.data.starting_scene;
 
       const getWorldItem = (tree) => {

@@ -10,17 +10,13 @@ type RequiredProperties =
   | 'position'
   | 'rotate'
   | 'scale'
-  | 'anchor'
-  | 'pivot'
   | 'groupMat'
-  | 'autoscale'
   | 'data'
-  | 'hud'
   | 'show_shadow'
   | 'cast_shadow'
   | 'visible';
 
-type OptionalProperties = 'controller' | 'code';
+type OptionalProperties = 'controller' | 'code' | 'autoscale' | 'pivot' | 'hud';
 
 export type ObjectEntity = Pick<
   Required<Entity & { type: 'object' }>,

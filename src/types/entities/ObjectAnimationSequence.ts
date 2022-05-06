@@ -1,5 +1,6 @@
 export type ObjectAnimationSequence = {
   aftercamera: boolean;
+  reverse: boolean;
   animationid: number;
   delay: number;
   end: number;

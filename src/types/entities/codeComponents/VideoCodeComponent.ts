@@ -1,4 +1,4 @@
-import { CherryKey } from '../../types/cherry/CherryKey';
+import { CherryKey } from '../../../types/cherry/CherryKey';
 
 export type VideoCodeComponent = {
   aftercamera: boolean;

@@ -1,4 +1,4 @@
-export type ObjectAnimationSequence = {
+export type ObjectAnimationSequenceComponent = {
   aftercamera: boolean;
   reverse: boolean;
   animationid: number;

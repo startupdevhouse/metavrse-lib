@@ -1,6 +1,6 @@
 /**
  * Camera Scenegraph Component
- * @param {object} opt 
+ * @param {object} opt
  */
 module.exports = (payload) => {
     let child = payload.child;
@@ -93,7 +93,7 @@ module.exports = (payload) => {
             const row = renderList[i];
             switch (row.type) {
                 case "position":
-                case "dsitance":
+                case "distance":
                 case "target":
                     if (!renderTransformation){
                         transformation.position = [...getLastValueInMap(getProperties('position'))];
@@ -110,7 +110,7 @@ module.exports = (payload) => {
         }
 
         if (renderTransformation || opts.transform) {
-            
+
         }
 
         if (renderVisibility || opts.visible != undefined) {
@@ -129,6 +129,7 @@ module.exports = (payload) => {
         }
 
         renderList = [];
+        isLoading = false;
     }
 
     Object.assign(object, {
@@ -163,7 +164,7 @@ module.exports = (payload) => {
             addToUpdated(key, (isLoading) ? 'loaded' : 'changed', {prop,value})
 
         }
-        
+
         let buckets = (object.links.has(prop)) ? object.links.get(prop): new Map();
 
         let lastKey = (buckets.size > 0) ? getLastKeyInMap(buckets) : key;
@@ -172,7 +173,7 @@ module.exports = (payload) => {
 
         // key is at the end of the chain already
         if (key == lastKey){
-            
+
         }else if (key != object.item.key){
             // only move links to the end
 
@@ -195,7 +196,7 @@ module.exports = (payload) => {
         if (key == undefined || !object.links.has(prop)) return false;
 
         let buckets = object.links.get(prop);
-        
+
         if (buckets.delete(key)) {
             addToRedraw(prop);
             return true;
@@ -203,9 +204,9 @@ module.exports = (payload) => {
 
         return false;
     }
-    
 
-    // links['visible'] = addToBucket(object.transformation, "visible", transformation.visible);    
+
+    // links['visible'] = addToBucket(object.transformation, "visible", transformation.visible);
     // links['distance'] = addToBucket(object.transformation, "distance", transformation.distance);
     // links['position'] = addToBucket(object.transformation, "position", transformation.position);
     // links['target'] = addToBucket(object.transformation, "target", transformation.target);
@@ -284,10 +285,10 @@ module.exports = (payload) => {
             for (let [key, handler] of updateHandlers) {
                 handler("removed");
             }
-            
+
             sceneprops.sceneIndex.delete(object.item.key);
             if (object.parent) object.parent.children.delete(object.item.key);
-       
+
             Module.ProjectManager.isDirty = true;
         },
     })

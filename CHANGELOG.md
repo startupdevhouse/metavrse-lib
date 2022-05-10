@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.38](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.37...v0.0.38) (2022-05-10)
+
+
+### Bug Fixes
+
+* MET-2188 allow to change the position of the camera ([965c1b6](https://github.com/startupdevhouse/metavrse-lib/commit/965c1b68c5d84acaf3d262c9dad2b6b7a7647f66))
+
 ### [0.0.37](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.36...v0.0.37) (2022-05-10)
 
 

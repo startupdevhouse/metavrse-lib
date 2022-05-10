@@ -2,9 +2,8 @@ import { Vector3 } from '../common/Vector3';
 import { EntityMaterial } from './ObjectEntity';
 import { CherryKey } from '../cherry/CherryKey';
 import { GroupMat } from '../common/GroupMat';
-import { CodeComponentValue } from './CodeComponentValue';
 import { RGB } from '../common/RGB';
-import { TreeNodeType } from '..';
+import { Code, TreeNodeType } from '..';
 
 export type Entity = {
   key: CherryKey;
@@ -24,9 +23,9 @@ export type Entity = {
   cast_shadow?: boolean;
   visible?: boolean;
   controller?: CherryKey;
-  code?: Record<CherryKey, Record<string, CodeComponentValue>>;
+  code?: Code;
 
-  // Video
+  // Video≤
   src?: string;
   pixel?: Vector3;
 

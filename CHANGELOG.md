@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.37](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.36...v0.0.37) (2022-05-10)
+
+
+### Features
+
+* MET-226 add 'reverse' field to ObjectAnimation ([04d9813](https://github.com/startupdevhouse/metavrse-lib/commit/04d9813dd2d82c48783a859e4d18b489fa456518))
+* MET-226 add model for video component and animation sequence ([9143b3f](https://github.com/startupdevhouse/metavrse-lib/commit/9143b3f540f60f284ca191a15115f2f1a7619b86))
+
 ### [0.0.36](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.35...v0.0.36) (2022-05-06)
 
 

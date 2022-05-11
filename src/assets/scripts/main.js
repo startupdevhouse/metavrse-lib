@@ -29,7 +29,7 @@ Module.addEventListener = (type, listener)=> {
 
 Module.removeEventListener = (type, listener)=> {
   if (!eventListeners.has(type)) return;
-  
+
   const l = eventListeners.get(type);
   if (l.has(listener)) l.delete(listener);
 }
@@ -51,7 +51,7 @@ Module.resetCamera = function() {
   let getLastItemInMap = map => Array.from(map)[map.size-1]
   let getLastKeyInMap = map => Array.from(map)[map.size-1][0]
   let getLastValueInMap = map => Array.from(map)[map.size-1][1];
-  
+
   let control_opts =  {
     camera: Module.camera,
     distanceBounds: [.1, 40],
@@ -71,15 +71,15 @@ Module.resetCamera = function() {
                 try {
                   let properities = nodeobj.getProperties("controller");
                   let property = getLastItemInMap(properities);
-                  nodeptrkey = property[0];  
+                  nodeptrkey = property[0];
                   emptyvalue = (property[1] == "")
                 } catch (error) {
                 }
-                
+
                 const node = nodeobj.item;
                 const object = scene.getObject(nodeptr.key);
                 const meshid = p.meshid;
-  
+
                 try {
                   if (!emptyvalue && Module.ProjectManager.objectControllers[nodeptrkey].onClick) Module.ProjectManager.objectControllers[nodeptrkey].onClick(node, object, meshid, button, x, y);
                 } catch (e) {
@@ -91,13 +91,13 @@ Module.resetCamera = function() {
                       controller: {
                         key: assetnode.key,
                         title: assetnode.title
-                      }, 
+                      },
                       object: {
                         key: node.key,
                         title: node.title,
-                      }, 
+                      },
                       stack: e.stack,
-  
+
                     }
                   )
                   //
@@ -148,13 +148,13 @@ Module.render = function () {
     Module.setFPS(Module['fps']['maxFps']);
   } else {
     let timestamp = Date.now();
-  
+
     // throttle fps using start time and compare frames
     let delay = 1000 / Module['fps']['maxFps'];
     if (Module['fps']['startTime'] === null) Module['fps']['startTime'] = timestamp;
     let delta = timestamp - Module['fps']['startTime'];
     var seg = Math.floor(delta / delay);
-    if (seg > Module['fps']['frame']) { 
+    if (seg > Module['fps']['frame']) {
       Module['fps']['frame'] = seg;
     } else {
       return;
@@ -179,40 +179,40 @@ Module.render = function () {
         if (canvas.parentElement.parentElement.clientWidth < canvas.parentElement.parentElement.clientHeight ){
           canvas.parentElement.style.width = canvas.parentElement.parentElement.clientHeight + "px";
           canvas.parentElement.style.height = canvas.parentElement.parentElement.clientWidth + "px";
-          canvas.parentElement.style.transform = "rotate(-90deg) translate(-100%, 0)"; 
-          canvas.parentElement.style.transformOrigin = "top left"; 
-          canvas.parentElement.parentElement.style.display = "block"; 
+          canvas.parentElement.style.transform = "rotate(-90deg) translate(-100%, 0)";
+          canvas.parentElement.style.transformOrigin = "top left";
+          canvas.parentElement.parentElement.style.display = "block";
         } else {
           canvas.parentElement.style.width = "";
           canvas.parentElement.style.height = "";
           canvas.parentElement.style.transform = "";
-          canvas.parentElement.style.transformOrigin = ""; 
-          canvas.parentElement.parentElement.style.display = ""; 
+          canvas.parentElement.style.transformOrigin = "";
+          canvas.parentElement.parentElement.style.display = "";
         }
       } else if (World.orientation == 1){
         // forced portrait mode
         if (canvas.parentElement.parentElement.clientHeight < canvas.parentElement.parentElement.clientWidth){
           canvas.parentElement.style.width = canvas.parentElement.parentElement.clientHeight + "px";
           canvas.parentElement.style.height = canvas.parentElement.parentElement.clientWidth + "px";
-          canvas.parentElement.style.transform = "rotate(-90deg) translate(-100%, 0)"; 
-          canvas.parentElement.style.transformOrigin = "top left"; 
-          canvas.parentElement.parentElement.style.display = "block"; 
+          canvas.parentElement.style.transform = "rotate(-90deg) translate(-100%, 0)";
+          canvas.parentElement.style.transformOrigin = "top left";
+          canvas.parentElement.parentElement.style.display = "block";
         } else {
           canvas.parentElement.style.width = "";
           canvas.parentElement.style.height = "";
           canvas.parentElement.style.transform = "";
-          canvas.parentElement.style.transformOrigin = ""; 
-          canvas.parentElement.parentElement.style.display = ""; 
+          canvas.parentElement.style.transformOrigin = "";
+          canvas.parentElement.parentElement.style.display = "";
         }
       } else {
           canvas.parentElement.style.width = "";
           canvas.parentElement.style.height = "";
           canvas.parentElement.style.transform = "";
-          canvas.parentElement.style.transformOrigin = ""; 
-          canvas.parentElement.parentElement.style.display = ""; 
+          canvas.parentElement.style.transformOrigin = "";
+          canvas.parentElement.parentElement.style.display = "";
       }
     }
-    
+
     const width = ~~(canvas.clientWidth * devicePixelRatio);  // bitwise truncate
     const height = ~~(canvas.clientHeight * devicePixelRatio);
     if (width != canvas.width || height != canvas.height) {
@@ -230,9 +230,9 @@ Module.render = function () {
     }
 
     let canvas = surface.getCanvasIntrinsics();
-    
+
     // remove real dpr from real width/height
-    canvas.clientWidth = ~~(canvas.width / devicePixelRatio);  
+    canvas.clientWidth = ~~(canvas.width / devicePixelRatio);
     canvas.clientHeight = ~~(canvas.height / devicePixelRatio);
 
     const width = ~~(canvas.clientWidth * Module.pixelDensity);  // bitwise truncate
@@ -244,8 +244,11 @@ Module.render = function () {
   }
 
   let res = true;
-  if (Module.ProjectManager.projectRunning && Module.ProjectManager.worldController && typeof Module.ProjectManager.worldController.onRender === "function") res = Module.ProjectManager.worldController.onRender();
-  else if (!Module.ProjectManager.projectRunning && Module.Handlers && typeof Module.Handlers.onRender === "function") res = Module.Handlers.onRender();
+  if (Module.ProjectManager.projectRunning && Module.ProjectManager.worldController && typeof Module.ProjectManager.worldController.onRender === "function") {
+    res = Module.ProjectManager.worldController.onRender();
+  } else if (!Module.ProjectManager.projectRunning && Module.Handlers && typeof Module.Handlers.onRender === "function") {
+    res = Module.Handlers.onRender();
+  }
 
   if (!res) return;
 
@@ -350,7 +353,7 @@ Module.onSurfaceChanged = function (rotation, width, height) {
     if (World) {
       let dpr = (typeof devicePixelRatio !== "undefined" && devicePixelRatio) ? devicePixelRatio : 1;
       Module['pixelDensity'] = 1 + ((dpr-1) * World.dpr);
-    }    
+    }
   } catch (error) {
     if (Module.canvas){
       let dpr = (typeof devicePixelRatio !== "undefined" && devicePixelRatio) ? devicePixelRatio : 1;
@@ -361,9 +364,13 @@ Module.onSurfaceChanged = function (rotation, width, height) {
   for (var [k,o] of Module.ProjectManager.getObjects()){
     if (o.addToRedraw) o.addToRedraw("transform");
   }
-
-  if (Module.ProjectManager.projectRunning && Module.ProjectManager.worldController && typeof Module.ProjectManager.worldController.onSurfaceChanged === "function") res = Module.ProjectManager.worldController.onSurfaceChanged(rotation, width, height);
-  else if (!Module.ProjectManager.projectRunning && Module.Handlers && typeof Module.Handlers.onSurfaceChanged === "function") Module.Handlers.onSurfaceChanged(rotation, width, height);
+  let res;
+  if (Module.ProjectManager.projectRunning && Module.ProjectManager.worldController && typeof Module.ProjectManager.worldController.onSurfaceChanged === "function") {
+    res = Module.ProjectManager.worldController.onSurfaceChanged(rotation, width, height);
+  }
+  else if (!Module.ProjectManager.projectRunning && Module.Handlers && typeof Module.Handlers.onSurfaceChanged === "function") {
+    Module.Handlers.onSurfaceChanged(rotation, width, height);
+  }
   Module.camera.viewport = [rotation, 0, width, height];
   Module.ProjectManager.isDirty = true;
 
@@ -405,7 +412,7 @@ if (Module['canvas']) {
   // c.addEventListener('keypress', (e)=> {
   //   Module.onKeyEvent('keypress', e.key, e.code, e.shiftKey, e.ctrlKey, e.altKey, e.metaKey, e.repeat);
   // });
-  
+
   c.addEventListener('keyup', (e)=> {
     Module.onKeyEvent('keyup', e.key, e.code, e.shiftKey, e.ctrlKey, e.altKey, e.metaKey, e.repeat);
   });

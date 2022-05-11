@@ -19,6 +19,7 @@ import LoadingBar from './scripts/Components/LoadingBar.js';
 import ProjectManager from './scripts/ProjectManager/ProjectManager';
 import Scenegraph from './scripts/ProjectManager/Scenegraph';
 import URLLoader from './scripts/ProjectManager/URLLoader';
+import NewURLLoader from './scripts/ProjectManager/NewURLLoader';
 
 import Camera from './scripts/ProjectManager/Scene/Camera';
 import CameraLink from './scripts/ProjectManager/Scene/CameraLink';
@@ -67,6 +68,7 @@ export const scripts = {
   [`${PROJECT_MANAGER}/ProjectManager.js`]: ProjectManager,
   [`${PROJECT_MANAGER}/Scenegraph.js`]: Scenegraph,
   [`${PROJECT_MANAGER}/URLLoader.js`]: URLLoader,
+  [`${PROJECT_MANAGER}/NewURLLoader.js`]: NewURLLoader,
   [`${SCENE}/Camera.js`]: Camera,
   [`${SCENE}/CameraLink.js`]: CameraLink,
   [`${SCENE}/Configuration.js`]: Configuration,

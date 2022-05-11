@@ -368,7 +368,7 @@ module.exports = () => {
   const loadPaths = (tree, parent) => {
     tree.forEach((item) => {
       if (item.type != 'folder') {
-        sceneprops.objPaths[item.key] = !scene.hasFSZip()
+        sceneprops.objPaths[item.key] = scene.hasFSZip()
           ? sceneprops.path + item.key
           : item.key;
       }
@@ -593,7 +593,6 @@ module.exports = () => {
     sceneprops.sceneIndex.clear();
     sceneprops.worldController = undefined;
     sceneprops.assetIndex.clear();
-
     loadPaths(sceneprops.project.data['assets'].tree);
 
     if (`${p.data.version}`.includes('0.0.')) {
@@ -626,8 +625,11 @@ module.exports = () => {
           let obj = WorldModel(payload);
 
           sceneprops.sceneIndex.set(obj.item.key, obj); // index obj
+
           if (worldControllerkey != '')
-            sceneprops.worldController = Module.require(worldControllerkey)();
+            sceneprops.worldController = Module.require(
+              sceneprops.path + worldControllerkey
+            )();
         } catch (e) {
           console.error(worldControllerkey + ':' + e.message);
           sceneprops.worldController = undefined;
@@ -673,7 +675,6 @@ module.exports = () => {
         }
       }
     }
-
     constructGraph();
   };
 

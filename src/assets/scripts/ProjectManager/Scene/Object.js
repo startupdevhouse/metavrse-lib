@@ -549,6 +549,7 @@ module.exports = (payload) => {
     mat4.identity(trv.piv);
     mat4.identity(trv.mi);
 
+    // TODO: [MET-2226] Check semversion
     if (version == 1) {
       mat4.translate(trv.m, trv.m, trv.translate);
       mat4.scale(trv.m, trv.m, trv.scale);

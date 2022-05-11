@@ -7,6 +7,7 @@ import { Asset } from '../assets/Asset';
 export type CherryProjectManager = {
   // File methods
   loadURL: (url: string, password: string) => void;
+  loadNewURL: (url: string) => Promise<void>;
   reset: () => void;
   loadScene: (project: any, launch?: boolean) => void;
   loadFromFolder: (path: string) => void;

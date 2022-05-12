@@ -29,9 +29,7 @@ module.exports = (opt) => {
         const consume = async () => {
           const config = {
             responseType: 'arraybuffer',
-            onDownloadProgress: function (e) {
-              console.log(e);
-            },
+            onDownloadProgress: function (e) {},
           };
           return new Response(
             new ReadableStream({

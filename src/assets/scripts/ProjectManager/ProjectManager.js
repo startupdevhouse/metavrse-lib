@@ -130,7 +130,6 @@ module.exports = () => {
   const loadNewURL = async (url) => {
     await NewURLLoader.tempMethodName(url, (projectData) => {
       // Change assets path so the new structure is readable in CherryGL
-      console.log('Log: [projectData]', projectData);
       Scenegraph.path = 'files/';
       loadScene(projectData, true);
     });

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.40](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.39...v0.0.40) (2022-05-12)
+
+
+### Bug Fixes
+
+* MET-2142 fix problem with preview on smaller screens ([5b0ea79](https://github.com/startupdevhouse/metavrse-lib/commit/5b0ea79f04c80930e632fe2097cde21f17ee7a1f))
+
 ### [0.0.39](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.38...v0.0.39) (2022-05-11)
 
 ### [0.0.38](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.37...v0.0.38) (2022-05-10)

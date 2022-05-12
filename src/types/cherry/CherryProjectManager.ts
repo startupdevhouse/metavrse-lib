@@ -36,4 +36,5 @@ export type CherryProjectManager = {
   objects: { [key: number]: { key: CherryKey } };
   // TODO: [MET-836] Add typings for project data passed to the Scenegraph.js
   project?: any;
+  archive: any;
 };

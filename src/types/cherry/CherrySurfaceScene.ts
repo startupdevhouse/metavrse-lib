@@ -3,6 +3,7 @@ import { CherryObjectByPixel } from './CherryObjectByPixel';
 import { CherrySurfaceSceneObject } from './CherrySurfaceSceneObject';
 
 export type CherrySurfaceScene = {
+  hasFSZip: () => boolean;
   showRulerGrid: (value: boolean) => void;
   getObject: (key: CherryKey) => CherrySurfaceSceneObject;
   getObjectByPixel: (x: number, y: number) => CherryObjectByPixel;

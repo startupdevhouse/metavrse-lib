@@ -21,7 +21,12 @@ import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
-import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
+import {
+  CherryGLVersion,
+  CherryObjectByPixel,
+  CherrySurfaceSceneObject,
+  Vector3,
+} from '..';
 
 export * from './shaders';
 
@@ -104,6 +109,47 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     }
 
     cherryViewer._main();
+
+    cherryViewer.require = (file: any) => {
+      if (cherryViewer.require_cache[file]) {
+        return cherryViewer.require_cache[file];
+      }
+      const path = cherryViewer.ProjectManager.path;
+      const projectVersion = cherryViewer.ProjectManager.project.data.version;
+      const surface = cherryViewer.getSurface();
+      const scene = surface.getScene();
+      const archive =
+        cherryViewer.ProjectManager && cherryViewer.ProjectManager.archive
+          ? cherryViewer.ProjectManager.archive
+          : undefined;
+      var _f;
+
+      if (file.includes('assets/')) {
+        _f = surface.readBinary(file);
+      } else if (!scene.hasFSZip()) {
+        _f = surface.readBinary(path + file);
+      } else {
+        // If zip file exists load files based on version
+        if (projectVersion.includes('0.0')) {
+          _f = archive.fopen(path + file);
+        } else {
+          _f = archive.fopen(file);
+        }
+      }
+
+      var f = new TextDecoder('utf-8').decode(_f);
+
+      var scriptWrapper = `(function (__scriptFilePath='${file}') {
+      var module = {
+      exports: {}
+      }, exports = module.exports;
+      ${f}
+      return module.exports;}('${file}'))`;
+
+      cherryViewer.require_cache[file] = eval(scriptWrapper);
+
+      return cherryViewer.require_cache[file];
+    };
   };
 
   /**
@@ -407,6 +453,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
         const meshesIds = getObjectMeshes(key).objectMeshes.map(
           (mesh) => mesh.mesh_id
         );
+
         setObjectMaterial(key, meshesIds, 'use_pbr', true);
         const { autoscale, pivot } = object;
         callback({ autoscale, pivot });

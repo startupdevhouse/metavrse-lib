@@ -18,7 +18,7 @@
     "build": "dts build --format esm",
     "lint": "dts lint",
     "size": "size-limit",
-    "start": "NODE_ENV=development dts watch --format esm",
+    "start": "NODE_ENV=development dts watch --format esm --onSuccess 'yalc push dist'",
     "test": "dts test"
   },
   "repository": {
@@ -51,6 +51,7 @@
     "rollup-plugin-smart-asset": "^2.1.2",
     "rollup-plugin-string": "^3.0.0",
     "rollup-plugin-version-injector": "^1.3.3",
+    "semver": "^7.3.7",
     "size-limit": "^7.0.8",
     "standard-version": "^9.3.2",
     "tslib": "^2.3.1",

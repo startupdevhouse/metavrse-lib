@@ -880,6 +880,12 @@ module.exports = (payload) => {
   };
 
   // meshes
+  const getPathByVersion = () => {
+    if (sceneprops.project.data.version.includes('0.0')) {
+      return Module.ProjectManager.path;
+    }
+    return !scene.hasFSZip() ? Module.ProjectManager.path : '';
+  };
 
   const render = (opts) => {
     opts = opts || {};
@@ -1021,10 +1027,7 @@ module.exports = (payload) => {
                   else pbrBundle.set(meshid, pbrMeshRow);
 
                   pbrMeshRow.options += option + channel + ';';
-                  pbrMeshRow.paths +=
-                    (!scene.hasFSZip() ? Module.ProjectManager.path : '') +
-                    value +
-                    ';';
+                  pbrMeshRow.paths += getPathByVersion() + value + ';';
                 } else if (transparency_bundle_textures.includes(option)) {
                   let transparencyMeshRow = {
                     options: '',
@@ -1036,16 +1039,12 @@ module.exports = (payload) => {
                   else transparencyBundle.set(meshid, transparencyMeshRow);
 
                   transparencyMeshRow.options += option + channel + ';';
-                  transparencyMeshRow.paths +=
-                    (!scene.hasFSZip() ? Module.ProjectManager.path : '') +
-                    value +
-                    ';';
+                  transparencyMeshRow.paths += getPathByVersion() + value + ';';
                 } else
                   obj.setParameter(
                     Number(meshid),
                     option + channel,
-                    (!scene.hasFSZip() ? Module.ProjectManager.path : '') +
-                      value
+                    getPathByVersion() + value
                   );
               } else {
                 obj.setParameter(Number(meshid), option, value);

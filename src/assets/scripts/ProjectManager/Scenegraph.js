@@ -2,7 +2,6 @@
  * Scenegraph Module
  */
 module.exports = () => {
-  const { mat4, vec3 } = Module.require('assets/gl-matrix.js');
   let scenegraph = {}; // holds scenegraph props and methods
 
   const ObjectModel = Module.require('assets/ProjectManager/Scene/Object.js');
@@ -64,6 +63,8 @@ module.exports = () => {
 
     assetIndex: new Map(),
   };
+
+  Module.sceneprops = sceneprops;
 
   let worldControllerkey = '';
   const objectControllerkeys = new Map();
@@ -363,14 +364,16 @@ module.exports = () => {
     });
   };
 
-  const regenerateMeshes = () => {};
-
   const loadPaths = (tree, parent) => {
     tree.forEach((item) => {
       if (item.type != 'folder') {
-        sceneprops.objPaths[item.key] = scene.hasFSZip()
-          ? sceneprops.path + item.key
-          : item.key;
+        if (sceneprops.project.data.version.includes('0.0')) {
+          sceneprops.objPaths[item.key] = sceneprops.path + item.key;
+        } else {
+          sceneprops.objPaths[item.key] = !scene.hasFSZip()
+            ? sceneprops.path + item.key
+            : item.key;
+        }
       }
       let leaf = {
         key: item.key,
@@ -557,8 +560,6 @@ module.exports = () => {
     obj.remove();
   };
 
-  const regenerateLinks = (obj) => {};
-
   const moveObject = (key, parent) => {
     let obj = sceneprops.sceneIndex.get(key);
     if (!obj) return;
@@ -595,10 +596,10 @@ module.exports = () => {
     sceneprops.assetIndex.clear();
     loadPaths(sceneprops.project.data['assets'].tree);
 
+    // Load world controller
+    // TODO: Change version check so it use semver library
     if (`${p.data.version}`.includes('0.0.')) {
       p.data.selected_scene = p.data.starting_scene;
-      const worldData = p.data.scene[p.data.selected_scene].data.world;
-
       const child = {
         key: 'world',
         type: 'world',
@@ -608,8 +609,9 @@ module.exports = () => {
       let data = p.data.scene[p.data.selected_scene].data;
 
       if (child) {
-        if (data[child.key]['controller'] != '')
+        if (data[child.key]['controller'] != '') {
           worldControllerkey = data[child.key]['controller'];
+        }
 
         try {
           let payload = {
@@ -625,11 +627,9 @@ module.exports = () => {
           let obj = WorldModel(payload);
 
           sceneprops.sceneIndex.set(obj.item.key, obj); // index obj
-
-          if (worldControllerkey != '')
-            sceneprops.worldController = Module.require(
-              sceneprops.path + worldControllerkey
-            )();
+          if (worldControllerkey != '') {
+            sceneprops.worldController = Module.require(worldControllerkey)();
+          }
         } catch (e) {
           console.error(worldControllerkey + ':' + e.message);
           sceneprops.worldController = undefined;
@@ -665,7 +665,6 @@ module.exports = () => {
           };
 
           let obj = WorldModel(payload);
-
           sceneprops.sceneIndex.set(obj.item.key, obj); // index obj
           if (worldControllerkey != '')
             sceneprops.worldController = Module.require(worldControllerkey)();

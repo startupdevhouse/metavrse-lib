@@ -17,70 +17,96 @@ module.exports = (opt) => {
   let fullpath = '/';
 
   // Somewhere inside this file we need to put the new endpoint
-  const fetchData = async (url, config, callback) => {
-    fetch(url, { responseType: 'arraybuffer', ...config }).then(async (res) => {
-      if (res.status === 200) {
-        if (!res.body || !res.headers) return;
+  const fetchData = async (url, password, options, callback) => {
+    fetch(
+      url,
+      password
+        ? {
+            headers: {
+              Authorization: 'Basic ' + btoa(`user:${password}`),
+            },
+          }
+        : undefined
+    )
+      .then(async (res) => {
+        console.log(res);
+        if (res.status === 200) {
+          if (!res.body || !res.headers) {
+            options.onProjectFileInvalid && options.onProjectFileInvalid();
+            return;
+          }
+          options.onProjectLoadingStart && options.onProjectLoadingStart();
 
-        const reader = res.body.getReader();
-        const contentLength = res.headers.get('Content-Length') ?? 0;
-        let loaded = 0;
+          const reader = res.body.getReader();
+          const contentLength = res.headers.get('Content-Length') ?? 0;
+          let loaded = 0;
 
-        const consume = async () => {
-          const config = {
-            responseType: 'arraybuffer',
-            onDownloadProgress: function (e) {},
-          };
-          return new Response(
-            new ReadableStream({
-              start(controller) {
-                read();
-                function read() {
-                  reader
-                    .read()
-                    .then(({ done, value }) => {
-                      if (done) {
-                        if (contentLength === 0) {
-                          if (config.onDownloadProgress)
-                            config.onDownloadProgress({
-                              total: contentLength,
-                              loaded: loaded,
-                            });
+          const consume = async () => {
+            return new Response(
+              new ReadableStream({
+                start(controller) {
+                  read();
+                  function read() {
+                    reader
+                      .read()
+                      .then(({ done, value }) => {
+                        if (done) {
+                          if (contentLength === 0) {
+                            options.onDownloadProgress &&
+                              options.onDownloadProgress({
+                                total: contentLength,
+                                loaded: loaded,
+                              });
+                          }
+
+                          controller.close();
+                          return;
                         }
 
-                        controller.close();
-                        return;
-                      }
+                        loaded += value.byteLength;
+                        options.onDownloadProgress &&
+                          options.onDownloadProgress({
+                            total: contentLength,
+                            loaded: loaded,
+                          });
+                        controller.enqueue(value);
+                        read();
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                        controller.error(error);
+                      });
+                  }
+                },
+              })
+            );
+          };
 
-                      loaded += value.byteLength;
-                      if (config.onDownloadProgress)
-                        config.onDownloadProgress({
-                          total: contentLength,
-                          loaded: loaded,
-                        });
-                      controller.enqueue(value);
-                      read();
-                    })
-                    .catch((error) => {
-                      console.error(error);
-                      controller.error(error);
-                    });
-                }
-              },
-            })
-          );
-        };
+          const buff = await consume();
 
-        const buff = await consume();
+          callback(await buff.arrayBuffer());
+        }
 
-        callback(await buff.arrayBuffer());
-      }
-    });
+        if (res.status === 404) {
+          options.onProjectNotFound && options.onProjectNotFound();
+        }
+
+        if (res.status === 401) {
+          options.onIncorrectPassword && options.onIncorrectPassword(password);
+        }
+
+        if (res.status === 403) {
+          options.onLimitsExceeded && options.onLimitsExceeded();
+        }
+      })
+      .catch(() => {
+        options.onProjectFileInvalid && options.onProjectFileInvalid();
+      });
   };
 
   // Temporary name, you can change it
-  const tempMethodName = async (url, cb) => {
-    fetchData(url, {}, async (data) => {
+  const tempMethodName = async (url, password, options, cb) => {
+    fetchData(url, password, options, async (data) => {
       if (!data) throw Error('No data found!');
 
       let idb;
@@ -155,6 +181,7 @@ module.exports = (opt) => {
         },
       };
 
+      options.onProjectLoaded && options.onProjectLoaded();
       cb(projectData);
     });
   };

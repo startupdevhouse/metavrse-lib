@@ -127,8 +127,8 @@ module.exports = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
-  const loadNewURL = async (url) => {
-    await NewURLLoader.tempMethodName(url, (projectData) => {
+  const loadNewURL = async (url, password, options = {}) => {
+    await NewURLLoader.tempMethodName(url, password, options, (projectData) => {
       // Change assets path so the new structure is readable in CherryGL
       Scenegraph.path = 'files/';
       loadScene(projectData, true);

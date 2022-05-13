@@ -3,11 +3,12 @@ import { CherryProjectManagerObject } from './CherryProjectManagerObject';
 import { Entities } from '../entities/Entities';
 import { TreeNode } from '../tree/TreeNode';
 import { Asset } from '../assets/Asset';
+import { CherryLoadNewUrl } from './CherryLoadNewUrl';
 
 export type CherryProjectManager = {
   // File methods
   loadURL: (url: string, password: string) => void;
-  loadNewURL: (url: string) => Promise<void>;
+  loadNewURL: CherryLoadNewUrl;
   reset: () => void;
   loadScene: (project: any, launch?: boolean) => void;
   loadFromFolder: (path: string) => void;

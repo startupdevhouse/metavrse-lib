@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.43](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.42...v0.0.43) (2022-05-13)
+
+
+### Features
+
+* MET-2156 change setProperty for controller ([dc3a9a4](https://github.com/startupdevhouse/metavrse-lib/commit/dc3a9a48256d0acf9791242525ec87b144972d7c))
+
+
+### Bug Fixes
+
+* MET-2156 add missing properties in world type ([6f8e192](https://github.com/startupdevhouse/metavrse-lib/commit/6f8e1929dc4d7d92116f96cfb0fbd6f8f38941be))
+
 ### [0.0.42](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.41...v0.0.42) (2022-05-13)
 
 

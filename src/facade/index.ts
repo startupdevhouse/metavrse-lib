@@ -21,12 +21,7 @@ import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
-import {
-  CherryGLVersion,
-  CherryObjectByPixel,
-  CherrySurfaceSceneObject,
-  Vector3,
-} from '..';
+import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 
 export * from './shaders';
 
@@ -110,9 +105,9 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
     cherryViewer._main();
 
-    cherryViewer.require = (file: any) => {
-      if (cherryViewer.require_cache[file]) {
-        return cherryViewer.require_cache[file];
+    cherryViewer.require = (filePath: any) => {
+      if (cherryViewer.require_cache[filePath]) {
+        return cherryViewer.require_cache[filePath];
       }
       const path = cherryViewer.ProjectManager.path;
       const projectVersion = cherryViewer.ProjectManager.project.data.version;
@@ -122,33 +117,34 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
         cherryViewer.ProjectManager && cherryViewer.ProjectManager.archive
           ? cherryViewer.ProjectManager.archive
           : undefined;
-      var _f;
 
-      if (file.includes('assets/')) {
-        _f = surface.readBinary(file);
+      let file;
+
+      if (filePath.includes('assets/')) {
+        file = surface.readBinary(filePath);
       } else if (!scene.hasFSZip()) {
-        _f = surface.readBinary(path + file);
+        file = surface.readBinary(path + filePath);
       } else {
         // If zip file exists load files based on version
         if (projectVersion.includes('0.0')) {
-          _f = archive.fopen(path + file);
+          file = archive.fopen(path + filePath);
         } else {
-          _f = archive.fopen(file);
+          file = archive.fopen(filePath);
         }
       }
 
-      var f = new TextDecoder('utf-8').decode(_f);
+      const script = new TextDecoder('utf-8').decode(file);
 
-      var scriptWrapper = `(function (__scriptFilePath='${file}') {
+      const scriptWrapper = `(function (__scriptFilePath='${filePath}') {
       var module = {
       exports: {}
       }, exports = module.exports;
-      ${f}
-      return module.exports;}('${file}'))`;
+      ${script}
+      return module.exports;}('${filePath}'))`;
 
-      cherryViewer.require_cache[file] = eval(scriptWrapper);
+      cherryViewer.require_cache[filePath] = eval(scriptWrapper);
 
-      return cherryViewer.require_cache[file];
+      return cherryViewer.require_cache[filePath];
     };
   };
 

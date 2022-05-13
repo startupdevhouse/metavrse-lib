@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.41](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.40...v0.0.41) (2022-05-13)
+
+
+### Features
+
+* MET-2233 add path for new url named files so zip can load properly ([614aa23](https://github.com/startupdevhouse/metavrse-lib/commit/614aa237ae0dd583f363ac31746628308abdc0ab))
+* MET-2233 allow to load zip with new structure ([bca57e7](https://github.com/startupdevhouse/metavrse-lib/commit/bca57e78cc8b3c15133056c8a2f498dee56cf4ea))
+* MET-2233 override require method in cherryViewer in facade ([f405407](https://github.com/startupdevhouse/metavrse-lib/commit/f40540722cc55e39d7d81d852fa4e76f0b6b8515))
+
 ### [0.0.40](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.39...v0.0.40) (2022-05-12)
 
 

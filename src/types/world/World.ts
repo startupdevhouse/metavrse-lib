@@ -21,4 +21,6 @@ export type World = {
   dpr: number;
   fps: number;
   fxaa: number;
+  orientation: number;
+  hudscale: number;
 };

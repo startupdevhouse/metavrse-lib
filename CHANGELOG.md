@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.42](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.41...v0.0.42) (2022-05-13)
+
+
+### Bug Fixes
+
+* MET-2224 add callbacks for viewer ([8c6a12b](https://github.com/startupdevhouse/metavrse-lib/commit/8c6a12b9caca27729d61fc6800d120a1604b7aff))
+
 ### [0.0.41](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.40...v0.0.41) (2022-05-13)
 
 

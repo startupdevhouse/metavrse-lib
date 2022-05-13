@@ -8,8 +8,7 @@ export type CherrySurface = {
   };
   getScene: () => CherrySurfaceScene;
   onSurfaceChange: () => void;
-  /** @deprecated Use Module.FS / Viewer.FS to read binary from scenegraph */
-  readBinary: () => void;
+  readBinary: (path: string) => void;
   /** @deprecated Use Module.FS / Viewer.FS to read file from scenegraph */
   readFile: () => void;
   /** @deprecated Use Module.FS / Viewer.FS to remove directory from scenegraph */

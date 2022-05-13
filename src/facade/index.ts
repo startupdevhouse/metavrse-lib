@@ -104,6 +104,48 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     }
 
     cherryViewer._main();
+
+    cherryViewer.require = (filePath: any) => {
+      if (cherryViewer.require_cache[filePath]) {
+        return cherryViewer.require_cache[filePath];
+      }
+      const path = cherryViewer.ProjectManager.path;
+      const projectVersion = cherryViewer.ProjectManager.project.data.version;
+      const surface = cherryViewer.getSurface();
+      const scene = surface.getScene();
+      const archive =
+        cherryViewer.ProjectManager && cherryViewer.ProjectManager.archive
+          ? cherryViewer.ProjectManager.archive
+          : undefined;
+
+      let file;
+
+      if (filePath.includes('assets/')) {
+        file = surface.readBinary(filePath);
+      } else if (!scene.hasFSZip()) {
+        file = surface.readBinary(path + filePath);
+      } else {
+        // If zip file exists load files based on version
+        if (projectVersion.includes('0.0')) {
+          file = archive.fopen(path + filePath);
+        } else {
+          file = archive.fopen(filePath);
+        }
+      }
+
+      const script = new TextDecoder('utf-8').decode(file);
+
+      const scriptWrapper = `(function (__scriptFilePath='${filePath}') {
+      var module = {
+      exports: {}
+      }, exports = module.exports;
+      ${script}
+      return module.exports;}('${filePath}'))`;
+
+      cherryViewer.require_cache[filePath] = eval(scriptWrapper);
+
+      return cherryViewer.require_cache[filePath];
+    };
   };
 
   /**
@@ -407,6 +449,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
         const meshesIds = getObjectMeshes(key).objectMeshes.map(
           (mesh) => mesh.mesh_id
         );
+
         setObjectMaterial(key, meshesIds, 'use_pbr', true);
         const { autoscale, pivot } = object;
         callback({ autoscale, pivot });

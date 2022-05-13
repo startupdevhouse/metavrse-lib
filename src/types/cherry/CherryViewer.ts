@@ -6,6 +6,8 @@ import { Handlers } from './CherryViewerHandlers';
 
 export type CherryViewer = {
   _main: () => void;
+  require: any;
+  require_cache: any;
   Handlers: Handlers;
   ProjectManager: CherryProjectManager;
   FS: CherryViewerFileSystem;

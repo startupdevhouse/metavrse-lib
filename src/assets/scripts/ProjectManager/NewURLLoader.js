@@ -29,7 +29,6 @@ module.exports = (opt) => {
         : undefined
     )
       .then(async (res) => {
-        console.log(res);
         if (res.status === 200) {
           if (!res.body || !res.headers) {
             options.onProjectFileInvalid && options.onProjectFileInvalid();

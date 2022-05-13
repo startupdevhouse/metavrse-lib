@@ -33,6 +33,7 @@ module.exports = (payload) => {
           ? Module.ProjectManager.archive
           : undefined;
       var _f;
+
       if (file.includes('assets/')) {
         _f = surface.readBinary(file);
       } else if (!scene.hasFSZip()) {
@@ -501,10 +502,10 @@ module.exports = (payload) => {
 
     controller: {
       get: () => {
-        return world.controller;
+        return getProperty('controller')[1];
       },
       set: (v) => {
-        world.controller = v;
+        setProperty('controller', v);
       },
     },
     orientation: {

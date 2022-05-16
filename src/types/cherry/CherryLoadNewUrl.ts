@@ -12,6 +12,6 @@ export type CherryLoadNewUrlOptions = Partial<{
 
 export type CherryLoadNewUrl = (
   url: string,
-  password: string,
+  password?: string,
   options?: CherryLoadNewUrlOptions
 ) => Promise<void>;

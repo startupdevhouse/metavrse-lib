@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.45](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.43...v0.0.45) (2022-05-16)
+
+
+### Bug Fixes
+
+* MET-0000 adjust broken password typing ([bbcda73](https://github.com/startupdevhouse/metavrse-lib/commit/bbcda73763213843fdb4a05079b49cf436eb716d))
+
 ### [0.0.44](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.43...v0.0.44) (2022-05-16)
 
 

@@ -1,5 +1,5 @@
 import { Code } from '../common/Code';
-import { CherryAnimation, ShaderParameterType } from '..';
+import { CherryAnimation, ShaderParameterType, Shadow, Skybox } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -38,8 +38,20 @@ export type GetterSetterPropertyType =
 
   // Camera
   | 'target'
-  | 'distance';
+  | 'distance'
 
+  // World
+  | 'skybox'
+  | 'color'
+  | 'transparent'
+  | 'skyboxRotation'
+  | 'shadow'
+  | 'controller'
+  | 'dpr'
+  | 'fps'
+  | 'fxaa'
+  | 'orientation'
+  | 'hudscale';
 
 export type ProjectManagerObjectPropertyType =
   | string
@@ -47,6 +59,8 @@ export type ProjectManagerObjectPropertyType =
   | number
   | Vector3
   | RGB
+  | Skybox
+  | Shadow
   | Code;
 
 /**
@@ -125,4 +139,12 @@ export type CherryProjectManagerObject = {
   volume: number;
   target: Vector3;
   distance: number;
+
+  skybox: Skybox;
+  skyboxRotation: Vector3;
+  shadow: Shadow;
+  dpr: number;
+  fps: number;
+  fxaa: number;
+  orientation: number;
 };

@@ -22,6 +22,7 @@ export type CherryProjectData = {
     scene: Scenes;
     starting_scene: string;
     assets: {
+      data: {};
       tree: Asset[];
     };
     selected_scene: string;

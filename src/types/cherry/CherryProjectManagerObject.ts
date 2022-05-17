@@ -1,5 +1,11 @@
 import { Code } from '../common/Code';
-import { CherryAnimation, ShaderParameterType, Shadow, Skybox } from '..';
+import {
+  CherryAnimation,
+  ShaderParameterType,
+  Shadow,
+  Skybox,
+  TextureResolution,
+} from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 import { TreeNodeType } from '../tree/TreeNodeType';
@@ -61,7 +67,8 @@ export type ProjectManagerObjectPropertyType =
   | RGB
   | Skybox
   | Shadow
-  | Code;
+  | Code
+  | TextureResolution;
 
 /**
  * @description ProjectManager.getObject(key) result

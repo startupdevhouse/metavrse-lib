@@ -2,6 +2,8 @@ import { CherryKey } from '../cherry/CherryKey';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 
+export type TextureResolution = [number, number];
+
 export type Skybox = {
   key: CherryKey;
   show: boolean;
@@ -12,7 +14,7 @@ export type Shadow = {
   enabled: boolean;
   position: Vector3;
   fov: boolean;
-  texture: [number, number];
+  texture: TextureResolution;
 };
 
 export type World = {

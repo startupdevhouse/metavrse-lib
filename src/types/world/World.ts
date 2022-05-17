@@ -2,21 +2,27 @@ import { CherryKey } from '../cherry/CherryKey';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
 
+export type TextureResolution = [number, number];
+
+export type Skybox = {
+  key: CherryKey;
+  show: boolean;
+};
+
+export type Shadow = {
+  level: number;
+  enabled: boolean;
+  position: Vector3;
+  fov: boolean;
+  texture: TextureResolution;
+};
+
 export type World = {
-  skybox: {
-    key: CherryKey;
-    show: boolean;
-  };
+  skybox: Skybox;
   color: RGB;
   transparent: boolean;
   skyboxRotation: Vector3;
-  shadow: {
-    level: number;
-    enabled: boolean;
-    position: Vector3;
-    fov: boolean;
-    texture: [number, number];
-  };
+  shadow: Shadow;
   controller: CherryKey;
   dpr: number;
   fps: number;

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.46](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.45...v0.0.46) (2022-05-17)
+
+
+### Bug Fixes
+
+* MET-2156 add world types and missing types ([b3c53f0](https://github.com/startupdevhouse/metavrse-lib/commit/b3c53f069a96a5c9f3cd4f35a6a3cb598c11477e))
+
 ### [0.0.45](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.43...v0.0.45) (2022-05-16)
 
 

@@ -10,4 +10,9 @@ export type ProjectData = {
   startingScene: string;
   selectedScene: string;
   scenes: Scene[];
+  /**
+   * @description This value is used to determine if user needs to save a project before publishing it.
+   * This logic should later be changed to e.g. comparing current time with updateDate
+   */
+  requiresSaveBeforePublish: boolean;
 };

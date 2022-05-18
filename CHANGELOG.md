@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.47](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.46...v0.0.47) (2022-05-18)
+
+
+### Features
+
+* MET-2224 add requiresSaveBeforePublish boolean to ProjectData ([ef23a0a](https://github.com/startupdevhouse/metavrse-lib/commit/ef23a0af95774614b1e57069b6f3c85b08cf75f9))
+
 ### [0.0.46](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.45...v0.0.46) (2022-05-17)
 
 

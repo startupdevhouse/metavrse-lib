@@ -23,8 +23,6 @@ import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 
-export * from './shaders';
-
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
   const surface = cherryViewer.getSurface();
@@ -594,5 +592,8 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     changeInitialValuesWhenAddingObject,
   };
 };
+
+export * from './shaders';
+export * from './initialMaterialValues';
 
 export default cherryFacade;

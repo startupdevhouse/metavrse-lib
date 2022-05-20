@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.48](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.47...v0.0.48) (2022-05-20)
+
+
+### Bug Fixes
+
+* MET-2300 move initial material values to library ([4724961](https://github.com/startupdevhouse/metavrse-lib/commit/4724961c6fe49d1e0551ec5c8fe50c6460012412))
+
 ### [0.0.47](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.46...v0.0.47) (2022-05-18)
 
 

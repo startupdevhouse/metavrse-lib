@@ -231,7 +231,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     const meshGroups = sceneObject.getMeshGroups();
 
     try {
-      const stats = cherryViewer.FS.stat(`/project/assets/${id}`);
+      const stats = cherryViewer.FS.stat(`${pm.path}${id}`);
       const fileSize = stats.size;
 
       return {

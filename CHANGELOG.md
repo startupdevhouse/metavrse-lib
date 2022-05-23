@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.49](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.48...v0.0.49) (2022-05-23)
+
+
+### Features
+
+* MET-2330 add constants and method for generate defaults ([ddff362](https://github.com/startupdevhouse/metavrse-lib/commit/ddff362a40821c80ac8daa6bf3f6d686ffc24833))
+
 ### [0.0.48](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.47...v0.0.48) (2022-05-20)
 
 

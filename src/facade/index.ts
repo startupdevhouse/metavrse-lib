@@ -16,7 +16,7 @@ import {
   ProjectManagerObjectPropertyType,
 } from '../types/cherry/CherryProjectManagerObject';
 import { ShaderValue, ShaderValueType } from '../types/facade/ShaderValueType';
-import { TreeNode } from '../types/tree/TreeNode';
+import { TreeNode } from '../types/nodes/TreeNode';
 import { Entities } from '../types/entities/Entities';
 import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';

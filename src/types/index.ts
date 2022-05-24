@@ -37,10 +37,13 @@ export * from './common/Vector3';
 export * from './common/VectorKeys';
 
 /**
- * Tree types
+ * Nodes types
  */
-export * from './tree/TreeNode';
-export * from './tree/TreeNodeType';
+export * from './nodes/TreeNode';
+export * from './nodes/TreeNodeType';
+export * from './nodes/GenericNode';
+export * from './nodes/HTMLHudNode';
+export * from './nodes/HTMLHudNodeType';
 
 /**
  * Entities types

@@ -1,6 +1,6 @@
 import { Asset } from '../assets/Asset';
 import { Entity } from '../entities/Entity';
-import { TreeNode } from '../tree/TreeNode';
+import { TreeNode } from '../nodes/TreeNode';
 import { World } from '../world/World';
 import { CherryKey } from './CherryKey';
 

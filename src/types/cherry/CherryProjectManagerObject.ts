@@ -8,7 +8,7 @@ import {
 } from '..';
 import { RGB } from '../common/RGB';
 import { Vector3 } from '../common/Vector3';
-import { TreeNodeType } from '../tree/TreeNodeType';
+import { TreeNodeType } from '../nodes/TreeNodeType';
 import { CherryKey } from './CherryKey';
 import { CherryMesh } from './CherryMesh';
 

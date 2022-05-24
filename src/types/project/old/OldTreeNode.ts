@@ -1,4 +1,4 @@
-import { ConfigurationType, TreeNode, TreeNodeType } from '../..';
+import { ConfigurationType, TreeNodeType } from '../..';
 import { CherryKey } from '../../cherry/CherryKey';
 
 export type OldTreeNode = {

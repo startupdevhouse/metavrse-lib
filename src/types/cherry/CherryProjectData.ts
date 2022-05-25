@@ -1,5 +1,6 @@
 import { Asset } from '../assets/Asset';
 import { Entity } from '../entities/Entity';
+import { HTMLHudNode } from '../nodes/HTMLHudNode';
 import { TreeNode } from '../nodes/TreeNode';
 import { World } from '../world/World';
 import { CherryKey } from './CherryKey';
@@ -7,7 +8,7 @@ import { CherryKey } from './CherryKey';
 type Scenes = Record<
   string,
   {
-    tree: TreeNode[];
+    tree: Array<TreeNode | HTMLHudNode>;
     data: Record<CherryKey, Entity | World>;
   }
 >;

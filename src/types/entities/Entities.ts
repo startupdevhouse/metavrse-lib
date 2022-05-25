@@ -1,5 +1,3 @@
 import { Entity } from './Entity';
 
-export type Entities = {
-  [key: string]: Entity;
-};
+export type Entities = Record<string, Entity>;

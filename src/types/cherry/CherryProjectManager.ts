@@ -1,9 +1,11 @@
 import { CherryKey } from './CherryKey';
 import { CherryProjectManagerObject } from './CherryProjectManagerObject';
 import { Entities } from '../entities/Entities';
-import { TreeNode } from '../tree/TreeNode';
+import { TreeNode } from '../nodes/TreeNode';
 import { Asset } from '../assets/Asset';
 import { CherryLoadNewUrl } from './CherryLoadNewUrl';
+import { HTMLHudNode } from '../nodes/HTMLHudNode';
+import { HTMLHudEntities } from '../entities/HTMLHudEntities';
 
 export type CherryProjectManager = {
   // File methods
@@ -18,8 +20,8 @@ export type CherryProjectManager = {
   getObject: (key: CherryKey) => CherryProjectManagerObject;
   processRedraw: (opts: any) => void;
   addObject: (
-    child: TreeNode,
-    data: Entities,
+    child: TreeNode | HTMLHudNode,
+    data: Entities | HTMLHudEntities,
     parent?: CherryProjectManagerObject | null,
     key?: CherryKey
   ) => CherryProjectManagerObject;

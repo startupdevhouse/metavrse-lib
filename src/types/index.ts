@@ -37,10 +37,13 @@ export * from './common/Vector3';
 export * from './common/VectorKeys';
 
 /**
- * Tree types
+ * Nodes types
  */
-export * from './tree/TreeNode';
-export * from './tree/TreeNodeType';
+export * from './nodes/TreeNode';
+export * from './nodes/TreeNodeType';
+export * from './nodes/GenericNode';
+export * from './nodes/HTMLHudNode';
+export * from './nodes/HTMLHudNodeType';
 
 /**
  * Entities types
@@ -49,7 +52,8 @@ export * from './entities/CameraEntity';
 export * from './entities/Entities';
 export * from './entities/Entity';
 export * from './entities/HudEntity';
-export * from './entities/HudHtmlEntity';
+export * from './entities/HTMLHudEntity';
+export * from './entities/HTMLHudEntities';
 export * from './entities/LightEntity';
 export * from './entities/ObjectEntity';
 export * from './entities/ObjectGroupEntity';

@@ -1,8 +1,8 @@
 export const NODE_TYPES = {
   hud: 'hud',
   hudLink: 'hud-link',
-  hudHtml: 'hud-html',
-  hudHtmlLink: 'hud-html-link',
+  HTMLHudElement: 'HTMLElement',
+  HTMLHudLink: 'HTMLElement-link',
   image: 'image',
   imageLink: 'image-link',
   light: 'light',

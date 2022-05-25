@@ -3,8 +3,8 @@ import { DEFAULTS } from '../constants';
 import { NODE_TYPES } from '../constants/nodeTypes';
 import { Asset } from '../types/assets/Asset';
 import { CherryKey } from '../types/cherry/CherryKey';
-import { PrimitiveType } from '../types/tree/PrimitiveType';
-import { TreeNodeType } from '../types/tree/TreeNodeType';
+import { PrimitiveType } from '../types/assets/PrimitiveType';
+import { TreeNodeType } from '../types/nodes/TreeNodeType';
 
 export type ObjectDataSet = {
   newNode: TreeNode | null;

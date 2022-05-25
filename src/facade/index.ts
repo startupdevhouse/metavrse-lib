@@ -22,6 +22,7 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
+import { HTMLHudEntities, HTMLHudEntity, HTMLHudNode } from '../types';
 
 export * from './shaders';
 
@@ -526,6 +527,16 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } as Entity;
   };
 
+  const addHTMLTagToHud = (
+    node: HTMLHudNode,
+    entities: HTMLHudEntities,
+    parent?: HTMLHudNode
+  ) => {
+    const parentObject = parent ? pm.getObject(parent.key) : null;
+    const currentObject = pm.addObject(node, entities, parentObject);
+    const currentEntity = entities[node.key];
+  };
+
   const addGizmo = () => {
     const gizmo = scene.addObject(GIZMO_KEY, 'assets/gizmo.c3b');
     gizmo.setParameter('visible', false);
@@ -579,6 +590,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     addGizmo,
     addGizmoRotate,
     addObjectToScene,
+    addHTMLTagToHud,
     getMaterialValue,
     getMaterialValues,
     getObjectAnimation,

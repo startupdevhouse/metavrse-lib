@@ -5,6 +5,7 @@ import { objectDefaults } from './entities/objectDefaults';
 import { objectGroupDefaults } from './entities/objectGroupDefaults';
 import { objectHudDefaults } from './entities/objectHudDefaults';
 import { videoDefaults } from './entities/videoDefaults';
+import { htmlHudDefaults } from './entities/htmlHudElementDefaults';
 
 export * from './nodeTypes';
 
@@ -20,4 +21,5 @@ export const DEFAULTS = {
   objectGroupDefaults,
   objectHudDefaults,
   videoDefaults,
+  htmlHudDefaults,
 } as const;

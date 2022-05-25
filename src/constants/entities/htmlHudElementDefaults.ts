@@ -1,6 +1,7 @@
-import { HTMLHudElementType, HTMLHudEntity } from '../../types';
+import { HTMLHudElementType } from '../../types';
+import { HTMLHudEntity } from '../../types/entities/HTMLHudEntity';
 
-export const hudDefaults: Record<
+export const htmlHudDefaults: Record<
   HTMLHudElementType,
   Omit<HTMLHudEntity, 'key'>
 > = {

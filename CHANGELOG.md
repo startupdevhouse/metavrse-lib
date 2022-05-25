@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.50](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.49...v0.0.50) (2022-05-25)
+
+
+### Features
+
+* MET-2266 adjust lib to HTMLHud changes ([31a08ac](https://github.com/startupdevhouse/metavrse-lib/commit/31a08ac4a8efdf06df217005b9d9fd55de23fc9e))
+
+
+### Bug Fixes
+
+* MET-2266 export htmlHudDefaults ([ed8bb25](https://github.com/startupdevhouse/metavrse-lib/commit/ed8bb251a7766c632391ee2e3ff37eeac1df78fe))
+* MET-2266 move defaults to this repo ([b3d0ec7](https://github.com/startupdevhouse/metavrse-lib/commit/b3d0ec7710928cdf3b10492b4b86c556b920c933))
+* MET-2266 WIP html hud ([9c49fd2](https://github.com/startupdevhouse/metavrse-lib/commit/9c49fd20cd89cfcf504a261431e0eb08ba672c21))
+
 ### [0.0.49](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.48...v0.0.49) (2022-05-23)
 
 

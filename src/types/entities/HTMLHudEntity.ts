@@ -6,4 +6,9 @@ type RequiredProperties = 'key' | 'visible';
 export type HTMLHudEntity = Required<Pick<Entity, RequiredProperties>> & {
   type: keyof HTMLElementTagNameMap;
   data: Record<string, StandardPropertiesHyphen>;
+  text?: string;
+  props?: Partial<{
+    src: string;
+    type: string;
+  }>;
 };

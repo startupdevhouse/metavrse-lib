@@ -1,14 +1,14 @@
-import { Entity } from './Entity';
+import { Vector3 } from '../common/Vector3';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties =
-  | 'key'
-  | 'type'
-  | 'visible'
-  | 'position'
-  | 'target'
-  | 'distance';
+type CameraEntityRequiredStandardKeys = 'position';
+type CameraEntityOptionalStandardKeys = never;
 
-export type CameraEntity = Pick<
-  Required<Entity & { type: 'camera' }>,
-  RequiredProperties
->;
+export type CameraEntity = EntityCreator<
+  'camera',
+  CameraEntityRequiredStandardKeys,
+  CameraEntityOptionalStandardKeys
+> & {
+  target: Vector3;
+  distance: number;
+};

@@ -51,6 +51,8 @@ export * from './nodes/HTMLHudNodeType';
 export * from './entities/CameraEntity';
 export * from './entities/Entities';
 export * from './entities/Entity';
+export * from './entities/EntityMaterial';
+export * from './entities/EntityType';
 export * from './entities/HudEntity';
 export * from './entities/HTMLHudEntity';
 export * from './entities/HTMLHudEntities';

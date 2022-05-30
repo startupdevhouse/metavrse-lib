@@ -1,8 +1,7 @@
-import { Entity } from './Entity';
+import { EntityMaterial } from './EntityMaterial';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties =
-  | 'key'
-  | 'type'
+type ObjectHudEntityRequiredStandardKeys =
   | 'position'
   | 'rotate'
   | 'scale'
@@ -10,16 +9,15 @@ type RequiredProperties =
   | 'pivot'
   | 'groupMat'
   | 'autoscale'
-  | 'data'
   | 'hud'
   | 'show_shadow'
-  | 'cast_shadow'
-  | 'visible';
+  | 'cast_shadow';
+type ObjectHudEntityOptionalStandardKeys = 'controller' | 'code';
 
-type OptionalProperties = 'controller' | 'code';
-
-export type ObjectHudEntity = Pick<
-  Required<Entity & { type: 'object-hud' }>,
-  RequiredProperties
-> &
-  Pick<Entity, OptionalProperties>;
+export type ObjectHudEntity = EntityCreator<
+  'object-hud',
+  ObjectHudEntityRequiredStandardKeys,
+  ObjectHudEntityOptionalStandardKeys
+> & {
+  data: Record<number, EntityMaterial>;
+};

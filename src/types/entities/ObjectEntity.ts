@@ -1,25 +1,24 @@
-import { ShaderParameterType } from '../facade/ShaderParameterType';
-import { ShaderValue } from '../facade/ShaderValueType';
-import { Entity } from './Entity';
+import { EntityMaterial } from './EntityMaterial';
+import { EntityCreator } from './__EntityCreator';
 
-export type EntityMaterial = Record<ShaderParameterType, ShaderValue>;
-
-type RequiredProperties =
-  | 'key'
-  | 'type'
+type ObjectEntityRequiredStandardKeys =
   | 'position'
   | 'rotate'
   | 'scale'
   | 'groupMat'
-  | 'data'
   | 'show_shadow'
-  | 'cast_shadow'
-  | 'visible';
+  | 'cast_shadow';
+type ObjectEntityOptionalStandardKeys =
+  | 'controller'
+  | 'code'
+  | 'autoscale'
+  | 'pivot'
+  | 'hud';
 
-type OptionalProperties = 'controller' | 'code' | 'autoscale' | 'pivot' | 'hud';
-
-export type ObjectEntity = Pick<
-  Required<Entity & { type: 'object' }>,
-  RequiredProperties
-> &
-  Pick<Entity, OptionalProperties>;
+export type ObjectEntity = EntityCreator<
+  'object',
+  ObjectEntityRequiredStandardKeys,
+  ObjectEntityOptionalStandardKeys
+> & {
+  data: Record<number, EntityMaterial>;
+};

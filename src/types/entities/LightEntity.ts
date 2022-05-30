@@ -1,15 +1,14 @@
-import { Entity } from './Entity';
+import { RGB } from '../common/RGB';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties =
-  | 'key'
-  | 'type'
-  | 'visible'
-  | 'position'
-  | 'groupMat'
-  | 'color'
-  | 'intensity';
+type LightEntityRequiredStandardKeys = 'position' | 'groupMat';
+type LightEntityOptionalStandardKeys = never;
 
-export type LightEntity = Pick<
-  Required<Entity & { type: 'light' }>,
-  RequiredProperties
->;
+export type LightEntity = EntityCreator<
+  'light',
+  LightEntityRequiredStandardKeys,
+  LightEntityOptionalStandardKeys
+> & {
+  color: RGB;
+  intensity: number;
+};

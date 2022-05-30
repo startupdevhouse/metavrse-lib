@@ -1,8 +1,10 @@
-import { Entity } from './Entity';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties = 'key' | 'type' | 'visible';
+type HudEntityRequiredStandardKeys = never;
+type HudEntityOptionalStandardKeys = never;
 
-export type HudEntity = Pick<
-  Required<Entity & { type: 'hud' }>,
-  RequiredProperties
+export type HudEntity = EntityCreator<
+  'hud',
+  HudEntityRequiredStandardKeys,
+  HudEntityOptionalStandardKeys
 >;

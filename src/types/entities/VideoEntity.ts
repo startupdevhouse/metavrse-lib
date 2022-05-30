@@ -1,24 +1,25 @@
-import { Entity } from './Entity';
+import { Vector3 } from '../common/Vector3';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties =
-  | 'key'
-  | 'type'
+type VideoEntityRequiredStandardKeys =
   | 'position'
   | 'rotate'
   | 'scale'
-  | 'groupMat'
-  | 'visible'
-  | 'src'
-  | 'pixel'
-  | 'isurl'
-  | 'autoplay'
-  | 'loop'
-  | 'muted'
-  | 'startTime'
-  | 'endTime'
-  | 'volume';
+  | 'groupMat';
+type VideoEntityOptionalStandardKeys = never;
 
-export type VideoEntity = Pick<
-  Required<Entity & { type: 'video' }>,
-  RequiredProperties
->;
+export type VideoEntity = EntityCreator<
+  'video',
+  VideoEntityRequiredStandardKeys,
+  VideoEntityOptionalStandardKeys
+> & {
+  src: string;
+  pixel: Vector3;
+  isurl: boolean;
+  autoplay: boolean;
+  loop: boolean;
+  muted: boolean;
+  startTime: string;
+  endTime: string;
+  volume: string;
+};

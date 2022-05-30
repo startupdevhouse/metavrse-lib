@@ -1,14 +1,10 @@
-import { Entity } from './Entity';
+import { EntityCreator } from './__EntityCreator';
 
-type RequiredProperties =
-  | 'key'
-  | 'type'
-  | 'position'
-  | 'rotate'
-  | 'scale'
-  | 'visible';
+type ObjectGroupEntityRequiredStandardKeys = 'position' | 'rotate' | 'scale';
+type ObjectGroupEntityOptionalStandardKeys = never;
 
-export type ObjectGroupEntity = Pick<
-  Required<Entity & { type: 'object-group' }>,
-  RequiredProperties
+export type ObjectGroupEntity = EntityCreator<
+  'object-group',
+  ObjectGroupEntityRequiredStandardKeys,
+  ObjectGroupEntityOptionalStandardKeys
 >;

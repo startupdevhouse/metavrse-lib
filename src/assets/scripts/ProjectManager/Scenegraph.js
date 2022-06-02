@@ -367,7 +367,7 @@ module.exports = () => {
   const loadPaths = (tree, parent) => {
     tree.forEach((item) => {
       if (item.type != 'folder') {
-        if (sceneprops.project.data.version.includes('0.0')) {
+        if (/^\d+\.\d+\..+$/.test(sceneprops.project.data.version)) {
           sceneprops.objPaths[item.key] = sceneprops.path + item.key;
         } else {
           sceneprops.objPaths[item.key] = !scene.hasFSZip()
@@ -598,7 +598,7 @@ module.exports = () => {
 
     // Load world controller
     // TODO: Change version check so it use semver library
-    if (`${p.data.version}`.includes('0.0.')) {
+    if (/^\d+\.\d+\..+$/.test(p.data.version)) {
       p.data.selected_scene = p.data.starting_scene;
       const child = {
         key: 'world',

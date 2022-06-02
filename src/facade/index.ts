@@ -22,7 +22,7 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
-import { HTMLHudEntities, HTMLHudEntity, HTMLHudNode } from '../types';
+import { HTMLHudEntities, HTMLHudNode } from '../types';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -125,7 +125,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
         file = surface.readBinary(path + filePath);
       } else {
         // If zip file exists load files based on version
-        if (projectVersion.includes('0.0')) {
+        if (/^\d+\.\d+\..+$/.test(projectVersion)) {
           file = archive.fopen(path + filePath);
         } else {
           file = archive.fopen(filePath);

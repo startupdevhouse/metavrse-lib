@@ -881,7 +881,7 @@ module.exports = (payload) => {
 
   // meshes
   const getPathByVersion = () => {
-    if (sceneprops.project.data.version.includes('0.0')) {
+    if (/^\d+\.\d+\..+$/.test(sceneprops.project.data.version)) {
       return Module.ProjectManager.path;
     }
     return !scene.hasFSZip() ? Module.ProjectManager.path : '';

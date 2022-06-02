@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.0.1...v1.0.2) (2022-06-02)
+
+
+### Bug Fixes
+
+* version check for version above 1.0.0 ([2738db4](https://github.com/startupdevhouse/metavrse-lib/commit/2738db4ae0a4a94343e2ca433f55ca8ed371019b))
+
 ### [1.0.1](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.50...v1.0.1) (2022-06-02)
 
 ### [0.0.50](https://github.com/startupdevhouse/metavrse-lib/compare/v0.0.49...v0.0.50) (2022-05-25)

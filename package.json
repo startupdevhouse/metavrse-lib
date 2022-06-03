@@ -38,6 +38,7 @@
     "@rollup/plugin-replace": "^3.1.0",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@tsconfig/recommended": "^1.0.1",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "@wemap/rollup-plugin-arraybuffer": "^0.1.2",

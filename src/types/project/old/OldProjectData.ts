@@ -4,17 +4,17 @@ import { OldData } from './OldData';
 import { OldTreeNode } from './OldTreeNode';
 import { OldWorld } from './OldWorld';
 
-type Data = OldData & OldWorld;
+export type OldSceneData = {
+  tree: OldTreeNode[];
+  data: Record<CherryKey, OldData | OldWorld>;
+};
+
+export type OldScene = Record<string, OldSceneData>;
 
 export type OldProjectData = {
   version: number;
   title: string;
-  scene: {
-    [key: string]: {
-      tree: OldTreeNode[];
-      data: Record<CherryKey, OldData | OldWorld>;
-    };
-  };
+  scene: OldScene;
   assets: {
     tree: OldAsset[];
     data: null; // Not used ?

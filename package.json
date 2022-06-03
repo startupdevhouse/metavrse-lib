@@ -81,6 +81,7 @@
   },
   "dependencies": {
     "csstype": "^3.1.0",
-    "gl-matrix": "^3.4.3"
+    "gl-matrix": "^3.4.3",
+    "uuid": "^8.3.2"
   }
 }

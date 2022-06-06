@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.0.2...v1.1.0) (2022-06-06)
+
+
+### Features
+
+* **utils:** add restructure method ([feb1e36](https://github.com/startupdevhouse/metavrse-lib/commit/feb1e36cb4793d165707967202f0c9484b77263d))
+
 ### [1.0.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.0.1...v1.0.2) (2022-06-02)
 
 

@@ -60,11 +60,6 @@ export * from './entities/ObjectEntity';
 export * from './entities/ObjectGroupEntity';
 export * from './entities/ObjectHudEntity';
 export * from './entities/VideoEntity';
-export * from './entities/codeComponents/CodeComponentValue';
-export * from './entities/codeComponents/CameraCodeComponent';
-export * from './entities/codeComponents/FileCodeComponent';
-export * from './entities/codeComponents/VideoCodeComponent';
-export * from './entities/codeComponents/ObjectAnimationSequenceComponent';
 
 /**
  * Project types
@@ -114,3 +109,19 @@ export * from './facade/ShaderValueType';
 export * from './animation/AnimationDescription';
 export * from './animation/CherryAnimation';
 export * from './animation/AnimationEventType';
+
+/**
+ * MegaController types
+ */
+
+export * from './scripts/MegaController/MegaControllerInspectorReturnValue';
+export * from './scripts/MegaController/MegaControllerInspectorReturnValueItem';
+export * from './scripts/MegaController/MegaControllerCamera';
+export * from './scripts/MegaController/MegaControllerCameraComponent';
+export * from './scripts/MegaController/MegaControllerCameraDuration';
+export * from './scripts/MegaController/MegaControllerConfigurationFolders';
+export * from './scripts/MegaController/MegaControllerObjectAnimation';
+export * from './scripts/MegaController/MegaControllerObjectAnimationSequence';
+export * from './scripts/MegaController/MegaControllerVideoComponent';
+export * from './scripts/MegaController/MegaControllerPreCameraJS';
+export * from './scripts/MegaController/MegaControllerPostCameraJS';

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.1.0...v1.1.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* MET-2288 adjust typings for MegaController ([2c14b11](https://github.com/startupdevhouse/metavrse-lib/commit/2c14b11d738ca04f47a4a075564c8d4252ebc89f))
+
 ## [1.1.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.0.2...v1.1.0) (2022-06-06)
 
 

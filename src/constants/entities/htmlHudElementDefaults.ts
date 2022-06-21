@@ -1,5 +1,4 @@
-import { HTMLHudElementType } from '../../types';
-import { HTMLHudEntity } from '../../types/entities/HTMLHudEntity';
+import { HTMLHudElementType, HTMLHudEntity } from '../../types';
 
 export const htmlHudDefaults: Record<
   HTMLHudElementType,

@@ -5,7 +5,6 @@ import { TreeNode } from '../nodes/TreeNode';
 import { Asset } from '../assets/Asset';
 import { CherryLoadNewUrl } from './CherryLoadNewUrl';
 import { HTMLHudNode } from '../nodes/HTMLHudNode';
-import { HTMLHudEntities } from '../entities/HTMLHudEntities';
 
 export type CherryProjectManager = {
   // File methods
@@ -21,7 +20,7 @@ export type CherryProjectManager = {
   processRedraw: (opts: any) => void;
   addObject: (
     child: TreeNode | HTMLHudNode,
-    data: Entities | HTMLHudEntities,
+    data: Entities,
     parent?: CherryProjectManagerObject | null,
     key?: CherryKey
   ) => CherryProjectManagerObject;

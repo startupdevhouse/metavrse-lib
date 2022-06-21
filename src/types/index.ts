@@ -53,7 +53,7 @@ export * from './entities/Entities';
 export * from './entities/Entity';
 export * from './entities/HudEntity';
 export * from './entities/HTMLHudEntity';
-export * from './entities/HTMLHudEntities';
+export * from './entities/HTMLHudSupportedTags';
 export * from './entities/HTMLHudElementType';
 export * from './entities/LightEntity';
 export * from './entities/ObjectEntity';

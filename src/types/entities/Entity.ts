@@ -9,7 +9,6 @@ import { HTMLHudSupportedTags } from './HTMLHudSupportedTags';
 
 export type Entity = {
   key: CherryKey;
-  type: TreeNodeType | HTMLHudSupportedTags;
 
   position?: Vector3;
   rotate?: Vector3;
@@ -19,8 +18,6 @@ export type Entity = {
   groupMat?: GroupMat;
   autoscale?: number;
 
-  data?: Record<number, EntityMaterial> &
-    Record<string, StandardPropertiesHyphen>; // HTMLHud;
   hud?: boolean;
   show_shadow?: boolean;
   cast_shadow?: boolean;
@@ -55,4 +52,13 @@ export type Entity = {
     src: string;
     type: string;
   }>;
-};
+} & (
+  | {
+      type: HTMLHudSupportedTags;
+      data?: Record<string, StandardPropertiesHyphen>;
+    }
+  | {
+      type: TreeNodeType;
+      data?: Record<number, EntityMaterial>;
+    }
+);

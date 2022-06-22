@@ -6,7 +6,6 @@ import {
   TreeNode,
   Entities,
   HTMLHudNode,
-  HTMLHudEntities,
   Entity,
 } from '..';
 
@@ -20,7 +19,6 @@ export const restructureData = (
   newTree: TreeNode[];
   newEntities: Entities;
   newHTMLHudTree: HTMLHudNode[];
-  newHTMLHudEntities: HTMLHudEntities;
   lastDataId: number;
 } => {
   let incrementalId = 0;
@@ -74,6 +72,5 @@ export const restructureData = (
     lastDataId: incrementalId,
     // TODO: change this to proper values
     newHTMLHudTree: [],
-    newHTMLHudEntities: {},
   };
 };

@@ -22,7 +22,7 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
-import { HTMLHudEntities, HTMLHudNode, OldProjectData } from '../types';
+import { HTMLHudNode, OldProjectData } from '../types';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -527,7 +527,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
 
   const addHTMLTagToHud = (
     node: HTMLHudNode,
-    entities: HTMLHudEntities,
+    entities: Entities,
     parent?: HTMLHudNode
   ) => {
     const parentObject = parent ? pm.getObject(parent.key) : null;

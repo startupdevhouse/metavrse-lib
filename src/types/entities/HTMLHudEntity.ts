@@ -1,14 +1,11 @@
 import { Entity } from './Entity';
-import { StandardPropertiesHyphen } from 'csstype';
 
-type RequiredProperties = 'key' | 'visible';
+type RequiredProperties = 'key' | 'visible' | 'type' | 'data';
 
-export type HTMLHudEntity = Required<Pick<Entity, RequiredProperties>> & {
-  type: keyof HTMLElementTagNameMap;
-  data: Record<string, StandardPropertiesHyphen>;
-  text?: string;
-  props?: Partial<{
-    src: string;
-    type: string;
-  }>;
-};
+type OptionalProperties = 'text' | 'props';
+
+export type HTMLHudEntity = Pick<
+  Required<Entity & { type: keyof HTMLElementTagNameMap }>,
+  RequiredProperties
+> &
+  Pick<Entity, OptionalProperties>;

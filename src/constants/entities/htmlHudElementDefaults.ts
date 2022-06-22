@@ -1,10 +1,4 @@
-import { HTMLHudElementType } from '../../types';
-import { HTMLHudEntity } from '../../types/entities/HTMLHudEntity';
-
-export const htmlHudDefaults: Record<
-  HTMLHudElementType,
-  Omit<HTMLHudEntity, 'key'>
-> = {
+export const htmlHudDefaults = <const>{
   hud: {
     type: 'div',
     visible: true,

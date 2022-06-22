@@ -47,13 +47,11 @@ export const regenerateStructure = (
   const oldScene = getOldScene(oldProject);
   const oldTree = getOldTree(oldScene);
 
-  const {
-    lastDataId,
-    newTree,
-    newEntities,
-    newHTMLHudEntities,
-    newHTMLHudTree,
-  } = restructureData(oldScene.tree, oldScene.data, squarePrimitiveKey);
+  const { lastDataId, newTree, newEntities, newHTMLHudTree } = restructureData(
+    oldScene.tree,
+    oldScene.data,
+    squarePrimitiveKey
+  );
 
   const { newAssets, files, lastAssetId } = restructureAssets(assets.tree);
   const newConfigurations = restructureConfigurations(oldTree);
@@ -84,6 +82,5 @@ export const regenerateStructure = (
     assets: [...assetsFromAtom, ...newAssets],
     configurations: newConfigurations,
     htmlHudTree: newHTMLHudTree,
-    htmlHudEntities: newHTMLHudEntities,
   };
 };

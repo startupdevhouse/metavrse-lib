@@ -8,7 +8,6 @@ import {
   DEFAULTS,
   Scene,
   Asset,
-  OldScene,
   OldSceneData,
 } from '..';
 import { restructureAssets } from './restructureAssets.util';
@@ -46,19 +45,30 @@ export const regenerateStructure = (
   const newScenes = createNewScenes(oldProject);
   const oldScene = getOldScene(oldProject);
   const oldTree = getOldTree(oldScene);
+  const oldEntities = oldScene.data;
 
-  const { lastDataId, newTree, newEntities, newHTMLHudTree } = restructureData(
-    oldScene.tree,
-    oldScene.data,
-    squarePrimitiveKey
-  );
+  const {
+    lastDataId,
+    newTree,
+    newEntities,
+    newHTMLHudEntities,
+    newHTMLHudTree,
+    newConfigurationsTree,
+    newConfigurationsEntities,
+  } = restructureData(oldTree, oldEntities, squarePrimitiveKey);
 
   const { newAssets, files, lastAssetId } = restructureAssets(assets.tree);
-  const newConfigurations = restructureConfigurations(oldTree);
+
   const newWorld = {
     ...DEFAULTS.worldDefaults,
     ...oldScene.data.world,
   } as World;
+
+  console.log(
+    'Log: [newConfigurations]',
+    newConfigurationsTree,
+    newConfigurationsEntities
+  );
 
   const newProject: ProjectData = {
     id: projectId,
@@ -79,7 +89,9 @@ export const regenerateStructure = (
     world: newWorld,
     entities: newEntities,
     assets: [...assetsFromAtom, ...newAssets],
-    configurations: newConfigurations,
     htmlHudTree: newHTMLHudTree,
+    htmlHudEntities: newHTMLHudEntities,
+    configurationsTree: newConfigurationsTree,
+    configurationsEntities: newConfigurationsEntities,
   };
 };

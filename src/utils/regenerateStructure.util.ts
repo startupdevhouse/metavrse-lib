@@ -11,7 +11,6 @@ import {
   OldSceneData,
 } from '..';
 import { restructureAssets } from './restructureAssets.util';
-import { restructureConfigurations } from './restructureConfigurations.util';
 import { restructureData } from './restructureData.util';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -51,7 +50,6 @@ export const regenerateStructure = (
     lastDataId,
     newTree,
     newEntities,
-    newHTMLHudEntities,
     newHTMLHudTree,
     newConfigurationsTree,
     newConfigurationsEntities,
@@ -63,12 +61,6 @@ export const regenerateStructure = (
     ...DEFAULTS.worldDefaults,
     ...oldScene.data.world,
   } as World;
-
-  console.log(
-    'Log: [newConfigurations]',
-    newConfigurationsTree,
-    newConfigurationsEntities
-  );
 
   const newProject: ProjectData = {
     id: projectId,
@@ -90,7 +82,6 @@ export const regenerateStructure = (
     entities: newEntities,
     assets: [...assetsFromAtom, ...newAssets],
     htmlHudTree: newHTMLHudTree,
-    htmlHudEntities: newHTMLHudEntities,
     configurationsTree: newConfigurationsTree,
     configurationsEntities: newConfigurationsEntities,
   };

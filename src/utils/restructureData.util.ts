@@ -2,7 +2,6 @@ import {
   OldTreeNode,
   CherryKey,
   OldData,
-  Asset,
   TreeNode,
   Entities,
   HTMLHudNode,
@@ -113,7 +112,6 @@ export const restructureData = (
     newTree,
     newEntities,
     newHTMLHudTree: [],
-    newHTMLHudEntities: {},
     newConfigurationsTree,
     newConfigurationsEntities,
   };

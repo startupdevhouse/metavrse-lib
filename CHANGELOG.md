@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.1.2...v1.2.0) (2022-06-24)
+
+
+### Features
+
+* MET-2267 add new CSS extension ([6eaab00](https://github.com/startupdevhouse/metavrse-lib/commit/6eaab00c836c5b58c14f46e5d2101486e72bce17))
+
 ### [1.1.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.1.1...v1.1.2) (2022-06-22)
 
 ### [1.1.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.1.0...v1.1.1) (2022-06-07)

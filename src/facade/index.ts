@@ -24,6 +24,7 @@ import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 import { HTMLHudNode, OldProjectData } from '../types';
 import { addTexturesToGizmo, addOpacityTextures, divideMeshesToMoveAndScale, controlDisplayOfScaleCubes, controlDisplayOfArrows, controlDisplayOfGizmos, controlDisplayOfGizmoArms, setInitialMeshes, setGizmoRotateInitialMeshes } from './gizmoHelpers/gizmoTextures'
+import { getNewPoints, calculateNewPosition, getNewRotate } from './gizmoHelpers/gizmoMove'
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -560,7 +561,10 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     controlDisplayOfGizmos,
     controlDisplayOfGizmoArms,
     setInitialMeshes,
-    setGizmoRotateInitialMeshes
+    setGizmoRotateInitialMeshes,
+    getNewPoints,
+    calculateNewPosition,
+    getNewRotate
   };
 };
 

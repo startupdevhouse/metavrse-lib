@@ -62,7 +62,7 @@ export const getNewPoints = (
   return points;
 };
 
-export const calculateNewPosition = (
+export const updatePosition = (
   viewer: CherryViewer,
   vector: vec3,
   key: CherryKey

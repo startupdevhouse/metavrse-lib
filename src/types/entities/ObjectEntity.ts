@@ -23,3 +23,9 @@ export type ObjectEntity = Pick<
   RequiredProperties
 > &
   Pick<Entity, OptionalProperties>;
+
+export interface ISelectedObject {
+  object: any | null;
+  meshId: number | null;
+  key: string | null;
+}

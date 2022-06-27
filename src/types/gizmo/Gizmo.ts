@@ -11,3 +11,7 @@ export type RotateMesh = {
   mesh_id: number;
   values: Vector3;
 };
+
+export type TargetConfig = Record<string, Record<string, number>> | undefined;
+
+export type UpdateTypes = 'transform' | 'visible' | 'removed';

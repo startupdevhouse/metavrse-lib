@@ -24,8 +24,9 @@ import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 import { HTMLHudNode, OldProjectData } from '../types';
 import { addTexturesToGizmo, addOpacityTextures, divideMeshesToMoveAndScale, controlDisplayOfScaleCubes, controlDisplayOfArrows, controlDisplayOfGizmos, controlDisplayOfGizmoArms, setInitialMeshes, setGizmoRotateInitialMeshes } from './gizmoHelpers/gizmoTextures'
-import { getNewPoints, calculateNewPosition, getNewRotate } from './gizmoHelpers/gizmoMove'
+import { getNewPoints, updatePosition, getNewRotate } from './gizmoHelpers/gizmoMove'
 import { createGizmoMeshMapBy, quaternionToEuler, updateCamera } from './gizmoHelpers/gizmoActions'
+import { adjustGizmoScale, createGizmoObject, resetGizmo, calculateNewPosition, handleRemoveChangeListener, handleAddChangeListener, prepareNewTarget, calculateScalesGizmo, manipulateGizmoPosition } from './gizmoHelpers/gizmo'
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -564,11 +565,12 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setInitialMeshes,
     setGizmoRotateInitialMeshes,
     getNewPoints,
-    calculateNewPosition,
+    updatePosition,
     getNewRotate,
     createGizmoMeshMapBy,
     quaternionToEuler,
-    updateCamera
+    updateCamera,
+    adjustGizmoScale, createGizmoObject, resetGizmo, calculateNewPosition, handleRemoveChangeListener, handleAddChangeListener, prepareNewTarget, calculateScalesGizmo, manipulateGizmoPosition
   };
 };
 

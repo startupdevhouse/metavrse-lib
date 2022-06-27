@@ -6,7 +6,7 @@ import {
   TargetConfig, UpdateTypes,
   Vector3
 } from '../../types';
-import { mat4, vec3, vec4 } from 'gl-matrix';
+import { mat3, mat4, vec3, vec4 } from 'gl-matrix';
 
 export const adjustGizmoScale = (
   viewer: CherryViewer,
@@ -184,3 +184,24 @@ export const calculateNewPosition = (viewer: CherryViewer, position3D: vec3): ve
   );
 };
 
+export const rotateAlign = (direction: Vector3, up: Vector3)=> {
+  const xAxis = vec3.create();
+  vec3.cross(xAxis, up, direction);
+  vec3.normalize(xAxis, xAxis);
+
+  let yAxis = vec3.create();
+  vec3.cross(yAxis, direction, xAxis);
+  vec3.normalize(yAxis, yAxis);
+
+  return mat3.fromValues(
+    xAxis[0],
+    xAxis[1],
+    xAxis[2],
+    yAxis[0],
+    yAxis[1],
+    yAxis[2],
+    direction[0],
+    direction[1],
+    direction[2],
+  );
+}

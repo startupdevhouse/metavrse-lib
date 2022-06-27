@@ -40,11 +40,9 @@ export const restructureData = (
   newHTMLHudTree: HTMLHudNode[];
   lastDataId: number;
   newConfigurationsTree: any;
-  newConfigurationsEntities: any;
 } => {
   let incrementalId = 0;
   const newEntities: Record<CherryKey, Entity> = {};
-  const newConfigurationsEntities: Record<CherryKey, Entity> = {};
 
   const deepTreeIteration = (data: OldTreeNode[]): any[] => {
     let hasConfig = false;
@@ -79,8 +77,8 @@ export const restructureData = (
         hasConfig = node.type === 'configuration';
         newConfigurationsTree.push(newConfiguration);
 
-        newConfigurationsEntities[node.key] = {
-          ...(entity as any),
+        newEntities[node.key] = {
+          ...(entity as Entity),
           key: node.key,
           skey: node.skey,
           type: node.type,
@@ -113,7 +111,6 @@ export const restructureData = (
     newEntities,
     newHTMLHudTree: [],
     newConfigurationsTree,
-    newConfigurationsEntities,
   };
 };
 

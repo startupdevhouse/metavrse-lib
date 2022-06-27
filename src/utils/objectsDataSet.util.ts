@@ -1,4 +1,4 @@
-import { Entity, TreeNode } from '..';
+import { ConfigurationNode, ConfigurationNodeType, Entity, TreeNode } from '..';
 import { DEFAULTS } from '../constants';
 import { NODE_TYPES } from '../constants/nodeTypes';
 import { Asset } from '../types/assets/Asset';
@@ -7,14 +7,14 @@ import { PrimitiveType } from '../types/assets/PrimitiveType';
 import { TreeNodeType } from '../types/nodes/TreeNodeType';
 
 export type ObjectDataSet = {
-  newNode: TreeNode | null;
+  newNode: TreeNode | ConfigurationNode | null;
   newEntity: Entity | null;
   newAsset: Asset | null;
 };
 
 export const objectsDataSet = (
   key: CherryKey,
-  type: TreeNodeType,
+  type: TreeNodeType | ConfigurationNodeType,
   id: CherryKey,
   title: string,
   primitiveType?: PrimitiveType
@@ -108,6 +108,12 @@ export const objectsDataSet = (
         ...initData,
         newNode: { ...newNode, type: NODE_TYPES.video },
         newEntity: { ...DEFAULTS.videoDefaults, key },
+      };
+    case NODE_TYPES.configuration:
+      return {
+        ...initData,
+        newNode: { ...newNode, type: NODE_TYPES.configuration },
+        newEntity: { ...DEFAULTS.configurationDefaults, key },
       };
     default:
       return initData;

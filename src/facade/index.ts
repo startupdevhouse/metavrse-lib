@@ -22,8 +22,8 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
-import { HTMLHudNode } from '../types';
 import { gizmoFacade } from './gizmo';
+import { ConfigurationNode, HTMLHudNode } from '../types';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -291,8 +291,12 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     propertyName: GetterSetterPropertyType,
     value: ProjectManagerObjectPropertyType
   ) => {
-    const object = pm.getObject(key);
-    (object[propertyName] as ProjectManagerObjectPropertyType) = value;
+    try {
+      const object = pm.getObject(key);
+      (object[propertyName] as ProjectManagerObjectPropertyType) = value;
+    } catch (error: any) {
+      console.log('facade->setObjectProperty:', error.message);
+    }
   };
 
   /**
@@ -468,9 +472,9 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
    * @returns
    */
   const addObjectToScene = (
-    node: TreeNode,
+    node: TreeNode | HTMLHudNode | ConfigurationNode,
     entities: Entities,
-    parent?: TreeNode
+    parent?: TreeNode | HTMLHudNode | ConfigurationNode
   ) => {
     const parentObject = parent ? pm.getObject(parent.key) : null;
     const currentObject = pm.addObject(node, entities, parentObject);
@@ -526,6 +530,10 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     } as Entity;
   };
 
+  const removeObjectFromScene = (key: CherryKey) => {
+    pm.removeObject(key);
+  };
+
   const addHTMLTagToHud = (
     node: HTMLHudNode,
     entities: Entities,
@@ -547,12 +555,13 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     getObjectMeshes,
     highlightMeshes,
     loadAssetsAndRun,
+    removeObjectFromScene,
     removeObjectMaterial,
     setAssets,
     setObjectMaterial,
     setObjectProperty,
     changeInitialValuesWhenAddingObject,
-    ...gizmoFacade(cherryViewer)
+    ...gizmoFacade(cherryViewer),
   };
 };
 

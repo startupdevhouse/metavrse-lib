@@ -3,13 +3,14 @@ import { EntityMaterial } from './ObjectEntity';
 import { CherryKey } from '../cherry/CherryKey';
 import { GroupMat } from '../common/GroupMat';
 import { RGB } from '../common/RGB';
-import { Code, TreeNodeType } from '..';
+import { Code, ConfigurationNodeType, TreeNodeType } from '..';
 import { StandardPropertiesHyphen } from 'csstype';
 import { HTMLHudSupportedTags } from './HTMLHudSupportedTags';
 
 export type Entity = {
   key: CherryKey;
 
+  skey?: CherryKey;
   position?: Vector3;
   rotate?: Vector3;
   scale?: Vector3;
@@ -52,6 +53,12 @@ export type Entity = {
     src: string;
     type: string;
   }>;
+
+  // Configuration
+  parentOpts?: {
+    visible: boolean;
+  };
+  finalVisibility?: boolean;
 } & (
   | {
       type: HTMLHudSupportedTags;
@@ -61,4 +68,5 @@ export type Entity = {
       type: TreeNodeType;
       data?: Record<number, EntityMaterial>;
     }
+  | { type: ConfigurationNodeType }
 );

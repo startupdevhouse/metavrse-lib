@@ -52,7 +52,6 @@ export const regenerateStructure = (
     newEntities,
     newHTMLHudTree,
     newConfigurationsTree,
-    newConfigurationsEntities,
   } = restructureData(oldTree, oldEntities, squarePrimitiveKey);
 
   const { newAssets, files, lastAssetId } = restructureAssets(assets.tree);
@@ -83,6 +82,5 @@ export const regenerateStructure = (
     assets: [...assetsFromAtom, ...newAssets],
     htmlHudTree: newHTMLHudTree,
     configurationsTree: newConfigurationsTree,
-    configurationsEntities: newConfigurationsEntities,
   };
 };

@@ -1,4 +1,4 @@
-export type ConfigurationType =
+export type ConfigurationNodeType =
   | 'configuration'
   | 'object-group'
   | 'camera-link'

@@ -1,5 +1,5 @@
-import { CherrySurfaceSceneObject, Meshes } from '../types';
-import { MoveMesh, RotateMesh } from '../types/gizmo/Gizmo';
+import { CherrySurfaceSceneObject, Meshes } from '../../types';
+import { MoveMesh, RotateMesh } from '../../types/gizmo/Gizmo';
 
 export const addTexturesToGizmo = (
   gizmo: CherrySurfaceSceneObject,

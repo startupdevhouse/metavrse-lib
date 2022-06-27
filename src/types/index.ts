@@ -125,3 +125,9 @@ export * from './scripts/MegaController/MegaControllerObjectAnimationSequence';
 export * from './scripts/MegaController/MegaControllerVideoComponent';
 export * from './scripts/MegaController/MegaControllerPreCameraJS';
 export * from './scripts/MegaController/MegaControllerPostCameraJS';
+
+/**
+ * Gizmo types
+ */
+
+export * from './gizmo/Gizmo'

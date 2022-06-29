@@ -1,4 +1,3 @@
-
 import { mat3, mat4, quat, ReadonlyMat3, vec3 } from 'gl-matrix';
 import { CherryKey, CherryViewer, Vector3 } from '../../types';
 

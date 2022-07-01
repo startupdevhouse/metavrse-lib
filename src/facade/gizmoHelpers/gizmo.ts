@@ -146,7 +146,6 @@ export const handleRemoveChangeListener = (
   if (object) {
     object.removeChangeListener((type: UpdateTypes) => {
       updateGizmo(type)
-      // set(updateGizmoAtom, type);
     });
   }
 };
@@ -161,7 +160,6 @@ export const handleAddChangeListener = (
   if (object) {
     object.addChangeListener((type: UpdateTypes) => {
       updateGizmo(type)
-      // set(updateGizmoAtom, type);
     });
   }
 };

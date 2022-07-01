@@ -2,7 +2,7 @@ import {
   CherrySurfaceScene,
   CherrySurfaceSceneObject,
   CherryViewer,
-  ISelectedObject,
+  SelectedObject,
   TargetConfig, UpdateTypes,
   Vector3
 } from '../../types';
@@ -32,7 +32,7 @@ export const adjustGizmoScale = (
 export const calculateScalesGizmo = (
   extents: TargetConfig,
   extentsGizmo: Record<string, number> | undefined,
-  target: ISelectedObject
+  target: SelectedObject
 ): Vector3 | [] => {
   if (!extents || !extentsGizmo || !target?.key) {
     return [];
@@ -61,7 +61,7 @@ export const createGizmoObject = (
 
 export const prepareNewTarget = (
   targetPositions: TargetConfig,
-  target: ISelectedObject,
+  target: SelectedObject,
   // TODO: [MET-1780] Remove if fixed types
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   node: any,
@@ -85,7 +85,7 @@ export const prepareNewTarget = (
 };
 
 export const manipulateGizmoPosition = (
-  target: ISelectedObject,
+  target: SelectedObject,
   extentsGizmo: Record<string, number> | undefined,
   extentsTarget: TargetConfig,
   gizmoMatrix: mat4,

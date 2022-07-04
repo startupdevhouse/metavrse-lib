@@ -37,6 +37,7 @@ export type GetterSetterPropertyType =
   | 'startTime'
   | 'endTime'
   | 'volume'
+  | 'currentTime'
 
   // Light
   | 'color'
@@ -93,6 +94,9 @@ export type CherryProjectManagerObject = {
   removeChangeListener: (callback: any) => void;
   clearChangeHandlers: () => void;
 
+  play: () => void;
+  pause: () => void;
+
   /** @description Getter & Setter */
   position: Vector3;
   scale: Vector3;
@@ -143,6 +147,7 @@ export type CherryProjectManagerObject = {
   muted: boolean;
   startTime: number;
   endTime: number;
+  currentTime: number;
   volume: number;
   target: Vector3;
   distance: number;

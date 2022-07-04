@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.2.1...v1.3.0) (2022-07-04)
+
+
+### Features
+
+* add rotateAlign helper ([fbc5982](https://github.com/startupdevhouse/metavrse-lib/commit/fbc5982ff5ad623dc567770021f62e4947c7cb4e))
+
 ### [1.2.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.2.0...v1.2.1) (2022-07-04)
 
 ## [1.2.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.1.2...v1.2.0) (2022-06-24)

@@ -3,8 +3,9 @@ import { MoveMesh, RotateMesh } from '../../types/gizmo/Gizmo';
 
 export const addTexturesToGizmo = (
   gizmo: CherrySurfaceSceneObject,
-  opacityElements: string[]
+  type: 'move' | 'rotate'
 ): Meshes => {
+  const opacityElements = type === 'move' ? ['Cylinder_4', 'Cylinder_5', 'Cylinder_6'] : ['X__grab', 'Y__grab', 'Z__grab'];
   const gizmoMeshes: Meshes = {};
   const existingMeshes = gizmo.getMeshes();
 
@@ -54,9 +55,23 @@ export const setInitialMeshes = (
 
 export const setGizmoRotateInitialMeshes = (
   gizmo: CherrySurfaceSceneObject,
-  initialMeshes: RotateMesh[]
 ): void => {
-  initialMeshes.forEach((item) => {
+  const GIZMO_ROTATE_INITIAL_MESHES: RotateMesh[] = [
+    {
+      mesh_id: 0,
+      values: [0, 0, 1],
+    },
+    {
+      mesh_id: 1,
+      values: [0, 1, 0],
+    },
+    {
+      mesh_id: 2,
+      values: [1, 0, 0],
+    },
+  ];
+
+  GIZMO_ROTATE_INITIAL_MESHES.forEach((item) => {
     gizmo.setParameter(item.mesh_id, 'ambient_ratio', ...item.values);
   });
 };

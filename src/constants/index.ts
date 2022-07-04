@@ -10,6 +10,7 @@ import { worldDefaults } from './entities/worldDefaults';
 
 export * from './nodeTypes';
 export * from './htmlHud';
+export * from './gizmo'
 
 export const GIZMO_KEY = '__gizmo__' as const;
 export const GIZMO_ROTATE_KEY = '__gizmoRotate__' as const;

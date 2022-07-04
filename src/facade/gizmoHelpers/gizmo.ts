@@ -1,12 +1,22 @@
 import {
   CherrySurfaceScene,
   CherrySurfaceSceneObject,
-  CherryViewer,
+  CherryViewer, Meshes,
   SelectedObject,
   TargetConfig, UpdateTypes,
   Vector3
 } from '../../types';
 import { mat3, mat4, vec3, vec4 } from 'gl-matrix';
+import {
+  GIZMO_INITIAL_MESHES,
+  GIZMO_KEY,
+  GIZMO_MOVE_OBJECT,
+  GIZMO_ROTATE_KEY,
+  GIZMO_ROTATE_OBJECT
+} from '../../constants';
+import { addTexturesToGizmo, setGizmoRotateInitialMeshes, setInitialMeshes } from './gizmoTextures';
+
+
 
 export const adjustGizmoScale = (
   viewer: CherryViewer,
@@ -48,22 +58,39 @@ export const calculateScalesGizmo = (
 };
 
 export const createGizmoObject = (
-  scene: CherrySurfaceScene,
-  key: string,
-  path: string
-): CherrySurfaceSceneObject => {
-  const gizmo = scene.addObject(key, path);
+  cherryViewer: CherryViewer,
+  type: 'move' | 'rotate'
+): {gizmo: CherrySurfaceSceneObject, meshes: Meshes | null} => {
+  const scene = cherryViewer.getSurface().getScene()
+
+  const key = type === 'move' ? GIZMO_KEY : GIZMO_ROTATE_KEY
+  const object = type === 'move' ? GIZMO_MOVE_OBJECT : GIZMO_ROTATE_OBJECT
+
+  const gizmo = scene.addObject(key, object);
   gizmo?.setParameter('visible', false);
   gizmo?.setParameter('gizmo', true);
+  let meshes = null
 
-  return gizmo;
+  if (gizmo) {
+    meshes = addTexturesToGizmo(gizmo, type);
+  }
+
+  if (type === 'rotate') {
+    setGizmoRotateInitialMeshes(gizmo)
+  }
+
+  if (type === 'move' && meshes) {
+    setInitialMeshes(gizmo, meshes, GIZMO_INITIAL_MESHES)
+  }
+
+  return { gizmo, meshes };
 };
 
 export const prepareNewTarget = (
   targetPositions: TargetConfig,
   target: SelectedObject,
   // TODO: [MET-1780] Remove if fixed types
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescrip1t-eslint/explicit-module-boundary-types
   node: any,
   type: 'center' | 'extent'
 ): TargetConfig => {

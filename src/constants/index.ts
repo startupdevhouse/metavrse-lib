@@ -1,4 +1,5 @@
 import { cameraDefaults } from './entities/cameraDefaults';
+import { configurationDefaults } from './entities/configurationDefaults';
 import { hudDefaults } from './entities/hudDefaults';
 import { lightDefaults } from './entities/lightDefaults';
 import { objectDefaults } from './entities/objectDefaults';
@@ -18,6 +19,7 @@ export const ASSETS_FILES_FOLDER = 'files';
 
 export const DEFAULTS = {
   cameraDefaults,
+  configurationDefaults,
   hudDefaults,
   lightDefaults,
   objectDefaults,

@@ -1,11 +1,13 @@
+import { CherryKey } from '..';
+
 export type GenericNode<NodeType extends string> = {
-  children: GenericNode<NodeType>[];
-  // TODO: [MET-640] Change property visible to disable and add visible property (boolean)
+  key: CherryKey;
+  type: NodeType;
+  title: string;
   visible: boolean;
-  id?: string; // asset key
-  key: string;
-  title: string; // name will not work with SceneGraph in 3dviewer assets
+  children: GenericNode<NodeType>[];
   uiVisible?: boolean;
   uiHighlighted?: boolean;
-  type: NodeType;
+  id?: CherryKey; // Assets key
+  skey?: CherryKey;
 };

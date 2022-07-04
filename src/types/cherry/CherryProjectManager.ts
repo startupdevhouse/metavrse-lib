@@ -5,6 +5,7 @@ import { TreeNode } from '../nodes/TreeNode';
 import { Asset } from '../assets/Asset';
 import { CherryLoadNewUrl } from './CherryLoadNewUrl';
 import { HTMLHudNode } from '../nodes/HTMLHudNode';
+import { ConfigurationNode } from '..';
 
 export type CherryProjectManager = {
   // File methods
@@ -19,7 +20,7 @@ export type CherryProjectManager = {
   getObject: (key: CherryKey) => CherryProjectManagerObject;
   processRedraw: (opts: any) => void;
   addObject: (
-    child: TreeNode | HTMLHudNode,
+    child: TreeNode | HTMLHudNode | ConfigurationNode,
     data: Entities,
     parent?: CherryProjectManagerObject | null,
     key?: CherryKey

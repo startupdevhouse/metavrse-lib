@@ -33,6 +33,11 @@
   "peerDependencies": {
     "@babel/runtime": "7.16.7"
   },
+  "dependencies": {
+    "csstype": "^3.1.0",
+    "gl-matrix": "^3.4.3",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "@digitalroute/cz-conventional-changelog-for-jira": "^7.0.0",
     "@rollup/plugin-replace": "^3.1.0",
@@ -79,10 +84,5 @@
   },
   "jest": {
     "testEnvironment": "node"
-  },
-  "dependencies": {
-    "csstype": "^3.1.0",
-    "gl-matrix": "^3.4.3",
-    "uuid": "^8.3.2"
   }
 }

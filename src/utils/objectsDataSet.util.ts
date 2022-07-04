@@ -1,4 +1,4 @@
-import { Entity, TreeNode } from '..';
+import { ConfigurationNode, ConfigurationNodeType, Entity, TreeNode } from '..';
 import { DEFAULTS } from '../constants';
 import { NODE_TYPES } from '../constants/nodeTypes';
 import { Asset } from '../types/assets/Asset';

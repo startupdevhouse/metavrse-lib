@@ -89,8 +89,8 @@ export * from './world/World';
 /**
  * Configurations types
  */
-export * from './configurations/Configuration';
-export * from './configurations/ConfigurationType';
+export * from './configurations/ConfigurationNode';
+export * from './configurations/ConfigurationNodeType';
 
 /**
  * Facade types

@@ -9,7 +9,7 @@ import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES } from './shaders';
 import { Asset } from '../types/assets/Asset';
 import { Entity } from '../types/entities/Entity';
-import { GIZMO_KEY, GIZMO_ROTATE_KEY, NODE_TYPES } from './../constants';
+import { NODE_TYPES } from './../constants';
 import { vec3, mat4 } from 'gl-matrix';
 import {
   GetterSetterPropertyType,
@@ -22,11 +22,8 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
-import { HTMLHudNode, OldProjectData } from '../types';
-import { addTexturesToGizmo, addOpacityTextures, divideMeshesToMoveAndScale, controlDisplayOfScaleCubes, controlDisplayOfArrows, controlDisplayOfGizmos, controlDisplayOfGizmoArms, setInitialMeshes, setGizmoRotateInitialMeshes } from './gizmoHelpers/gizmoTextures'
-import { getNewPoints, updatePosition, getNewRotate } from './gizmoHelpers/gizmoMove'
-import { createGizmoMeshMapBy, quaternionToEuler, updateCamera } from './gizmoHelpers/gizmoActions'
-import { adjustGizmoScale, createGizmoObject, resetGizmo, calculateNewPosition, handleRemoveChangeListener, handleAddChangeListener, prepareNewTarget, calculateScalesGizmo, manipulateGizmoPosition, rotateAlign } from './gizmoHelpers/gizmo'
+import { HTMLHudNode } from '../types';
+import { gizmoFacade } from './gizmo';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -555,31 +552,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setObjectMaterial,
     setObjectProperty,
     changeInitialValuesWhenAddingObject,
-    addTexturesToGizmo,
-    addOpacityTextures,
-    divideMeshesToMoveAndScale,
-    controlDisplayOfScaleCubes,
-    controlDisplayOfArrows,
-    controlDisplayOfGizmos,
-    controlDisplayOfGizmoArms,
-    setInitialMeshes,
-    setGizmoRotateInitialMeshes,
-    getNewPoints,
-    updatePosition,
-    getNewRotate,
-    createGizmoMeshMapBy,
-    quaternionToEuler,
-    updateCamera,
-    adjustGizmoScale,
-    createGizmoObject,
-    resetGizmo,
-    calculateNewPosition,
-    handleRemoveChangeListener,
-    handleAddChangeListener,
-    prepareNewTarget,
-    calculateScalesGizmo,
-    manipulateGizmoPosition,
-    rotateAlign
+    ...gizmoFacade(cherryViewer)
   };
 };
 

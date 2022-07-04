@@ -70,7 +70,6 @@ export const regenerateStructure = (
     createDate: new Date().toISOString(),
     updateDate: new Date().toISOString(),
     version: CherryGLVersion,
-    requiresSaveBeforePublish: true,
   };
 
   return {

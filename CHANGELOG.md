@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.3.0...v1.4.0) (2022-07-04)
+
+
+### Features
+
+* MET-2258 add restructure method and types ([d094b37](https://github.com/startupdevhouse/metavrse-lib/commit/d094b3747fa121e20a29d391a7693f394dab61cb))
+* MET-2258 types for configurations ([3559c20](https://github.com/startupdevhouse/metavrse-lib/commit/3559c2091ed432e89eda276feb7c767f03c93894))
+
 ## [1.3.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.2.1...v1.3.0) (2022-07-04)
 
 

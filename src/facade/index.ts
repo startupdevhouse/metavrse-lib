@@ -9,7 +9,7 @@ import { ShaderParameterType } from '../types/facade/ShaderParameterType';
 import { RGB_PARAMETERS, SHADER_PROPERTY_TYPES } from './shaders';
 import { Asset } from '../types/assets/Asset';
 import { Entity } from '../types/entities/Entity';
-import { GIZMO_KEY, GIZMO_ROTATE_KEY, NODE_TYPES } from './../constants';
+import { NODE_TYPES } from './../constants';
 import { vec3, mat4 } from 'gl-matrix';
 import {
   GetterSetterPropertyType,
@@ -22,7 +22,8 @@ import { CherryObjectMeshes } from '../types/facade/CherryObjectMeshes';
 import { CherryObjectInfo } from '../types/cherry/CherryObjectInfo';
 import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
-import { HTMLHudNode, OldProjectData } from '../types';
+import { HTMLHudNode } from '../types';
+import { gizmoFacade } from './gizmo';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -535,58 +536,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     const currentEntity = entities[node.key];
   };
 
-  const addGizmo = () => {
-    const gizmo = scene.addObject(GIZMO_KEY, 'assets/gizmo.c3b');
-    gizmo.setParameter('visible', false);
-    gizmo.setParameter('gizmo', true);
-
-    const meshes = extractObjectMeshes(gizmo);
-    const gizmoImage = 'assets/gizmo.png';
-
-    gizmo.setParameter(meshes['Cylinder_4'], 'opacity_texture_a', gizmoImage);
-    gizmo.setParameter(meshes['Cylinder_5'], 'opacity_texture_a', gizmoImage);
-    gizmo.setParameter(meshes['Cylinder_6'], 'opacity_texture_a', gizmoImage);
-
-    gizmo.setParameter(meshes['Cube_1'], 'visible', false);
-    gizmo.setParameter(meshes['Cube_1_2'], 'visible', false);
-    gizmo.setParameter(meshes['Cube_1_3'], 'visible', false);
-
-    gizmo.setParameter(meshes['x'], 'ambient_ratio', 1, 0, 0);
-    gizmo.setParameter(meshes['Cylinder_2'], 'ambient_ratio', 1, 0, 0);
-    gizmo.setParameter(meshes['y'], 'ambient_ratio', 0, 1, 0);
-    gizmo.setParameter(meshes['Cylinder'], 'ambient_ratio', 0, 1, 0);
-    gizmo.setParameter(meshes['z'], 'ambient_ratio', 0, 0, 1);
-    gizmo.setParameter(meshes['Cylinder_3'], 'ambient_ratio', 0, 0, 1);
-
-    gizmo.setParameter(meshes['Cube_1'], 'ambient_ratio', 1, 0, 0);
-    gizmo.setParameter(meshes['Cube_1_2'], 'ambient_ratio', 0, 0, 1);
-    gizmo.setParameter(meshes['Cube_1_3'], 'ambient_ratio', 0, 1, 0);
-
-    return gizmo;
-  };
-
-  const addGizmoRotate = () => {
-    const gizmo = scene.addObject(GIZMO_ROTATE_KEY, 'assets/rotate.c3b');
-    gizmo.setParameter('visible', false);
-    gizmo.setParameter('gizmo', true);
-
-    const meshes = extractObjectMeshes(gizmo);
-    const gizmoImage = 'assets/gizmo.png';
-
-    gizmo.setParameter(meshes['X__grab'], 'opacity_texture_a', gizmoImage);
-    gizmo.setParameter(meshes['Y__grab'], 'opacity_texture_a', gizmoImage);
-    gizmo.setParameter(meshes['Z__grab'], 'opacity_texture_a', gizmoImage);
-
-    gizmo.setParameter(0, 'ambient_ratio', 0, 0, 1);
-    gizmo.setParameter(1, 'ambient_ratio', 0, 1, 0);
-    gizmo.setParameter(2, 'ambient_ratio', 1, 0, 0);
-
-    return gizmo;
-  };
-
   return {
-    addGizmo,
-    addGizmoRotate,
     addObjectToScene,
     addHTMLTagToHud,
     getMaterialValue,
@@ -602,6 +552,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setObjectMaterial,
     setObjectProperty,
     changeInitialValuesWhenAddingObject,
+    ...gizmoFacade(cherryViewer)
   };
 };
 

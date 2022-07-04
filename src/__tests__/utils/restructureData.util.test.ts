@@ -1,3 +1,4 @@
+import { NODE_TYPES } from '../../constants/nodeTypes';
 import { restructureData } from '../../utils/restructureData.util';
 
 export const debugFn = (data: unknown, label = ''): void => {
@@ -6,25 +7,25 @@ export const debugFn = (data: unknown, label = ''): void => {
 
 const tree: any[] = [
   {
-    key: '1608252638393',
+    key: '1',
     title: 'Objects',
     type: 'object-group',
     children: [
       {
-        key: '1610339829473',
+        key: '2',
         title: 'Mute',
         type: 'configuration',
         children: [
           {
-            key: '1610339854751',
+            key: '3',
             title: 'Logo & Graphics',
-            skey: '1608413337359',
+            skey: '33',
             type: 'hud-link',
             children: [
               {
-                key: '1610339854753',
+                key: '4',
                 title: 'Mute',
-                skey: '1610157871034',
+                skey: '44',
                 id: 'assets/square.c3b',
                 type: 'object-hud-link',
                 children: [],
@@ -33,45 +34,10 @@ const tree: any[] = [
           },
         ],
       },
-      {
-        key: '1611124999400',
-        title: 'Quiz 12',
-        type: 'configuration',
-        disableCheckbox: false,
-        children: [
-          {
-            key: '1611125242858',
-            title: 'Quizes',
-            skey: '1609903927365',
-            type: 'object-group-link',
-            disableCheckbox: false,
-            children: [
-              {
-                key: '1611125242859',
-                title: 'Main Objects',
-                skey: '1609976244582',
-                type: 'object-group-link',
-                disableCheckbox: false,
-                children: [
-                  {
-                    key: '1611125242860',
-                    title: 'QUIZ updated FINAL.fbx.c3b',
-                    skey: '1611054109409',
-                    id: '0',
-                    type: 'object-link',
-                    disableCheckbox: false,
-                    children: [],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
     ],
   },
   {
-    key: '1606255650220',
+    key: '9',
     title: 'AR HUD ',
     type: 'hud',
     children: [],
@@ -79,60 +45,27 @@ const tree: any[] = [
 ];
 
 const entities: any = {
-  '1610339829473': {
+  '1': {
     groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
     visible: true,
   },
-  '1610339854751': { data: {} },
-  '1610339854753': {
+  '2': { data: {} },
+  '3': {
     data: {
       '0': {
-        ambient_texture: '1610157854060',
+        ambient_texture: '1',
         ambient_video: '',
-        opacity_texture: '1610157854060',
+        opacity_texture: '1',
         opacity_texture_channel: 'a',
       },
     },
     visible: false,
   },
-  '1611124999400': {
+  '4': {
     groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
     visible: false,
   },
-  '1611125242858': { data: {} },
-  '1611125242859': { data: {} },
-  '1611125242860': {
-    data: {
-      '0': {
-        albedo_ratio: [255, 255, 255],
-        albedo_texture: '1611196831859',
-        albedo_video: '',
-        opacity_texture: '1611196831859',
-        opacity_texture_channel: 'a',
-        use_pbr: true,
-      },
-      '1': {
-        albedo_ratio: [255, 255, 255],
-        albedo_texture: '1611196831859',
-        albedo_video: '',
-        opacity_texture: '1611196831859',
-        opacity_texture_channel: 'a',
-        use_pbr: true,
-      },
-      '2': { opacity_ratio: 0 },
-      '3': { opacity_ratio: 0 },
-      '6': { opacity_ratio: 0 },
-      '7': { opacity_ratio: 0 },
-      '8': {
-        albedo_texture: '1611196831859',
-        albedo_video: '',
-        opacity_texture: '1611196831859',
-        opacity_texture_channel: 'a',
-      },
-    },
-    visible: false,
-  },
-  '1606255650220': {
+  '9': {
     visible: true,
     groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
   },
@@ -147,70 +80,35 @@ describe('Test restructure', () => {
         entities,
         primitiveKey
       );
-      debugFn(newConfigurationsTree);
+
       expect([
         {
-          key: '1608252638393',
+          key: '1',
           title: 'Objects',
           type: 'object-group',
           visible: true,
           children: [
             {
-              key: '1610339829473',
+              key: '2',
               title: 'Mute',
               type: 'configuration',
               visible: true,
               children: [
                 {
-                  key: '1610339854751',
+                  key: '3',
                   title: 'Logo & Graphics',
-                  skey: '1608413337359',
+                  skey: '33',
                   type: 'hud-link',
-                  visible: true,
+                  visible: false,
                   children: [
                     {
-                      key: '1610339854753',
+                      key: '4',
                       title: 'Mute',
-                      skey: '1610157871034',
+                      skey: '44',
                       id: primitiveKey,
                       type: 'object-hud-link',
                       visible: false,
                       children: [],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              key: '1611124999400',
-              title: 'Quiz 12',
-              type: 'configuration',
-              visible: false,
-              children: [
-                {
-                  key: '1611125242858',
-                  title: 'Quizes',
-                  skey: '1609903927365',
-                  type: 'object-group-link',
-                  visible: true,
-                  children: [
-                    {
-                      key: '1611125242859',
-                      title: 'Main Objects',
-                      skey: '1609976244582',
-                      type: 'object-group-link',
-                      visible: true,
-                      children: [
-                        {
-                          key: '1611125242860',
-                          title: 'QUIZ updated FINAL.fbx.c3b',
-                          skey: '1611054109409',
-                          id: primitiveKey,
-                          type: 'object-link',
-                          visible: false,
-                          children: [],
-                        },
-                      ],
                     },
                   ],
                 },
@@ -221,78 +119,39 @@ describe('Test restructure', () => {
       ]).toEqual(newConfigurationsTree);
     });
 
-    it('should create group for configurations if exists', () => {
+    it('should create group for entities if exists', () => {
       const primitiveKey = '0';
-      const { newConfigurationsEntities } = restructureData(
-        tree,
-        entities,
-        primitiveKey
-      );
-      debugFn(newConfigurationsEntities);
+      const { newEntities } = restructureData(tree, entities, primitiveKey);
+
       expect({
-        '1608252638393': {
-          position: [0, 0, 0],
-          scale: [1, 1, 1],
-          rotate: [0, 0, 0],
-          visible: true,
-          opacity: 1,
-          data: {},
-          groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        '1': {
+          ...entities['1'],
+          key: '1',
+          type: NODE_TYPES.objectGroup,
         },
-        '1610339829473': {
-          groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-          visible: true,
+        '2': {
+          ...entities['2'],
+          key: '2',
+          type: NODE_TYPES.configuration,
         },
-        '1610339854751': { data: {} },
-        '1610339854753': {
-          data: {
-            '0': {
-              ambient_texture: '1610157854060',
-              ambient_video: '',
-              opacity_texture: '1610157854060',
-              opacity_texture_channel: 'a',
-            },
-          },
-          visible: false,
+        '3': {
+          ...entities['3'],
+          key: '3',
+          skey: '33',
+          type: NODE_TYPES.hudLink,
         },
-        '1611124999400': {
-          groupMat: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-          visible: false,
+        '4': {
+          ...entities['4'],
+          key: '4',
+          skey: '44',
+          type: NODE_TYPES.objectHudLink,
         },
-        '1611125242858': { data: {} },
-        '1611125242859': { data: {} },
-        '1611125242860': {
-          data: {
-            '0': {
-              albedo_ratio: [255, 255, 255],
-              albedo_texture: '1611196831859',
-              albedo_video: '',
-              opacity_texture: '1611196831859',
-              opacity_texture_channel: 'a',
-              use_pbr: true,
-            },
-            '1': {
-              albedo_ratio: [255, 255, 255],
-              albedo_texture: '1611196831859',
-              albedo_video: '',
-              opacity_texture: '1611196831859',
-              opacity_texture_channel: 'a',
-              use_pbr: true,
-            },
-            '2': { opacity_ratio: 0 },
-            '3': { opacity_ratio: 0 },
-            '6': { opacity_ratio: 0 },
-            '7': { opacity_ratio: 0 },
-            '8': {
-              albedo_texture: '1611196831859',
-              albedo_video: '',
-              opacity_texture: '1611196831859',
-              opacity_texture_channel: 'a',
-            },
-          },
-          visible: false,
+        '9': {
+          ...entities['9'],
+          key: '9',
+          type: NODE_TYPES.hud,
         },
-      }).toEqual(newConfigurationsEntities);
+      }).toEqual(newEntities);
     });
   });
 });

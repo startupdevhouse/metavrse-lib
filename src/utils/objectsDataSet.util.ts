@@ -7,14 +7,14 @@ import { PrimitiveType } from '../types/assets/PrimitiveType';
 import { TreeNodeType } from '../types/nodes/TreeNodeType';
 
 export type ObjectDataSet = {
-  newNode: TreeNode | ConfigurationNode | null;
+  newNode: TreeNode | null;
   newEntity: Entity | null;
   newAsset: Asset | null;
 };
 
 export const objectsDataSet = (
   key: CherryKey,
-  type: TreeNodeType | ConfigurationNodeType,
+  type: TreeNodeType,
   id: CherryKey,
   title: string,
   primitiveType?: PrimitiveType
@@ -108,12 +108,6 @@ export const objectsDataSet = (
         ...initData,
         newNode: { ...newNode, type: NODE_TYPES.video },
         newEntity: { ...DEFAULTS.videoDefaults, key },
-      };
-    case NODE_TYPES.configuration:
-      return {
-        ...initData,
-        newNode: { ...newNode, type: NODE_TYPES.configuration },
-        newEntity: { ...DEFAULTS.configurationDefaults, key },
       };
     default:
       return initData;

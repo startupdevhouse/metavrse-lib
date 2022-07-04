@@ -6,6 +6,7 @@ import {
   Entities,
   HTMLHudNode,
   Entity,
+  ConfigurationNode,
 } from '..';
 
 const ALLOWED_CONFIGURATION_TYPES = [
@@ -114,35 +115,45 @@ export const restructureData = (
   };
 };
 
-function createNewConfiguration(
+const createNewConfiguration = (
   primitiveKey: string | undefined,
   node: OldTreeNode,
-  entity: any
-) {
-  const isVisible = 'visible' in entity ? entity.visible : true;
-  return {
-    id: primitiveKey,
+  entity: OldData
+): ConfigurationNode => {
+  let newNode = {
     key: node.key,
-    skey: node.skey,
     type: node.type,
     title: node.title,
     children: [],
-    visible: isVisible,
-  };
-}
+    visible: entity && entity.visible !== undefined ? entity.visible : true,
+  } as ConfigurationNode;
 
-function createNewNode(
+  if (primitiveKey) {
+    newNode = {
+      ...newNode,
+      id: primitiveKey,
+    };
+  }
+
+  if (node.skey) {
+    newNode = {
+      ...newNode,
+      skey: node.skey,
+    };
+  }
+
+  return newNode;
+};
+
+const createNewNode = (
   primitiveKey: string | undefined,
   node: OldTreeNode,
-  entity: any
-) {
-  const isVisible = 'visible' in entity ? entity.visible : true;
-  return {
-    id: primitiveKey,
-    key: node.key,
-    type: node.type,
-    title: node.title,
-    children: [],
-    visible: isVisible,
-  };
-}
+  entity: OldData
+): TreeNode => ({
+  id: primitiveKey,
+  key: node.key,
+  type: node.type,
+  title: node.title,
+  children: [],
+  visible: entity && entity.visible !== undefined ? entity.visible : true,
+});

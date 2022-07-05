@@ -34,8 +34,6 @@ export const adjustGizmoScale = (
     distance = MIN_DISTANCE;
   }
 
-  console.log('from lib', distance)
-
   const GIZMO_SCALE_DIVIDER = 10;
   const smallestSquare = vec3.fromValues(
     distance / GIZMO_SCALE_DIVIDER,

@@ -1,5 +1,4 @@
 import {
-  CherrySurfaceScene,
   CherrySurfaceSceneObject,
   CherryViewer, Meshes,
   SelectedObject,
@@ -27,7 +26,16 @@ export const adjustGizmoScale = (
   const fm2 = mat4.create();
   mat4.fromRotationTranslation(fm2, quatLocal, gizmoXYZ);
 
-  const distance = viewer.controls.distance;
+  let distance = viewer.controls.distance;
+
+  const MIN_DISTANCE = 1.5
+
+  if (distance < MIN_DISTANCE) {
+    distance = MIN_DISTANCE;
+  }
+
+  console.log('from lib', distance)
+
   const GIZMO_SCALE_DIVIDER = 10;
   const smallestSquare = vec3.fromValues(
     distance / GIZMO_SCALE_DIVIDER,

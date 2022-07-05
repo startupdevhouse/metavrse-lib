@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.4.0...v1.4.1) (2022-07-05)
+
+
+### Bug Fixes
+
+* MET-2520 add minDistance for gizmo scale ([b9986f6](https://github.com/startupdevhouse/metavrse-lib/commit/b9986f603c6eff048b3667ce0c178b45e7604e0b))
+
 ## [1.4.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.3.0...v1.4.0) (2022-07-04)
 
 

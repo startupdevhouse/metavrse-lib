@@ -12,7 +12,7 @@ export const videoDefaults: Omit<VideoEntity, 'key'> = {
   src: '',
   pixel: [3, 4, 255],
   isurl: false,
-  autoplay: true,
+  autoplay: false,
   loop: false,
   muted: false,
   startTime: '0.0',

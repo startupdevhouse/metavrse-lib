@@ -544,6 +544,10 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     const currentEntity = entities[node.key];
   };
 
+  const getVideoObject = (videoKey: string) => {
+    return pm.getObject(videoKey);
+  };
+
   return {
     addObjectToScene,
     addHTMLTagToHud,
@@ -562,6 +566,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setObjectProperty,
     changeInitialValuesWhenAddingObject,
     ...gizmoFacade(cherryViewer),
+    getVideoObject,
   };
 };
 

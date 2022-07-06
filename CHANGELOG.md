@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.4.2...v1.5.0) (2022-07-06)
+
+
+### Features
+
+* MET-2478 Add getVideoObject method to facade ([fcabbad](https://github.com/startupdevhouse/metavrse-lib/commit/fcabbad0db6a8626c046112dd60997957c5b36c8))
+* MET-2478 Create getVideoObject method ([e06aecf](https://github.com/startupdevhouse/metavrse-lib/commit/e06aecf8b5b47c089f05a49332a98206496dd0e7))
+
 ### [1.4.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.4.1...v1.4.2) (2022-07-05)
 
 ### [1.4.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.4.0...v1.4.1) (2022-07-05)

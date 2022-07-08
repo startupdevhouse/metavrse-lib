@@ -18,16 +18,19 @@ module.exports = (opt) => {
 
   // Somewhere inside this file we need to put the new endpoint
   const fetchData = async (url, password, options, callback) => {
-    fetch(
-      url,
-      password
-        ? {
-            headers: {
-              Authorization: 'Basic ' + btoa(`user:${password}`),
-            },
-          }
-        : undefined
-    )
+    const lsKey = `${url}_lastTimeDownloaded`;
+    const headers = {};
+    const lastTimeDownloaded = localStorage.getItem(lsKey);
+
+    if (password) {
+      headers.Authorization = `Basic ${btoa(`user:${password}`)}`;
+    }
+
+    if (lastTimeDownloaded) {
+      headers['If-Modified-Since'] = lastTimeDownloaded;
+    }
+
+    fetch(url, { headers })
       .then(async (res) => {
         if (res.status === 200) {
           if (!res.body || !res.headers) {
@@ -35,6 +38,7 @@ module.exports = (opt) => {
             return;
           }
           options.onProjectLoadingStart && options.onProjectLoadingStart();
+          localStorage.setItem(lsKey, res.headers.get('Last-Modified'));
 
           const reader = res.body.getReader();
           const contentLength = res.headers.get('Content-Length') ?? 0;

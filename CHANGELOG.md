@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.5.0...v1.5.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* MET-2475 introduce If-Modified-Since header for NewURLLoader ([37edc74](https://github.com/startupdevhouse/metavrse-lib/commit/37edc74fa58934ad15980a727c2dd9187a68974a))
+
 ## [1.5.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.4.2...v1.5.0) (2022-07-06)
 
 

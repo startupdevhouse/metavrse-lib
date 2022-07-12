@@ -340,6 +340,7 @@ module.exports = (payload) => {
   setProperty('hudscale', world.hudscale);
 
   setProperty('controller', world.controller);
+  setProperty('orientation', world.orientation);
 
   addToRedraw('fxaa');
   addToRedraw('hudscale');
@@ -510,10 +511,10 @@ module.exports = (payload) => {
     },
     orientation: {
       get: () => {
-        return Module.ProjectManager.projectRunning ? world.orientation : 0;
+        return Module.ProjectManager.projectRunning ? getProperty('orientation')[1] : 0;
       },
       set: (v) => {
-        world.orientation = v;
+        setProperty('orientation', v);
       },
     },
   });

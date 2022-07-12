@@ -189,9 +189,6 @@ module.exports = () => {
   const processRedraw = (opts) => {};
 
   const parseScene = (children, parent, configs, opt) => {
-    const tree =
-      sceneprops.project.data['scene'][sceneprops.project.data.selected_scene]
-        .tree;
     const data =
       sceneprops.project.data['scene'][sceneprops.project.data.selected_scene]
         .data;
@@ -261,8 +258,6 @@ module.exports = () => {
       }
 
       if (obj) {
-        // if (opt == "tree") obj.clearRender();
-
         sceneprops.sceneIndex.set(obj.item.key, obj); // index obj
         if (!payload.parent) sceneList.push(obj); // only for root items
         if (child.children) {
@@ -303,16 +298,13 @@ module.exports = () => {
 
       try {
         switch (child.type) {
-          // configurations
           case 'configuration':
-            // payload.parent = undefined; // starts a new root
             obj = ConfigurationModel(payload);
             payload.key = child.key;
             sceneprops.configurations.set(child.key, {
               obj,
               index: ++sceneprops.config_idx,
             });
-            // sceneprops.configurations.set(child.key, obj);
             break;
           case 'object-group-link':
             obj = ObjectGroupLinkModel(payload);
@@ -323,9 +315,9 @@ module.exports = () => {
             if (
               payload.data['controller'] != undefined &&
               payload.data['controller'] != ''
-            )
+            ) {
               objectControllerkeys.set(child.key, payload.data['controller']);
-
+            }
             break;
           case 'HTMLElement-link':
             obj = HTMLElementLinkModel(payload);
@@ -360,6 +352,10 @@ module.exports = () => {
         if (child.children) {
           parseSceneConfigurations(child.children, obj, opt, payload.key);
         }
+      } else if (child.type === 'object-group') {
+        if (child.children) {
+          parseSceneConfigurations(child.children, obj, opt, payload.key);
+        }
       }
     });
   };
@@ -375,6 +371,7 @@ module.exports = () => {
             : item.key;
         }
       }
+
       let leaf = {
         key: item.key,
         title: item.title,
@@ -391,16 +388,22 @@ module.exports = () => {
 
   const constructGraph = (opt) => {
     if (sceneprops.project.data == undefined) return;
-    const tree =
-      sceneprops.project.data['scene'][sceneprops.project.data.selected_scene]
-        .tree;
+    const scene =
+      sceneprops.project.data['scene'][sceneprops.project.data.selected_scene];
+    const tree = scene.tree;
+    const configurations = scene.configurations;
 
     objectControllerkeys.clear();
     sceneprops.configurations.clear();
     sceneprops.config_idx = 0;
 
-    const configs = parseScene(tree, undefined, [], opt);
-    parseSceneConfigurations(configs, undefined, opt);
+    if (/^\d+\.\d+\..+$/.test(sceneprops.project.data.version)) {
+      parseScene(tree, undefined, [], opt);
+      parseSceneConfigurations(configurations, undefined, opt);
+    } else {
+      const configs = parseScene(tree, undefined, [], opt);
+      parseSceneConfigurations(configs, undefined, opt);
+    }
 
     if (treeGenerated) {
       try {

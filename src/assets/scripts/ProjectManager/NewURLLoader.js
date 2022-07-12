@@ -6,6 +6,8 @@
 module.exports = (opt) => {
   opt = opt || {};
 
+  let idb;
+  if (Module.canvas) idb = Module.require('assets/idb.js')();
   const surface = Module.getSurface();
   const scene = surface.getScene();
 
@@ -15,6 +17,10 @@ module.exports = (opt) => {
 
   const newLoader = {};
   let fullpath = '/';
+
+  const { pullFilesIDB } = Module.require(
+    'assets/ProjectManager/URLLoader.js'
+  )();
 
   // Somewhere inside this file we need to put the new endpoint
   const fetchData = async (url, password, options, callback) => {
@@ -30,81 +36,154 @@ module.exports = (opt) => {
       headers['If-Modified-Since'] = lastTimeDownloaded;
     }
 
-    fetch(url, { headers })
-      .then(async (res) => {
-        if (res.status === 200) {
-          if (!res.body || !res.headers) {
-            options.onProjectFileInvalid && options.onProjectFileInvalid();
-            return;
-          }
-          options.onProjectLoadingStart && options.onProjectLoadingStart();
-          localStorage.setItem(lsKey, res.headers.get('Last-Modified'));
+    const internalFetch = (internalHeaders) => {
+      fetch(url, { headers: internalHeaders })
+        .then(async (res) => {
+          if (res.status === 200) {
+            if (!res.body || !res.headers) {
+              options.onProjectFileInvalid && options.onProjectFileInvalid();
+              return;
+            }
+            options.onProjectLoadingStart && options.onProjectLoadingStart();
+            localStorage.setItem(lsKey, res.headers.get('Last-Modified'));
 
-          const reader = res.body.getReader();
-          const contentLength = res.headers.get('Content-Length') ?? 0;
-          let loaded = 0;
+            const reader = res.body.getReader();
+            const contentLength = res.headers.get('Content-Length') ?? 0;
+            let loaded = 0;
 
-          const consume = async () => {
-            return new Response(
-              new ReadableStream({
-                start(controller) {
-                  read();
-                  function read() {
-                    reader
-                      .read()
-                      .then(({ done, value }) => {
-                        if (done) {
-                          if (contentLength === 0) {
-                            options.onDownloadProgress &&
-                              options.onDownloadProgress({
-                                total: contentLength,
-                                loaded: loaded,
-                              });
+            const consume = async () => {
+              return new Response(
+                new ReadableStream({
+                  start(controller) {
+                    read();
+                    function read() {
+                      reader
+                        .read()
+                        .then(({ done, value }) => {
+                          if (done) {
+                            if (contentLength === 0) {
+                              options.onDownloadProgress &&
+                                options.onDownloadProgress({
+                                  total: contentLength,
+                                  loaded: loaded,
+                                });
+                            }
+
+                            controller.close();
+                            return;
                           }
 
-                          controller.close();
-                          return;
-                        }
+                          loaded += value.byteLength;
+                          options.onDownloadProgress &&
+                            options.onDownloadProgress({
+                              total: contentLength,
+                              loaded: loaded,
+                            });
+                          controller.enqueue(value);
+                          read();
+                        })
+                        .catch((error) => {
+                          console.error(error);
+                          controller.error(error);
+                        });
+                    }
+                  },
+                })
+              );
+            };
 
-                        loaded += value.byteLength;
-                        options.onDownloadProgress &&
-                          options.onDownloadProgress({
-                            total: contentLength,
-                            loaded: loaded,
-                          });
-                        controller.enqueue(value);
-                        read();
-                      })
-                      .catch((error) => {
-                        console.error(error);
-                        controller.error(error);
-                      });
-                  }
+            const buff = await consume();
+
+            const data = await buff.arrayBuffer();
+
+            if (Module.canvas) {
+              let localdb = await idb.openDB('workspace', 21, {
+                upgrade(db) {
+                  db.createObjectStore('FILE_DATA');
                 },
-              })
-            );
-          };
+              });
+              let tx = localdb.transaction('FILE_DATA', 'readwrite');
 
-          const buff = await consume();
+              // clear current data
+              await tx.store.delete(
+                IDBKeyRange.bound(fullpath, fullpath + '\uffff')
+              );
 
-          callback(await buff.arrayBuffer());
-        }
+              // add new data
+              await tx.store.put(
+                new Blob([new Uint8Array(data)]),
+                fullpath + 'project.zip'
+              );
+              await tx.done;
 
-        if (res.status === 404) {
-          options.onProjectNotFound && options.onProjectNotFound();
-        }
+              localdb.close();
+              localdb = null;
+              tx = null;
 
-        if (res.status === 401) {
-          options.onIncorrectPassword && options.onIncorrectPassword(password);
-        }
+              // give GC a chance
+              await sleep(100);
 
-        if (res.status === 403) {
-          options.onLimitsExceeded && options.onLimitsExceeded();
-        }
-      })
-      .catch(() => {
-        options.onProjectFileInvalid && options.onProjectFileInvalid();
-      });
+              if (Module.FS) {
+                Module.FS.writeFile(
+                  fullpath + 'project.zip',
+                  new Uint8Array(data)
+                );
+              } else {
+                surface.writeFile(fullpath + 'project.zip', data);
+              }
+            }
+
+            callback(data);
+          }
+
+          if (res.status === 304) {
+            try {
+              await pullFilesIDB();
+
+              options.onProjectLoadingStart && options.onProjectLoadingStart();
+
+              const archive = Module.ProjectManager.archive;
+              archive.close();
+              archive.open(fullpath + 'project.zip');
+              scene.setFSZip(archive); // enable project archive
+
+              var f = archive.fopens('project.json'); //fopens string - fopen arraybuffer
+              let project = JSON.parse(f);
+
+              options.onDownloadProgress &&
+                options.onDownloadProgress({
+                  total: 100,
+                  loaded: 100,
+                });
+
+              callback(project);
+            } catch (e) {
+              internalFetch({
+                ...internalHeaders,
+                'If-Modified-Since': undefined,
+              });
+            }
+          }
+
+          if (res.status === 404) {
+            options.onProjectNotFound && options.onProjectNotFound();
+          }
+
+          if (res.status === 401) {
+            options.onIncorrectPassword &&
+              options.onIncorrectPassword(password);
+          }
+
+          if (res.status === 403) {
+            options.onLimitsExceeded && options.onLimitsExceeded();
+          }
+        })
+        .catch(() => {
+          options.onProjectFileInvalid && options.onProjectFileInvalid();
+        });
+    };
+
+    internalFetch(headers);
   };
 
   // Temporary name, you can change it
@@ -112,36 +191,36 @@ module.exports = (opt) => {
     fetchData(url, password, options, async (data) => {
       if (!data) throw Error('No data found!');
 
-      let idb;
-      if (Module.canvas) idb = Module.require('assets/idb.js')();
-      data.type = '';
-      let localdb = await idb.openDB('workspace', 21, {
-        upgrade(db) {
-          db.createObjectStore('FILE_DATA');
-        },
-      });
+      // let idb;
+      // if (Module.canvas) idb = Module.require('assets/idb.js')();
+      // data.type = '';
+      // let localdb = await idb.openDB('workspace', 21, {
+      //   upgrade(db) {
+      //     db.createObjectStore('FILE_DATA');
+      //   },
+      // });
 
-      // Store zip file in indexedDB
-      let tx = localdb.transaction('FILE_DATA', 'readwrite');
-      await tx.store.delete(IDBKeyRange.bound(fullpath, fullpath + '\uffff'));
-      await tx.store.put(
-        new Blob([new Uint8Array(data)]),
-        fullpath + 'project.zip'
-      );
-      await tx.done;
-      localdb.close();
-      localdb = null;
-      tx = null;
+      // // Store zip file in indexedDB
+      // let tx = localdb.transaction('FILE_DATA', 'readwrite');
+      // await tx.store.delete(IDBKeyRange.bound(fullpath, fullpath + '\uffff'));
+      // await tx.store.put(
+      //   new Blob([new Uint8Array(data)]),
+      //   fullpath + 'project.zip'
+      // );
+      // await tx.done;
+      // localdb.close();
+      // localdb = null;
+      // tx = null;
 
-      await sleep(400);
+      // await sleep(400);
 
-      if (Module.FS) {
-        Module.FS.writeFile(fullpath + 'project.zip', new Uint8Array(data));
-      } else {
-        surface.writeFile(fullpath + 'project.zip', data);
-      }
+      // if (Module.FS) {
+      //   Module.FS.writeFile(fullpath + 'project.zip', new Uint8Array(data));
+      // } else {
+      //   surface.writeFile(fullpath + 'project.zip', data);
+      // }
 
-      await sleep(100);
+      // await sleep(100);
 
       const archive = Module.ProjectManager.archive;
       archive.close();

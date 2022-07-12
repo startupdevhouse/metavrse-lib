@@ -549,14 +549,16 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
   };
 
   return {
-    addObjectToScene,
     addHTMLTagToHud,
+    addObjectToScene,
+    changeInitialValuesWhenAddingObject,
     getMaterialValue,
     getMaterialValues,
     getObjectAnimation,
     getObjectByPixel,
     getObjectInfo,
     getObjectMeshes,
+    getVideoObject,
     highlightMeshes,
     loadAssetsAndRun,
     removeObjectFromScene,
@@ -564,9 +566,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setAssets,
     setObjectMaterial,
     setObjectProperty,
-    changeInitialValuesWhenAddingObject,
     ...gizmoFacade(cherryViewer),
-    getVideoObject,
   };
 };
 

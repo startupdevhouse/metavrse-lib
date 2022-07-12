@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.5.2...v1.6.0) (2022-07-12)
+
+
+### Features
+
+* MET-2525 add configuration support ([f602af1](https://github.com/startupdevhouse/metavrse-lib/commit/f602af19e92218d9b3fd99fd93aee662b2bf5b7f))
+
 ### [1.5.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.5.1...v1.5.2) (2022-07-12)
 
 

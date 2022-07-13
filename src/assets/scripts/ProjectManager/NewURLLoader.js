@@ -191,37 +191,6 @@ module.exports = (opt) => {
     fetchData(url, password, options, async (data) => {
       if (!data) throw Error('No data found!');
 
-      // let idb;
-      // if (Module.canvas) idb = Module.require('assets/idb.js')();
-      // data.type = '';
-      // let localdb = await idb.openDB('workspace', 21, {
-      //   upgrade(db) {
-      //     db.createObjectStore('FILE_DATA');
-      //   },
-      // });
-
-      // // Store zip file in indexedDB
-      // let tx = localdb.transaction('FILE_DATA', 'readwrite');
-      // await tx.store.delete(IDBKeyRange.bound(fullpath, fullpath + '\uffff'));
-      // await tx.store.put(
-      //   new Blob([new Uint8Array(data)]),
-      //   fullpath + 'project.zip'
-      // );
-      // await tx.done;
-      // localdb.close();
-      // localdb = null;
-      // tx = null;
-
-      // await sleep(400);
-
-      // if (Module.FS) {
-      //   Module.FS.writeFile(fullpath + 'project.zip', new Uint8Array(data));
-      // } else {
-      //   surface.writeFile(fullpath + 'project.zip', data);
-      // }
-
-      // await sleep(100);
-
       const archive = Module.ProjectManager.archive;
       archive.close();
       archive.open(fullpath + 'project.zip');

@@ -24,6 +24,7 @@ import { CherryObjectAnimations } from '../types/facade/CherryObjectAnimations';
 import { CherryObjectByPixel, CherrySurfaceSceneObject, Vector3 } from '..';
 import { gizmoFacade } from './gizmo';
 import { ConfigurationNode, HTMLHudNode } from '../types';
+import { zoomFacade } from './zoom';
 
 export const cherryFacade = (cherryViewer: CherryViewer) => {
   const pm = cherryViewer.ProjectManager;
@@ -567,6 +568,7 @@ export const cherryFacade = (cherryViewer: CherryViewer) => {
     setObjectMaterial,
     setObjectProperty,
     ...gizmoFacade(cherryViewer),
+    ...zoomFacade(pm, cherryViewer),
   };
 };
 

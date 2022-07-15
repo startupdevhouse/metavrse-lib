@@ -26,7 +26,11 @@ export type CherryProjectManager = {
     key?: CherryKey
   ) => CherryProjectManagerObject;
   removeObject: (key: CherryKey) => any;
-  moveObject: (key: CherryKey, parent: CherryKey) => any;
+  /**
+   * @param key viewer object key
+   * @param parent optional parent key. If not provided, the object will be moved to the root
+   */
+  moveObject: (key: CherryKey, parent?: CherryKey) => any;
   loadPaths: (tree: Asset[]) => void;
   getAsset: (key: CherryKey) => Asset;
   selectScene: (scene: string, callback: () => void) => void;

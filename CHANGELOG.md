@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/startupdevhouse/metavrse-lib/compare/v1.6.2...v1.7.0) (2022-07-18)
+
+
+### Features
+
+* MET-2539 Create zoom to object method in facade ([c450d58](https://github.com/startupdevhouse/metavrse-lib/commit/c450d58f19020de5b875c8c23cd44f79441093df))
+
 ### [1.6.2](https://github.com/startupdevhouse/metavrse-lib/compare/v1.6.1...v1.6.2) (2022-07-15)
 
 ### [1.6.1](https://github.com/startupdevhouse/metavrse-lib/compare/v1.6.0...v1.6.1) (2022-07-13)
